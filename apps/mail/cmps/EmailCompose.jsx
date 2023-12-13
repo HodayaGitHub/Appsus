@@ -4,7 +4,7 @@ const { useState, useEffect } = React
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
 
-export function CreateEmail() {
+export function EmailCompose() {
     const [newEmail, setNewEmail] = useState(emailService.getEmptyEmail())
     const { recipient, subject, message } = newEmail
 
@@ -34,7 +34,7 @@ export function CreateEmail() {
 
 
     return (
-        <section className="create-email">
+        <section className="compose-email">
 
             <form onSubmit={handleSubmit}>
                 <div>

@@ -6,7 +6,7 @@ import { emailsDataMockData } from '../mails.json.js'
 
 const EMAIL_KEY = 'emails'
 const SENT_EMAILS = 'sent_emails'
-_createEmailsFromJson()
+_emailComposeFromJson()
 
 export const emailService = {
     getFilterFromQueryString,
@@ -20,21 +20,7 @@ export const emailService = {
 
 }
 
-
-
 console.log('check wires')
-
-
-// const email = {
-//     id: 'e101',
-//     subject: 'Miss you!',
-//     body: 'Would love to catch up sometimes',
-//     isRead: false,
-//     sentAt: 1551133930594,
-//     removedAt: null,
-//     from: 'momo@momo.com',
-//     to: 'user@appsus.com'
-// }
 
 function getFilterFromQueryString(searchParams) {
     const txt = searchParams.get('txt') || ''
@@ -60,7 +46,7 @@ const criteria = {
 
 
 
-function _createEmailsFromJson() {
+function _emailComposeFromJson() {
     return storageService.query(EMAIL_KEY)
         .then(emails => {
             if (!emails || !emails.length) {
@@ -70,7 +56,7 @@ function _createEmailsFromJson() {
             return emails
         })
         .catch(error => {
-            console.error("Error in _createEmailsFromJson:", error)
+            console.error("Error in _emailComposeFromJson:", error)
             throw error
         })
 }
@@ -131,12 +117,14 @@ function addSentEmailToLocalStorage(to, subject, body) {
     const email = {
         id: utilService.makeId(),
         to: to,
+        from: 'momo@momo.com',
         subject: subject || 'No subject',
         body: body || 'No inner message',
-        isRead: false,
+        isRead: true,
         sentAt: Math.floor(Date.now() / 1000),
         removedAt: null,
-        from: 'momo@momo.com',
+        isStarred: false,
+        labels: [],
     }
     return storageService.post(EMAIL_KEY, email)
 }
