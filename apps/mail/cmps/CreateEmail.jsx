@@ -1,7 +1,7 @@
 import { emailService } from "../services/mail.service.js"
 // const { useNavigate, useParams } = ReactRouterDOM
 const { useState, useEffect } = React
-import { UserMsg } from "./cmps/UserMsg.jsx"
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
 
 export function CreateEmail() {
@@ -20,23 +20,17 @@ export function CreateEmail() {
         event.preventDefault()
         console.log(newEmail)
         emailService
-          .addSentEmailToLocalStorage(...newEmail)
-          .then(() => {
-            console.log(newEmail)
-            showSuccessMsg(`Email sent successfully`)
-          })
-          .catch(err => {
-            console.log('err:', err)
-            showErrorMsg("Couldn't send email")
-          })
-      }
+            .addSentEmailToLocalStorage(newEmail.recipient, newEmail.subject, newEmail.message)
+            .then(() => {
+                console.log(newEmail)
+                showSuccessMsg(`Email sent successfully`)
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg("Couldn't send email")
+            })
+    }
 
-
-
-
-
-
-      
 
 
     return (
@@ -44,7 +38,7 @@ export function CreateEmail() {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="recipient">Recipient:</label>
+                    <label htmlFor="recipient">To:</label>
                     <input
                         type="email"
                         id="recipient"

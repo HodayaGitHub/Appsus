@@ -106,6 +106,14 @@ function remove(emailId) {
     return storageService.remove(EMAIL_KEY, emailId)
 }
 
+// function save(email) {
+//     if (email.id) {
+//         return storageService.put(EMAIL_KEY, email)
+//     } else {
+//         return storageService.post(EMAIL_KEY, email)
+//     }
+// }
+
 function save(email) {
     if (email.id) {
         return storageService.put(EMAIL_KEY, email)
@@ -116,12 +124,13 @@ function save(email) {
 
 
 
-function addSentEmailToLocalStorage(to, subject, body,) {
-    console.log('item', email)
+
+function addSentEmailToLocalStorage(to, subject, body) {
+    // console.log('item', email)
     // const bookInfo = item.volumeInfo
     const email = {
         id: utilService.makeId(),
-        to,
+        to: to,
         subject: subject || 'No subject',
         body: body || 'No inner message',
         isRead: false,
@@ -129,7 +138,7 @@ function addSentEmailToLocalStorage(to, subject, body,) {
         removedAt: null,
         from: 'momo@momo.com',
     }
-    return save(email)
+    return storageService.post(EMAIL_KEY, email)
 }
 
 
