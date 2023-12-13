@@ -4,8 +4,6 @@ export const utilService = {
     getRandomIntInclusive,
     getRandomColor,
     padNum,
-    getDayName,
-    getMonthName,
     loadFromStorage,
     saveToStorage,
 }
@@ -50,18 +48,6 @@ function getRandomColor() {
     return color
 }
 
-function getDayName(date, locale) {
-    date = new Date(date)
-    return date.toLocaleDateString(locale, { weekday: 'long' })
-}
-
-
-function getMonthName(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ]
-    return monthNames[date.getMonth()]
-}
 
 
 function saveToStorage(key, value) {
