@@ -23,7 +23,7 @@ export function EmailFilter({ filterBy, onSetFilter }) {
             case 'number':
             case 'range':
                 value = +value
-                break;
+                break
 
             case 'checkbox':
                 value = target.checked
@@ -37,6 +37,7 @@ export function EmailFilter({ filterBy, onSetFilter }) {
     }
 
 
+
     const { txt} = filterByToEdit
     return (
         <section className="">
@@ -45,7 +46,7 @@ export function EmailFilter({ filterBy, onSetFilter }) {
                 <label htmlFor="txt">search email </label>
                 <input value={txt} onChange={handleChange} type="text" id="txt" name="txt" />
 
-                <button>Submit</button>
+                {/* <button>Submit</button> */}
             </form>
         </section>
     )

@@ -18,7 +18,7 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState(emailService.getFilterFromQueryString(searchParams))
     const [isFormVisible, setFormVisibility] = useState(false)
 
-    const { txt } = filterBy
+    const { txt , status } = filterBy
 
     useEffect(() => {
         loadEmails()
@@ -59,10 +59,12 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    console.log('filterBy', filterBy)
+
     if (!emails) return <div>Loading...</div>
     return (
         <main className="mail-index">
-            <EmailFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
+            <EmailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
             <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
             <img
                 className="email-btn compose-email-btn"
@@ -72,7 +74,7 @@ export function MailIndex() {
             />
 
             <EmailFolderList
-                filterBy={{}}
+                filterBy={filterBy}
                 onSetFilter={onSetFilter} emails={emails}
             />
 

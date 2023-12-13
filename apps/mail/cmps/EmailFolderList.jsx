@@ -1,54 +1,53 @@
 const { useState, useEffect } = React
+import { EmailList } from './EmailList.jsx'
+
 
 export function EmailFolderList({ emails, filterBy, onSetFilter }) {
-    console.log('filterBy', filterBy)
-    const [filteredEmails, setFilteredEmails] = useState(filterBy)
+    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
     useEffect(() => {
-        onSetFilter(filteredEmails)
-    }, [filteredEmails])
+        onSetFilter(filterByToEdit)
+    }, [filterByToEdit])
 
-    function applyFilter(folderType) {
-        let folderFilter = {} // Define folderFilter here
+    function onSetFilterBy(folderType) {
+        setFilterByToEdit((prevFilter) => {
+            const updatedFilter = { ...prevFilter, status: folderType }
 
-        console.log(folderType)
-        switch (folderType) {
-            case 'inbox':
-                folderFilter = { to: 'user@appsus.com', removedAt: null }
-                break
-            case 'outbox':
-                folderFilter = { from: 'user@appsus.com', removedAt: null }
-                break
-            case 'trash':
-                folderFilter = { removedAt: { $ne: null } }
-                break
-            default:
-                folderFilter = {}
-                break
-        }
-        setFilteredEmails((prevFilter) => ({ ...prevFilter, ...folderFilter }))
+            return updatedFilter
+        })
     }
 
+    // function onSetFilterBy(folderType) {
+    //     onSetFilter((prevFilter) => {
+    //         const updatedFilter = { ...prevFilter, status: folderType }
+
+    //         return updatedFilter
+    //     })
+    // }
+
+
     return (
-        <section className="actions-btns-container">
-            <img
-                className="email-btn"
-                src="../../assets/img/icons/email-icons/inbox.svg"
-                alt="Remove email"
-                onClick={() => applyFilter('inbox')}
-            />
-            <img
-                className="email-btn"
-                src="../../assets/img/icons/email-icons/outbox.svg"
-                alt="Remove email"
-                onClick={() => applyFilter('outbox')}
-            />
-            <img
-                className="email-btn"
-                src="../../assets/img/icons/email-icons/trash.svg"
-                alt="Remove email"
-                onClick={() => applyFilter('trash')}
-            />
-        </section>
+        <React.Fragment>
+            <section className="actions-btns-container">
+                <img
+                    className="email-btn"
+                    src="../../assets/img/icons/email-icons/inbox.svg"
+                    alt="Inbox"
+                    onClick={() => onSetFilterBy('inbox')}
+                />
+                <img
+                    className="email-btn"
+                    src="../../assets/img/icons/email-icons/outbox.svg"
+                    alt="Outbox"
+                    onClick={() => onSetFilterBy('outbox')}
+                />
+                <img
+                    className="email-btn"
+                    src="../../assets/img/icons/email-icons/trash.svg"
+                    alt="Trash"
+                    onClick={() => onSetFilterBy('trash')}
+                />
+            </section>
+        </React.Fragment>
     )
 }
