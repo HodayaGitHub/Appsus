@@ -1,0 +1,14 @@
+.create-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-note label {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-note textarea {
+    resize: none;
+}

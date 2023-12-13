@@ -1,6 +1,6 @@
 button {
     cursor: pointer;
-    background-color: var(--clr2bg);
+    /* background-color: var(--clr2bg); */
     margin: 0.5em;
     border: 0;
     padding: 0.5em 0.8em;
@@ -8,9 +8,10 @@ button {
 }
 
 button:hover {
-    background-color: var(--clr2);
-    color: white;
-    transition: 0.3s;
+    /* background-color: var(--clr2); */
+    color: lightseagreen;
+    filter: brightness(1.05);
+    transition: 300ms;
 }
 
 input:focus {
