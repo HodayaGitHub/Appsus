@@ -4,20 +4,22 @@ const { useState } = React
 
 export function CreateNote(props) {
     const [note, setNote] = useState(noteService.create())
-    const [type, setType] = useState('text')
 
     function onChangeNote(ev) {
         const name = ev.target.name
-        const value = ev.target.value
+        let value = ev.target.value
+        console.log(name, value)
         if (name === 'image') {
-            // const imageFile = ev.target.files && ev.target.files[0]
-            // if (imageFile) {
-            //     const fileReader = new FileReader()
-            //     fileReader.onload = () => fileReader.result
-            //     fileReader.readAsDataURL(imageFile)
-            // }
-        }
-        setNote(prevNote => ({ ...prevNote, [name]: value }))
+            const imageFile = ev.target.files && ev.target.files[0]
+            if (imageFile) {
+                const fileReader = new FileReader()
+                fileReader.onload = () => {
+                    value = fileReader.result
+                    setNote(prevNote => ({ ...prevNote, [name]: value }))
+                }
+                fileReader.readAsDataURL(imageFile)
+            }
+        } else setNote(prevNote => ({ ...prevNote, [name]: value }))
     }
 
     function onCreateNote(ev) {
@@ -25,7 +27,8 @@ export function CreateNote(props) {
         props.onSetNote(note)
             .then(() => setNote(noteService.create()))
     }
-
+    
+    console.log(note)
     return (
         <form onSubmit={onCreateNote}className="create-note">
             <label className="title">
@@ -34,7 +37,7 @@ export function CreateNote(props) {
             </label>
             <label className="type">
                 <span>Type:</span>
-                <select name="type" value={type} onChange={ev => setType(ev.target.value)}>
+                <select name="type" value={note.type} onChange={onChangeNote}>
                     <option value="text">Text</option>
                     <option value="image">Image</option>
                     <option value="video">Video</option>
@@ -42,26 +45,26 @@ export function CreateNote(props) {
                 </select>
             </label>
             {
-                type === 'text' &&
-                <label className="content">
-                    <span>Content:</span>
-                    <textarea name="content" rows="3" value={note.content} onChange={onChangeNote} />
+                note.type === 'text' &&
+                <label className="text">
+                    <span>Text:</span>
+                    <textarea name="text" rows="3" value={note.text} onChange={onChangeNote} />
                 </label>
             }
             {
-                type === 'image' &&
+                note.type === 'image' &&
                 <label className="image">
                     <input type="file" name="image" accept="image/*" onChange={onChangeNote} />
                 </label>
             }
             {
-                type === 'video' &&
+                note.type === 'video' &&
                 <label className="video">
                     <input type="url" name="video" onChange={onChangeNote} />
                 </label>
             }
             {
-                type === 'todo' &&
+                note.type === 'todo' &&
                 <label className="todo">
                     <span>Todo</span>
                 </label>

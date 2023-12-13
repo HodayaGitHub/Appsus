@@ -39,7 +39,7 @@ function save(note) {
 
 function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
     const note = {
-        content,
+        [type]: content,
         title,
         labels,
         type,
