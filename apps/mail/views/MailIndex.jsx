@@ -51,13 +51,13 @@ export function MailIndex() {
     if (!emails) return <div>Loading...</div>
 
     return (
-        <div>
+        <main className="mail-index">
             {/* <h1>mail app</h1> */}
             <EmailFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
             {console.log(emails)}
             <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
 
-        </div>
+        </main>
     )
 }
 
