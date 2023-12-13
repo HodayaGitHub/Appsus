@@ -23,6 +23,8 @@ export function AppHeader() {
             <button className="apps-memu">
                 Apps
             </button>
+            <NavLink to="/mail">Mail</NavLink>
+            <NavLink to="/note">Note</NavLink>
             <NavLink className="user-img-container" to="/">
                 <img className="user-img" src="assets/img/icons/user-img.png" alt="" />
             </NavLink>
