@@ -15,14 +15,16 @@ export function EmailList({ emails, onRemoveEmail }) {
 
         // <div>blah blah</div>
         // <ul {...ulProps} >
-        <ul>
+        <div className="emails-container">
             {emails.map(email =>
-                <li className="clean-list email-item" key={email.id}>
+                <section className="clean-list email-item" key={email.id}>
                     <EmailPreview email={email} />
                     <section className="actions-btns-container">
                         <img className="email-btn" src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
                         <img className="email-btn" src="../../assets/img/icons/email-icons/envelop.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
                         <img className="email-btn" src="../../assets/img/icons/email-icons/share.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
+
+
                         {/* <button className="email-btn" onClick={() => onRemoveEmail(email.id)}>
                             <img src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" />
                         </button>
@@ -31,8 +33,8 @@ export function EmailList({ emails, onRemoveEmail }) {
                         </button> */}
 
                     </section>
-                </li>
+                </section>
             )}
-        </ul>
+        </div>
     )
 }
