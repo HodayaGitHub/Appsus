@@ -7,8 +7,9 @@ import { emailsDataMockData } from '../mails.json.js'
 const EMAIL_KEY = 'emails'
 _createEmailsFromJson()
 
-export const mailService = {
-    // query,
+export const emailService = {
+    getFilterFromQueryString,
+    query,
     // get,
     // remove,
     // save,
@@ -30,6 +31,15 @@ console.log('check wires')
 //     from: 'momo@momo.com',
 //     to: 'user@appsus.com'
 // }
+
+function getFilterFromQueryString(searchParams) {
+    const txt = searchParams.get('txt') || ''
+    return {
+        txt,
+    }
+}
+
+
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -57,6 +67,20 @@ function _createEmailsFromJson() {
         .catch(error => {
             console.error("Error in _createEmailsFromJson:", error)
             throw error
+        })
+}
+
+
+function query(filterBy) {
+    return storageService.query(EMAIL_KEY)
+        .then(emails => {
+            if (filterBy.txt) {
+                console.log(filterBy.txt)
+                const regExp = new RegExp(filterBy.txt, 'i')
+                emails = emails.filter(email => regExp.test(email.subject))
+            }
+            console.log('query' , emails)
+            return emails
         })
 }
 
