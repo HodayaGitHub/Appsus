@@ -1,1 +1,17 @@
- /* note list */
+.note-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    gap: 1em;
+}
+
+.note-list article {
+    text-align: center;
+    border: 1px solid black;
+    width: 10em;
+    padding: 0.5em;
+}
+
+.note-list p {
+    margin: 0.25em 0 0 0;
+}
