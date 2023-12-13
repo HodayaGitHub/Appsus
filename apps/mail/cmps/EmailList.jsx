@@ -20,11 +20,9 @@ export function EmailList({ emails, onRemoveEmail }) {
                 <li className="clean-list email-item" key={email.id}>
                     <EmailPreview email={email} />
                     <section className="actions-btns-container">
-                        {/* <button className="email-btn" onClick={() => onRemoveEmail(email.id)}> */}
                         <img className="email-btn" src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
-                        <img className="email-btn" src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
-                        <img className="email-btn" src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
-                        {/* </button> */}
+                        <img className="email-btn" src="../../assets/img/icons/email-icons/envelop.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
+                        <img className="email-btn" src="../../assets/img/icons/email-icons/share.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
                         {/* <button className="email-btn" onClick={() => onRemoveEmail(email.id)}>
                             <img src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" />
                         </button>

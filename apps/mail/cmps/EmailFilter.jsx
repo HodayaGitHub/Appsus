@@ -30,7 +30,7 @@ export function EmailFilter({ filterBy, onSetFilter }) {
                 break
 
             default:
-                break;
+                break
         }
 
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))

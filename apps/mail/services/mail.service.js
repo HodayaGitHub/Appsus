@@ -10,8 +10,8 @@ _createEmailsFromJson()
 export const emailService = {
     getFilterFromQueryString,
     query,
+    remove,
     // get,
-    // remove,
     // save,
 
 }
