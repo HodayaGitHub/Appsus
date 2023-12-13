@@ -10,7 +10,7 @@ export function EmailList({ emails, onRemoveEmail }) {
         title: 'EmailsList'
     }
 
-    console.log(ulProps)
+    // console.log(ulProps)
     return (
 
         // <div>blah blah</div>

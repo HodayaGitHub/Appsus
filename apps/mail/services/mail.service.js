@@ -5,6 +5,7 @@ import { emailsDataMockData } from '../mails.json.js'
 
 
 const EMAIL_KEY = 'emails'
+const SENT_EMAILS = 'sent_emails'
 _createEmailsFromJson()
 
 export const emailService = {
@@ -13,6 +14,9 @@ export const emailService = {
     remove,
     // get,
     // save,
+    getEmptyEmail,
+    saveNewEmail,
+    addSentEmailToLocalStorage,
 
 }
 
@@ -55,6 +59,7 @@ const criteria = {
 }
 
 
+
 function _createEmailsFromJson() {
     return storageService.query(EMAIL_KEY)
         .then(emails => {
@@ -70,6 +75,14 @@ function _createEmailsFromJson() {
         })
 }
 
+function saveNewEmail() {
+
+
+}
+
+function getEmptyEmail(recipient = '', subject = '', message = '') {
+    return { recipient, subject, message }
+}
 
 function query(filterBy) {
     return storageService.query(EMAIL_KEY)
@@ -79,7 +92,7 @@ function query(filterBy) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 emails = emails.filter(email => regExp.test(email.subject))
             }
-            console.log('query' , emails)
+            // console.log('query' , emails)
             return emails
         })
 }
@@ -92,3 +105,47 @@ function get(emailId) {
 function remove(emailId) {
     return storageService.remove(EMAIL_KEY, emailId)
 }
+
+function save(email) {
+    if (email.id) {
+        return storageService.put(EMAIL_KEY, email)
+    } else {
+        return storageService.post(EMAIL_KEY, email)
+    }
+}
+
+
+
+function addSentEmailToLocalStorage(to, subject, body,) {
+    console.log('item', email)
+    // const bookInfo = item.volumeInfo
+    const email = {
+        id: utilService.makeId(),
+        to,
+        subject: subject || 'No subject',
+        body: body || 'No inner message',
+        isRead: false,
+        sentAt: Math.floor(Date.now() / 1000),
+        removedAt: null,
+        from: 'momo@momo.com',
+    }
+    return save(email)
+}
+
+
+// function sentEmail() {
+//     console.log('item', email)
+//     const email = {
+//         // id: item.id,
+//         id: utilService.makeId(),
+//         subject: subject || 'No subject',
+//         body: body || 'No inner message',
+//         isRead: false,
+//         sentAt: 1678233930594,
+//         removedAt: null,
+//         from: 'momo@momo.com',
+//         to: 'user@appsus.com',
+
+//     }
+//     return save(email)
+// }

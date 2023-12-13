@@ -23,7 +23,8 @@
 /* Email app css */
 @import './apps/mail/cmps/EmailList.css';
 @import './apps/mail/cmps/EmailPreview.css';
+@import './apps/mail/cmps/EmailIndex.css';
 
 /* Note app css */
 @import './apps/note/cmps/CreateNote.css';
-@import './apps/note/cmps/NoteList.css'
+@import './apps/note/cmps/NoteList.css';
