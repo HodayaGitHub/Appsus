@@ -30,6 +30,10 @@ header {
     align-items: center;
 }
 
+a:not(.user-img-container) {
+    padding: 1em;
+}
+
 /* nav {
     display: flex;
     justify-content: center;
