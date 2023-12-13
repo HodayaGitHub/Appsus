@@ -5,9 +5,9 @@ const { useState, useEffect } = React
 import { emailService } from '../services/mail.service.js'
 import { EmailFilter } from '../cmps/EmailFilter.jsx'
 import { EmailList } from '../cmps/EmailList.jsx'
-import { CreateEmail } from '../cmps/CreateEmail.jsx'
+import { EmailCompose } from '../cmps/EmailCompose.jsx'
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
-
+import { EmailFolderList } from '../cmps/EmailFolderList.jsx'
 
 
 
@@ -22,8 +22,6 @@ export function MailIndex() {
 
     useEffect(() => {
         loadEmails()
-        // console.log(loadEmails())
-        // console.log(filterBy)
         setSearchParams(filterBy)
 
         return () => {
@@ -37,31 +35,29 @@ export function MailIndex() {
             .then(emails => setEmails(emails))
             .catch(err => console.log('err:', err))
     }
-
+    
+    function onRemoveEmail(emailId) {
+        emailService.remove(emailId)
+        .then(() => {
+            setEmails(prevEmails => {
+                return prevEmails.filter(email => email.id !== emailId)
+            })
+            showSuccessMsg(`Email successfully removed! ${emailId}`)
+        })
+        .catch(err => {
+            console.log('err:', err)
+            showErrorMsg(`Error while trying to delete an email ${emailId}`)
+            
+        })
+    }
+    
+    const handleEmailComposeClick = () => {
+        setFormVisibility(prevVisibility => !prevVisibility)
+    }
+    
     function onSetFilter(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
-
-    function onRemoveEmail(emailId) {
-        emailService.remove(emailId)
-            .then(() => {
-                setEmails(prevEmails => {
-                    return prevEmails.filter(email => email.id !== emailId)
-                })
-                showSuccessMsg(`Email successfully removed! ${emailId}`)
-            })
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg(`Error while trying to delete an email ${emailId}`)
-
-            })
-
-    }
-
-    const handleCreateEmailClick = () => {
-        setFormVisibility(prevVisibility => !prevVisibility)
-    }
-
 
     if (!emails) return <div>Loading...</div>
     return (
@@ -69,13 +65,18 @@ export function MailIndex() {
             <EmailFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
             <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
             <img
-                className="email-btn create-email-btn"
+                className="email-btn compose-email-btn"
                 src="../../assets/img/icons/email-icons/plus.png"
                 alt="compose email"
-                onClick={handleCreateEmailClick}
+                onClick={handleEmailComposeClick}
             />
 
-            {isFormVisible && <CreateEmail/>}
+            <EmailFolderList
+                filterBy={{}}
+                onSetFilter={onSetFilter} emails={emails}
+            />
+
+            {isFormVisible && <EmailCompose />}
 
 
         </main>

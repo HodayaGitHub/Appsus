@@ -8,12 +8,13 @@
 }
 
 .email-item {
-    display: flex;
+    display: grid;
     /* flex-direction: row; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
     cursor: pointer;
     border-top: 1px solid;
     /* height: 40px;; */
+    grid-template-columns: 200px auto 100px;
 }
 
 /* .email-item section {
