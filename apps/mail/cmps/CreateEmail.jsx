@@ -1,41 +1,56 @@
 import { emailService } from "../services/mail.service.js"
 // const { useNavigate, useParams } = ReactRouterDOM
 const { useState, useEffect } = React
+import { UserMsg } from "./cmps/UserMsg.jsx"
 
 
 export function CreateEmail() {
-    const [recipient, setRecipient] = useState('')
-    const [subject, setSubject] = useState('')
-    const [message, setMessage] = useState('')
+    const [newEmail, setNewEmail] = useState(emailService.getEmptyEmail())
+    const { recipient, subject, message } = newEmail
 
-    const handleRecipientChange = (e) => {
-        setRecipient(e.target.value)
+    function handleChange({ target }) {
+        const field = target.name
+        let value = target.value
+
+        console.log(field, ':', value)
+        setNewEmail(prevEmail => ({ ...prevEmail, [field]: value }))
     }
 
-    const handleSubjectChange = (e) => {
-        setSubject(e.target.value)
-    }
+    function handleSubmit(event) {
+        event.preventDefault()
+        console.log(newEmail)
+        emailService
+          .addSentEmailToLocalStorage(...newEmail)
+          .then(() => {
+            console.log(newEmail)
+            showSuccessMsg(`Email sent successfully`)
+          })
+          .catch(err => {
+            console.log('err:', err)
+            showErrorMsg("Couldn't send email")
+          })
+      }
 
-    const handleMessageChange = (e) => {
-        setMessage(e.target.value)
-    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
+
+
+
+
+      
 
 
     return (
         <section className="create-email">
-            
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="recipient">Recipient:</label>
                     <input
                         type="email"
                         id="recipient"
+                        name="recipient"
                         value={recipient}
-                        onChange={handleRecipientChange}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -45,8 +60,9 @@ export function CreateEmail() {
                     <input
                         type="text"
                         id="subject"
+                        name="subject"
                         value={subject}
-                        onChange={handleSubjectChange}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -55,8 +71,9 @@ export function CreateEmail() {
                     <label htmlFor="message">Message:</label>
                     <textarea
                         id="message"
+                        name="message"
                         value={message}
-                        onChange={handleMessageChange}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -65,6 +82,6 @@ export function CreateEmail() {
             </form>
 
         </section>
-        
+
     )
 }

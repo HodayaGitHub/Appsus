@@ -5,6 +5,10 @@ const { useState, useEffect } = React
 import { emailService } from '../services/mail.service.js'
 import { EmailFilter } from '../cmps/EmailFilter.jsx'
 import { EmailList } from '../cmps/EmailList.jsx'
+import { CreateEmail } from '../cmps/CreateEmail.jsx'
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
+
+
 
 
 export function MailIndex() {
@@ -12,10 +16,14 @@ export function MailIndex() {
     const [emails, setEmails] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(emailService.getFilterFromQueryString(searchParams))
+    const [isFormVisible, setFormVisibility] = useState(false)
+
+    const { txt } = filterBy
 
     useEffect(() => {
-        console.log(loadEmails())
-        console.log(filterBy)
+        loadEmails()
+        // console.log(loadEmails())
+        // console.log(filterBy)
         setSearchParams(filterBy)
 
         return () => {
@@ -42,20 +50,35 @@ export function MailIndex() {
                 })
                 showSuccessMsg(`Email successfully removed! ${emailId}`)
             })
-            .catch(err => console.log('err:', err))
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg(`Error while trying to delete an email ${emailId}`)
+
+            })
 
     }
 
-    const { txt } = filterBy
+    const handleCreateEmailClick = () => {
+        setFormVisibility(prevVisibility => !prevVisibility)
+    }
+
 
     if (!emails) return <div>Loading...</div>
-
     return (
         <main className="mail-index">
-            {/* <h1>mail app</h1> */}
+
+
             <EmailFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
-            {console.log(emails)}
             <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
+            <img
+                className="email-btn create-email-btn"
+                src="../../assets/img/icons/email-icons/plus.png"
+                alt="compose email"
+                onClick={handleCreateEmailClick}
+            />
+
+            {isFormVisible && <CreateEmail />}
+
 
         </main>
     )
