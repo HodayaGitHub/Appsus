@@ -1,13 +1,16 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 1.6rem 1fr 1.6rem;
+    grid-template-columns: 5em 1fr;
     align-items: start;
+}
 
+.main-layout:has(:checked) {
+    grid-template-columns: 20dvw 1fr;
 }
 
 .app.main-layout {
     min-height: 100vh;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr;
 }
 
 .main-layout > * {

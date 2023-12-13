@@ -1,19 +1,31 @@
+import { AppSearch } from "./AppSearch.jsx"
+
 const { Link, NavLink } = ReactRouterDOM
 
 export function AppHeader() {
 
     return (
         <header className="app-header full-width">
-            <Link className="user-img-container" to="/">
-                {/* <h3>LOGO!</h3> */}
+            <label className="hamburger-menu">
+                <span>Menu</span>
+                <input className="hamburger-menu-checkbox" type="checkbox" />
+            </label>
+            <NavLink className="app-logo" to="/">
+                <span>App Logo</span>
+            </NavLink>
+            <AppSearch />
+            <button className="support-menu">
+                Support
+            </button>
+            <button className="settings-menu">
+                Settings
+            </button>
+            <button className="apps-memu">
+                Apps
+            </button>
+            <NavLink className="user-img-container" to="/">
                 <img className="user-img" src="assets/img/icons/user-img.png" alt="" />
-            </Link>
-            <nav>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/about">About</NavLink>
-                <NavLink to="/mail">Mail</NavLink>
-                <NavLink to="/note">Note</NavLink>
-            </nav>
+            </NavLink>
         </header>
     )
 }
