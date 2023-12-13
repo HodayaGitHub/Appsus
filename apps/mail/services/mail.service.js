@@ -46,21 +46,19 @@ const criteria = {
 
 
 function _createEmailsFromJson() {
-    return emailsDataMockData().then(emailsData => {
-        let emails = utilService.loadFromStorage(EMAIL_KEY)
-        if (!emails || !emails.length) {
-            utilService.saveToStorage(EMAIL_KEY, emailsData.items)
-            emails = emailsData.items
-        }
-        console.log(emails)
-        return emails
-    }).catch(error => {
-        console.error('Error loading emails:', error);
-        return []
-    })
+    return storageService.query(EMAIL_KEY)
+        .then(emails => {
+            if (!emails || !emails.length) {
+                utilService.saveToStorage(EMAIL_KEY, emailsDataMockData.items);
+                emails = emailsDataMockData.items
+            }
+            return emails
+        })
+        .catch(error => {
+            console.error("Error in _createEmailsFromJson:", error)
+            throw error
+        })
 }
-
-
 
 
 function get(emailId) {
