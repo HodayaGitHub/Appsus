@@ -15,6 +15,10 @@ export function NoteList(props) {
                         note.type === 'image' &&
                         <img src={note.image} alt="image" />
                     }
+                    {
+                        note.type === 'video' &&
+                        <iframe src={note.video}></iframe>
+                    }
                     <button
                         className="delete"
                         onClick={() => props.onDeleteNote(note.id)}

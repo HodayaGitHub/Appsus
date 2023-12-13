@@ -1,5 +1,7 @@
 import { noteService } from "../services/note.service.js"
 
+const YOUTUBE_URL_REGEX = /^(?:https?:)?(?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed)(?:\.php)?(?:\?.*v=|\/))([\w-]{7,15})(?:[\?&][\w-]+=[\w-]+)*(?:[&\/\#].*)?$/
+
 const { useState } = React
 
 export function CreateNote(props) {
@@ -8,7 +10,6 @@ export function CreateNote(props) {
     function onChangeNote(ev) {
         const name = ev.target.name
         let value = ev.target.value
-        console.log(name, value)
         if (name === 'image') {
             const imageFile = ev.target.files && ev.target.files[0]
             if (imageFile) {
@@ -19,7 +20,12 @@ export function CreateNote(props) {
                 }
                 fileReader.readAsDataURL(imageFile)
             }
-        } else setNote(prevNote => ({ ...prevNote, [name]: value }))
+        } else if (name === 'video') {
+            const regexMatch = value.match(YOUTUBE_URL_REGEX)
+            const videoId = regexMatch && regexMatch[1] || 'dQw4w9WgXcQ'
+            value = `https://www.youtube.com/embed/${videoId}`
+        }
+        setNote(prevNote => ({ ...prevNote, [name]: value }))
     }
 
     function onCreateNote(ev) {
@@ -28,7 +34,6 @@ export function CreateNote(props) {
             .then(() => setNote(noteService.create()))
     }
     
-    console.log(note)
     return (
         <form onSubmit={onCreateNote}className="create-note">
             <label className="title">
@@ -60,7 +65,7 @@ export function CreateNote(props) {
             {
                 note.type === 'video' &&
                 <label className="video">
-                    <input type="url" name="video" onChange={onChangeNote} />
+                    <input type="url" name="video" value={note.video} onChange={onChangeNote} />
                 </label>
             }
             {
