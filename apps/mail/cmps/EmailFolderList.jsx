@@ -26,7 +26,6 @@ export function EmailFolderList({ emails, filterBy, onSetFilter }) {
                 folderFilter = {}
                 break
         }
-
         setFilteredEmails((prevFilter) => ({ ...prevFilter, ...folderFilter }))
     }
 
