@@ -32,7 +32,7 @@ export const emailsDataMockData = {
             body: `Here's the latest update on our ongoing project.`,
             isRead: true,
             sentAt: 1678333930594,
-            removedAt: null,
+            removedAt: 1678233930594,
             isStarred: false,
             labels: [],
         },

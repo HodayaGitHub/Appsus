@@ -15,7 +15,7 @@ export const emailService = {
     // get,
     // save,
     getEmptyEmail,
-    saveNewEmail,
+    // saveNewEmail,
     addSentEmailToLocalStorage,
 
 }
@@ -24,23 +24,19 @@ console.log('check wires')
 
 function getFilterFromQueryString(searchParams) {
     const txt = searchParams.get('txt') || ''
+    const status = searchParams.get('status') || ''
     return {
         txt,
+        status,
     }
 }
 
-
-
-const loggedinUser = {
-    email: 'user@appsus.com',
-    fullname: 'Mahatma Appsus'
-}
 
 const criteria = {
     status: 'inbox/sent/trash/draft',
     txt: 'puki', // no need to support complex text search
     isRead: true, // (optional property, if missing: show all)
-    isStared: true, // (optional property, if missing: show all)
+    isStarred: true, // (optional property, if missing: show all)
     lables: ['important', 'romantic'] // has any of the labels
 }
 
@@ -61,13 +57,13 @@ function _emailComposeFromJson() {
         })
 }
 
-function saveNewEmail() {
-
-
-}
-
 function getEmptyEmail(recipient = '', subject = '', message = '') {
     return { recipient, subject, message }
+}
+
+const loggedinUser = {
+    email: 'user@appsus.com',
+    fullname: 'Mahatma Appsus'
 }
 
 function query(filterBy) {
@@ -77,6 +73,21 @@ function query(filterBy) {
                 console.log(filterBy.txt)
                 const regExp = new RegExp(filterBy.txt, 'i')
                 emails = emails.filter(email => regExp.test(email.subject))
+            }
+
+            if (filterBy.status === 'inbox') {
+                emails = emails.filter(email => {
+                    return email.to === loggedinUser.email && email.removedAt === null
+                })
+
+            } else if (filterBy.status === 'outbox') {
+                emails = emails.filter(email => {
+                    return email.from === loggedinUser.email && email.removedAt === null
+                })
+            } else if (filterBy.status === 'trash') {
+                emails = emails.filter(email => {
+                    return email.removedAt !== null
+                })
             }
             // console.log('query' , emails)
             return emails
