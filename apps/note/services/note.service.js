@@ -6,7 +6,7 @@ const NOTES_STORAGE_KEY = 'notes'
 const NOTE_TYPE_TEXT = 'text'
 const NOTE_TYPE_IMAGE = 'image'
 const NOTE_TYPE_VIDEO = 'video'
-const NOTE_TYPE_TOTO = 'todo'
+const NOTE_TYPE_TODO = 'todo'
 
 export const noteService = {
     query,
@@ -39,7 +39,7 @@ function save(note) {
 
 function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
     const note = {
-        content,
+        [type]: content,
         title,
         labels,
         type,

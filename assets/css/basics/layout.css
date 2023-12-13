@@ -4,7 +4,7 @@
     align-items: start;
 }
 
-.main-layout:has(:checked) {
+.main-layout:has(.hamburger-menu-checkbox:checked) {
     grid-template-columns: 20dvw 1fr;
 }
 
