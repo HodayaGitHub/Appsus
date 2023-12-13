@@ -66,8 +66,6 @@ export function MailIndex() {
     if (!emails) return <div>Loading...</div>
     return (
         <main className="mail-index">
-
-
             <EmailFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
             <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
             <img
@@ -77,7 +75,7 @@ export function MailIndex() {
                 onClick={handleCreateEmailClick}
             />
 
-            {isFormVisible && <CreateEmail />}
+            {isFormVisible && <CreateEmail/>}
 
 
         </main>
