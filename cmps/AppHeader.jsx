@@ -3,9 +3,9 @@ const { Link, NavLink } = ReactRouterDOM
 export function AppHeader() {
 
     return <header className="app-header full">
-        <Link to="/">
-            <h3>LOGO!</h3>
-            {/* <img src="assets/img/icons/user-img.png" alt="" /> */}
+        <Link className="user-img-container" to="/">
+            {/* <h3>LOGO!</h3> */}
+            <img className="user-img" src="assets/img/icons/user-img.png" alt="" />
         </Link>
         <nav>
             <NavLink to="/">Home</NavLink>

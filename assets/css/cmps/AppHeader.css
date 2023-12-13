@@ -10,6 +10,11 @@ header {
     padding: 20px 0;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+}
+
 nav a {
     margin: .5em;
 }
@@ -23,3 +28,13 @@ nav a.active {
     font-weight: bold;
     text-decoration: overline;
 }
+
+
+.user-img-container {
+    height: 3em;
+}
+
+/* .user-img {
+    object-fit: none;
+
+} */
