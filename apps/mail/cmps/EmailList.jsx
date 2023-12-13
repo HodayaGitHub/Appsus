@@ -17,15 +17,21 @@ export function EmailList({ emails, onRemoveEmail }) {
         // <ul {...ulProps} >
         <ul>
             {emails.map(email =>
-                <li className="clean-list" key={email.id}>
+                <li className="clean-list email-item" key={email.id}>
                     <EmailPreview email={email} />
-                    <section>
-                        <button className="email-btn" onClick={() => onRemoveEmail(email.id)}>
+                    <section className="actions-btns-container">
+                        {/* <button className="email-btn" onClick={() => onRemoveEmail(email.id)}> */}
+                        <img className="email-btn" src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
+                        <img className="email-btn" src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
+                        <img className="email-btn" src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" onClick={() => onRemoveEmail(email.id)} />
+                        {/* </button> */}
+                        {/* <button className="email-btn" onClick={() => onRemoveEmail(email.id)}>
                             <img src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" />
                         </button>
-                        {/* <button onClick={() => onRemoveEmail(email.id)}>Remove email</button> */}
-                        {/* <button><Link to={`/email/${email.id}`}>Details</Link></button> */}
-                        {/* <button><Link to={`/email/edit/${email.id}`}>Edit</Link></button> */}
+                        <button className="email-btn" onClick={() => onRemoveEmail(email.id)}>
+                            <img src="../../assets/img/icons/email-icons/trash.svg" alt="Remove email" />
+                        </button> */}
+
                     </section>
                 </li>
             )}

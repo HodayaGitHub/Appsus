@@ -28,4 +28,5 @@
 
 /* Email app css */
 
-@import './apps/mail/cmps/EmailList.css'
+@import './apps/mail/cmps/EmailList.css';
+@import './apps/mail/cmps/EmailPreview.css'

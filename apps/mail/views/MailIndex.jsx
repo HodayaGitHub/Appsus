@@ -52,7 +52,7 @@ export function MailIndex() {
 
     return (
         <div>
-            <h1>mail app</h1>
+            {/* <h1>mail app</h1> */}
             <EmailFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
             {console.log(emails)}
             <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
