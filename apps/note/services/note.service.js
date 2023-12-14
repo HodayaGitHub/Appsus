@@ -10,7 +10,16 @@ const NOTE_TYPE_TODO = 'todo'
 
 const NONE_STRING_KEYS = ['todo', 'labels', 'archived', 'trashed', 'createdAt']
 
+const NOTE_COLORS = [
+    'rgb(255, 190, 011)',
+    'rgb(251, 086, 007)',
+    'rgb(255, 000, 110)',
+    'rgb(131, 056, 236)',
+    'rgb(058, 134, 255)',
+]
+
 export const noteService = {
+    NOTE_COLORS,
     query,
     get,
     save,
@@ -42,7 +51,7 @@ function save(note) {
     return prmAllNotes
 }
 
-function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
+function create(content='', title='', type=NOTE_TYPE_TEXT) {
     const note = {
         [NOTE_TYPE_TEXT]: '',
         [NOTE_TYPE_IMAGE]: '',
@@ -51,11 +60,12 @@ function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
         todoText: '',
         [type]: content,
         title,
-        labels,
+        labels: [],
         type,
+        color: NOTE_COLORS[1],
         archived: false,
         trashed: false,
-        createdAt: Date.now(),
+        createdAt: NaN,
     }
     return note
 }

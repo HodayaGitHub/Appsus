@@ -6,7 +6,7 @@ export function NoteList(props) {
         <section className="note-list">
         {
             props.notes.map(note =>
-                <article key={note.id}>
+                <article key={note.id} style={{backgroundColor: note.color}}>
                     <h3>{note.title}</h3>
                     {
                         note.type === 'text' &&
