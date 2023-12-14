@@ -114,24 +114,31 @@ export function MailIndex() {
 
     const buttons = [
         {
-            classes: 'email-btn material-symbols-rounded',
+            class: 'email-btn',
             onClick: () => onSetFilterBy('inbox'),
-            content: 'inbox',
+            icon: 'inbox',
+            text: 'Inbox',
+
         },
         {
-            classes: 'email-btn material-symbols-rounded',
+            class: 'email-btn',
             onClick: () => onSetFilterBy('outbox'),
-            content: 'outbox',
+            icon: 'outbox',
+            text: 'Outbox',
+
         },
         {
-            classes: 'email-btn material-symbols-rounded',
+            class: 'email-btn',
             onClick: () => onSetFilterBy('trash'),
-            content: 'delete',
+            icon: 'delete',
+            text: 'Delete',
+
         },
         {
-            classes: 'email-btn material-symbols-rounded',
+            class: 'email-btn',
             onClick: () => onSetFilterBy('starred'),
-            content: 'star',
+            icon: 'star',
+            text: 'Starred',
         },
     ]
 
@@ -140,7 +147,7 @@ export function MailIndex() {
     return (
         <React.Fragment>
             <AppHeader />
-            <AppAside dynamicClass="" buttons={buttons} />
+            <AppAside dynamicClass="material-symbols-rounded" buttons={buttons} />
 
             <main className="mail-index">
                 <img
