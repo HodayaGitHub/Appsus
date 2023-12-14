@@ -1,3 +1,5 @@
+import { AppAside } from "../../../cmps/AppAside.jsx"
+import { AppHeader } from "../../../cmps/AppHeader.jsx"
 import { CreateNote } from "../cmps/CreateNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
@@ -25,15 +27,41 @@ export function NoteIndex() {
     function onSetNoteToEdit(note) {
         setNoteToEdit(prevNoteToEdit => ({ ...prevNoteToEdit, ...note}))
     }
-
     function onSaveNote() {
         noteService.save(noteToEdit)
             .then(notes => renderNotes(notes))
             .catch(err => console.error(err))
     }
+
+    function onPinNote(note) {
+        noteService.pin(note, ! note.pinned)
+            .then(notes => renderNotes(notes))
+            .catch(err => console.error(err))
+    }
+
+
+    function onArchiveNote(note) {
+        noteService.archive(note)
+            .then(notes => renderNotes(notes))
+            .catch(err => console.error(err))
+    }
+
+    function onTrashNote(note) {
+        noteService.trash(note)
+            .then(notes => renderNotes(notes))
+            .catch(err => console.error(err))
+    }
     
     function onDeleteNote(noteId) {
-        return noteService.remove(noteId)
+        noteService.remove(noteId)
+            .then(notes => renderNotes(notes))
+            .catch(err => console.error(err))
+    }
+
+    function onDuplicateNote(note) {
+        const newNote = { ...note }
+        newNote.id = undefined
+        noteService.save(newNote)
             .then(notes => renderNotes(notes))
             .catch(err => console.error(err))
     }
@@ -46,9 +74,25 @@ export function NoteIndex() {
     }
     
     return (
-        <main className="note-index">
-            <CreateNote onSaveNote={onSaveNote} noteToEdit={noteToEdit} onSetNoteToEdit={onSetNoteToEdit} />
-            <NoteList notes={notes} onDeleteNote={onDeleteNote} onSetNoteToEdit={onSetNoteToEdit} />
-        </main>
+        <React.Fragment>
+            <AppHeader />
+            <AppAside />
+            <main className="note-index">
+                <CreateNote
+                    onSaveNote={onSaveNote}
+                    noteToEdit={noteToEdit}
+                    onSetNoteToEdit={onSetNoteToEdit}
+                />
+                <NoteList
+                    notes={notes}
+                    onPinNote={onPinNote}
+                    onArchiveNote={onArchiveNote}
+                    onTrashNote={onTrashNote}
+                    onDeleteNote={onDeleteNote}
+                    onSetNoteToEdit={onSetNoteToEdit}
+                    onDuplicateNote={onDuplicateNote}
+                />
+            </main>
+        </React.Fragment>
     )
 }
