@@ -28,18 +28,18 @@ export function CreateNote(props) {
         props.onSetNoteToEdit({ [name]: value })
     }
 
-    function onAddTodo(todoText) {
-        const newTodo = noteService.createTodo(todoText)
-        props.noteToEdit.todo.push(newTodo)
-        const items = props.noteToEdit.todo.slice()
-        props.onSetNoteToEdit({ todo: items })
+    function onAddTodoItem() {
+        const todoText = props.noteToEdit.todoText
+        if (! todoText) return
+        const newTodoItem = noteService.createTodoItem(todoText)
+        props.noteToEdit.todo.push(newTodoItem)
+        props.onSetNoteToEdit({ todoText: '', todo: props.noteToEdit.todo })
     }
 
-    function onDeleteTodo(itemId) {
+    function onDeleteTodoItem(itemId) {
         const itemIdx = props.noteToEdit.todo.findIndex(item => item.id === itemId)
         props.noteToEdit.todo.splice(itemIdx, 1)
-        const items = props.noteToEdit.todo
-        props.onSetNoteToEdit({ todo: items })
+        props.onSetNoteToEdit({ todo: props.noteToEdit.todo })
     }
 
     function onCreateNote(ev) {
@@ -85,10 +85,14 @@ export function CreateNote(props) {
             }
             {
                 props.noteToEdit.type === 'todo' &&
-                <label className="todo">
-                    <span>Todo:</span>
-                    <ToDo items={props.noteToEdit.todo} onAddTodo={onAddTodo} onDeleteTodo={onDeleteTodo} />
-                </label>
+                <React.Fragment>
+                    <ToDo items={props.noteToEdit.todo} onDeleteTodoItem={onDeleteTodoItem} />
+                    <label className="todo">
+                        <span>Todo:</span>
+                        <input type="text" name="todoText" value={props.noteToEdit.todoText} onChange={onChangeNote} />
+                    </label>
+                    <button type="button" onClick={onAddTodoItem}>Add</button>
+                </React.Fragment>
             }
             <button className="create">Create</button>
         </form>

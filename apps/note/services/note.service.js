@@ -15,7 +15,7 @@ export const noteService = {
     get,
     save,
     create,
-    createTodo,
+    createTodoItem,
     remove,
     noteToSearchParams,
     searchParamsToNote,
@@ -48,6 +48,7 @@ function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
         [NOTE_TYPE_IMAGE]: '',
         [NOTE_TYPE_VIDEO]: '',
         [NOTE_TYPE_TODO]: [],
+        todoText: '',
         [type]: content,
         title,
         labels,
@@ -59,7 +60,7 @@ function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
     return note
 }
 
-function createTodo(text) {
+function createTodoItem(text) {
     const newTodo = {
         id: utilService.makeId(),
         text,
