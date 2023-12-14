@@ -1,19 +1,39 @@
 .app-aside {
-    position: relative;
-    grid-area: 2 / 1;
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    /* border: 1px solid black; */
-    background-color: lightcyan;
-}
-
-.app-aside * {
-    margin: 0;
-    padding: 1em 0.5em;
+    height: 100%;
+    width: 8dvh;
+    background-color: #f0f0f0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+    /* temp margin until we will fix the header  */
+    margin-top: 65px; 
 }
 
 .app-aside:hover {
     width: 20dvw;
+}
+
+.app-aside .label {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.app-aside:hover .label {
+    opacity: 1;
+}
+
+.app-aside .email-btn img {
+    width: 30px;
+    height: 30px;
+ 
+}
+
+.app-aside .email-btn {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

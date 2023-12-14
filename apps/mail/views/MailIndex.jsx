@@ -93,7 +93,7 @@ export function MailIndex() {
 
     if (!emails) return <div>Loading...</div>
     return (
-        <main className="mail-index">
+        <main className="mail-index main-layout">
             <EmailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
             <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
             <img
