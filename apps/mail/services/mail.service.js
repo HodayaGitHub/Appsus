@@ -10,10 +10,12 @@ _emailComposeFromJson()
 
 export const emailService = {
     getFilterFromQueryString,
-    query,
+    queryFilterBy,
     remove,
-    // get,
+    put,
+    get,
     // save,
+    query, 
     getEmptyEmail,
     // saveNewEmail,
     addSentEmailToLocalStorage,
@@ -66,11 +68,11 @@ const loggedinUser = {
     fullname: 'Mahatma Appsus'
 }
 
-function query(filterBy) {
+function queryFilterBy(filterBy) {
     return storageService.query(EMAIL_KEY)
         .then(emails => {
             if (filterBy.txt) {
-                console.log(filterBy.txt)
+                // console.log(filterBy.txt)
                 const regExp = new RegExp(filterBy.txt, 'i')
                 emails = emails.filter(email => regExp.test(email.subject))
             }
@@ -94,13 +96,35 @@ function query(filterBy) {
         })
 }
 
+function addSentEmailToLocalStorage(to, subject, body) {
+    const email = {
+        id: utilService.makeId(),
+        to: to,
+        from: loggedinUser.email,
+        subject: subject || 'No subject',
+        body: body || 'No inner message',
+        isRead: true,
+        sentAt: Math.floor(Date.now() / 1000),
+        removedAt: null,
+        isStarred: false,
+        labels: [],
+    }
+    return storageService.post(EMAIL_KEY, email)
+}
 
 function get(emailId) {
     return storageService.get(EMAIL_KEY, emailId)
 }
 
+function put(email) {
+    return storageService.put(EMAIL_KEY, email)
+}
+
 function remove(emailId) {
     return storageService.remove(EMAIL_KEY, emailId)
+}
+function query() {
+    return storageService.query(EMAIL_KEY)
 }
 
 // function save(email) {
@@ -119,41 +143,9 @@ function save(email) {
     }
 }
 
+function moveToTrash(){
 
-
-
-function addSentEmailToLocalStorage(to, subject, body) {
-    // console.log('item', email)
-    // const bookInfo = item.volumeInfo
-    const email = {
-        id: utilService.makeId(),
-        to: to,
-        from: 'momo@momo.com',
-        subject: subject || 'No subject',
-        body: body || 'No inner message',
-        isRead: true,
-        sentAt: Math.floor(Date.now() / 1000),
-        removedAt: null,
-        isStarred: false,
-        labels: [],
-    }
-    return storageService.post(EMAIL_KEY, email)
 }
 
 
-// function sentEmail() {
-//     console.log('item', email)
-//     const email = {
-//         // id: item.id,
-//         id: utilService.makeId(),
-//         subject: subject || 'No subject',
-//         body: body || 'No inner message',
-//         isRead: false,
-//         sentAt: 1678233930594,
-//         removedAt: null,
-//         from: 'momo@momo.com',
-//         to: 'user@appsus.com',
 
-//     }
-//     return save(email)
-// }

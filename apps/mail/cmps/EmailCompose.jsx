@@ -1,12 +1,15 @@
 import { emailService } from "../services/mail.service.js"
 // const { useNavigate, useParams } = ReactRouterDOM
 const { useState, useEffect } = React
+const { useNavigate } = ReactRouterDOM
+
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
 
 export function EmailCompose() {
     const [newEmail, setNewEmail] = useState(emailService.getEmptyEmail())
     const { recipient, subject, message } = newEmail
+    const navigate = useNavigate()
 
     function handleChange({ target }) {
         const field = target.name
@@ -24,6 +27,7 @@ export function EmailCompose() {
             .then(() => {
                 console.log(newEmail)
                 showSuccessMsg(`Email sent successfully`)
+                navigate('/mail')
             })
             .catch(err => {
                 console.log('err:', err)
