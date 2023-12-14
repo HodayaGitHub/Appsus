@@ -1,4 +1,6 @@
 export function EmailActions({ onRemoveEmail, onStarredEmail }) {
+
+
     return (
         <section className="actions-btns-container">
 

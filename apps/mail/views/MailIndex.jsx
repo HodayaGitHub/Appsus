@@ -114,28 +114,24 @@ export function MailIndex() {
 
     const buttons = [
         {
-            label: 'Inbox',
-            icon: '../../assets/img/icons/email-icons/inbox.svg',
-            alt: 'Inbox',
+            classes: 'email-btn material-symbols-rounded',
             onClick: () => onSetFilterBy('inbox'),
+            content: 'inbox',
         },
         {
-            label: 'Outbox',
-            icon: '../../assets/img/icons/email-icons/outbox.svg',
-            alt: 'Outbox',
+            classes: 'email-btn material-symbols-rounded',
             onClick: () => onSetFilterBy('outbox'),
+            content: 'outbox',
         },
         {
-            label: 'Trash',
-            icon: '../../assets/img/icons/email-icons/trash.svg',
-            alt: 'Trash',
+            classes: 'email-btn material-symbols-rounded',
             onClick: () => onSetFilterBy('trash'),
+            content: 'delete',
         },
         {
-            label: 'Starred',
-            icon: '../../assets/img/icons/email-icons/star.svg',
-            alt: 'Star',
+            classes: 'email-btn material-symbols-rounded',
             onClick: () => onSetFilterBy('starred'),
+            content: 'star',
         },
     ]
 
@@ -154,8 +150,14 @@ export function MailIndex() {
                     onClick={handleEmailComposeClick}
                 />
 
-                <EmailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-                <EmailList emails={emails} onStarredEmail={onStarredEmail} onRemoveEmail={onRemoveEmail} />
+                <EmailFilter filterBy={filterBy}
+                    onSetFilter={onSetFilter} />
+
+
+                <EmailList emails={emails}
+                    onStarredEmail={onStarredEmail}
+                    onRemoveEmail={onRemoveEmail} />
+
 
                 <EmailFolderList
                     filterBy={filterBy}

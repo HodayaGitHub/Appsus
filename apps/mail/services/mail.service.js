@@ -153,8 +153,6 @@ function moveToTrash() {
 }
 
 
-
-
 function starredEmail(emailId) {
     get(emailId)
         .then((email) => {
