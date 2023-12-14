@@ -4,10 +4,12 @@ export function AppAside({ buttons = [], dynamicClass }) {
         <aside className={`app-aside ${dynamicClass}`}>
             {buttons.map((button, index) => (
                 <button
-                    className={`${button.classes}`}
+                    className={`${button.class}`}
                     key={index}
                     onClick={button.onClick}
-                    >{button.content}
+                >
+                    {button.icon}
+                    <span className="text">{button.text}</span>
                 </button>
             ))}
         </aside>

@@ -43,12 +43,12 @@ export function NoteList(props) {
                     <button
                         className="archive"
                         onClick={() => props.onArchiveNote(note)}
-                        >Archive
+                        >{note.archived ? 'Unarchive' : 'Archive'}
                     </button>
                     <button
                         className="trash"
                         onClick={() => props.onTrashNote(note)}
-                        >Trash
+                        >{note.trashed ? 'Untrash' : 'trash'}
                     </button>
                     <button
                         className="delete"
