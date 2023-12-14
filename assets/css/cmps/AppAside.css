@@ -13,28 +13,43 @@
     width: 20dvw;
 }
 
-.app-aside .label {
+.app-aside .text {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
 
-.app-aside:hover .label {
+.app-aside:hover .text {
     opacity: 1;
 }
 
-.main-layout:has(.hamburger-menu-checkbox:checked) .app-aside .label {
+.main-layout:has(.hamburger-menu-checkbox:checked) .app-aside .text {
     opacity: 1;
 }
 
-.app-aside .aside-btns img {
+.app-aside button {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1em;
+}
+
+.app-aside button svg {
+    flex-shrink: 0;
+}
+
+.app-aside button .text {
+    flex-shrink: 1;
+}
+
+/* .app-aside .aside-btns img {
     width: 30px;
     height: 30px;
-}
+} */
 
-
-.app-aside .aside-btns {
+/* .app-aside .aside-btns {
     height: fit-content;
     display: flex;
+    justify-content: start;
     align-items: center;
     gap: 10px;
-}
+} */

@@ -21,8 +21,8 @@ const NOTE_COLORS = [
 export const noteService = {
     NOTE_COLORS,
     query,
-    setFilter,
     get,
+    getDefaultFilter,
     save,
     create,
     createTodoItem,
@@ -34,28 +34,35 @@ export const noteService = {
     searchParamsToNote,
 }
 
-let gFilter = {}
-
-function query() {
+function query(filterBy) {
     const prmNotes = storageService.query(NOTES_STORAGE_KEY)
         .then(notes => {
             if (notes.length === 0) notes = _createNotes()
-            notes = _filterNotes(notes)
+            notes = _filterNotes(notes, filterBy)
             return notes
         })
     return prmNotes
 }
 
-function _filterNotes(notes) {
-    notes = notes.filter(note => ! note.trashed && ! note.archived)
-    let pinnedNotes = notes.filter(note => note.pinned)
-    let unpinnedNotes = notes.filter(note => ! note.pinned)
+function _filterNotes(notes, filterBy) {
+    notes = notes.filter(note => {
+        const showNote =
+            (filterBy.trashed === note.trashed) &&
+            (filterBy.archived === note.archived)
+        return showNote
+    })
+    const pinnedNotes = notes.filter(note => note.pinned)
+    const unpinnedNotes = notes.filter(note => ! note.pinned)
     notes = [...pinnedNotes, ...unpinnedNotes]
     return notes
 }
 
-function setFilter(filterBy) {
-    gFilter = { ...gFilter, ...filterBy}
+function getDefaultFilter() {
+    const defaultFilter = {
+        trashed: false,
+        archived: false,
+    }
+    return defaultFilter
 }
 
 function get(noteId) {
@@ -64,11 +71,9 @@ function get(noteId) {
 }
 
 function save(note) {
-    let prmNotes
-    const saveNote = note.id ? storageService.put : storageService.post
-    prmNotes = saveNote(NOTES_STORAGE_KEY, note)
-        .then(notes => _filterNotes(notes))
-    return prmNotes
+    const saveNoteToStorage = note.id ? storageService.put : storageService.post
+    const prmNote = saveNoteToStorage(NOTES_STORAGE_KEY, note)
+    return prmNote
 }
 
 function create(content='', title='', type=NOTE_TYPE_TEXT) {
@@ -107,20 +112,18 @@ function pin(note, isPinnded=true) {
 
 function archive(note, isArchived=true) {
     note.archived = isArchived
-    const prmNotes = save(note)
-    return prmNotes
+    const prmNote = save(note)
+    return prmNote
 }
 
 function trash(note, isTrashed=true) {
     note.trashed = isTrashed
-    const prmNotes = save(note)
-    return prmNotes
+    const prmNote = save(note)
+    return prmNote
 }
 
 function remove(noteId) {
-    const prmNotes = storageService.remove(NOTES_STORAGE_KEY, noteId)
-        .then(notes => _filterNotes(notes))
-    return prmNotes
+    return storageService.remove(NOTES_STORAGE_KEY, noteId)
 }
 
 function noteToSearchParams(note) {
