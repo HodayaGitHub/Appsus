@@ -14,11 +14,16 @@ export function App() {
         <Router>
             <section className="app main-layout full-width">
                 <AppHeader />
+
                 <AppAside />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
+
+                    {/* EMAIL APP */}
                     <Route path="/mail" element={<MailIndex />} />
+
+                    {/* NOTES APP */}
                     <Route path="/note" element={<NoteIndex />} />
                 </Routes>
                 <UserMsg />
