@@ -34,13 +34,13 @@ function getFilterFromQueryString(searchParams) {
 }
 
 
-const criteria = {
-    status: 'inbox/sent/trash/draft',
-    txt: 'puki', // no need to support complex text search
-    isRead: true, // (optional property, if missing: show all)
-    isStarred: true, // (optional property, if missing: show all)
-    lables: ['important', 'romantic'] // has any of the labels
-}
+// const criteria = {
+//     status: 'inbox/sent/trash/draft',
+//     txt: 'puki', // no need to support complex text search
+//     isRead: true, // (optional property, if missing: show all)
+//     isStarred: true, // (optional property, if missing: show all)
+//     lables: ['important', 'romantic'] // has any of the labels
+// }
 
 
 
@@ -81,24 +81,24 @@ function queryFilterBy(filterBy) {
                 emails = emails.filter(email => {
                     return email.to === loggedinUser.email && email.removedAt === null
                 })
+
             } else if (filterBy.status === 'outbox') {
                 emails = emails.filter(email => {
                     return email.from === loggedinUser.email && email.removedAt === null
-                })
-            } else if (filterBy.status === 'trash') {
-                emails = emails.filter(email => {
-                    return email.removedAt !== null
                 })
             } else if (filterBy.status === 'starred') {
                 emails = emails.filter(email => {
                     return email.isStarred
                 })
+
+            } else if (filterBy.status === 'trash') {
+                emails = emails.filter(email => {
+                    return email.removedAt !== null
+                })
             }
-
-
-            // console.log('query' , emails)
-            return emails
-        })
+                // console.log('query' , emails)
+                return emails
+            })
 }
 
 function addSentEmailToLocalStorage(to, subject, body) {
