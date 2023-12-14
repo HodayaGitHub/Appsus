@@ -15,7 +15,7 @@ export function App() {
             <section className="app main-layout full-width">
                 <AppHeader />
 
-                <AppAside />
+                {/* <AppAside /> */}
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
