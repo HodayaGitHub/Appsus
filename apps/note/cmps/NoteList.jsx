@@ -36,6 +36,21 @@ export function NoteList(props) {
                         >Edit
                     </button>
                     <button
+                        className="Pin"
+                        onClick={() => props.onPinNote(note)}
+                        >{note.pinned ? 'Unpin' : 'Pin'}
+                    </button>
+                    <button
+                        className="archive"
+                        onClick={() => props.onArchiveNote(note)}
+                        >Archive
+                    </button>
+                    <button
+                        className="trash"
+                        onClick={() => props.onTrashNote(note)}
+                        >Trash
+                    </button>
+                    <button
                         className="delete"
                         onClick={() => props.onDeleteNote(note.id)}
                         >Delete

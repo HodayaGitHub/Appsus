@@ -21,22 +21,41 @@ const NOTE_COLORS = [
 export const noteService = {
     NOTE_COLORS,
     query,
+    setFilter,
     get,
     save,
     create,
     createTodoItem,
+    pin,
+    archive,
+    trash,
     remove,
     noteToSearchParams,
     searchParamsToNote,
 }
 
-function query(filterBy) {
-    const prmAllNotes = storageService.query(NOTES_STORAGE_KEY)
+let gFilter = {}
+
+function query() {
+    const prmNotes = storageService.query(NOTES_STORAGE_KEY)
         .then(notes => {
             if (notes.length === 0) notes = _createNotes()
+            notes = _filterNotes(notes)
             return notes
         })
-    return prmAllNotes
+    return prmNotes
+}
+
+function _filterNotes(notes) {
+    notes = notes.filter(note => ! note.trashed && ! note.archived)
+    let pinnedNotes = notes.filter(note => note.pinned)
+    let unpinnedNotes = notes.filter(note => ! note.pinned)
+    notes = [...pinnedNotes, ...unpinnedNotes]
+    return notes
+}
+
+function setFilter(filterBy) {
+    gFilter = { ...gFilter, ...filterBy}
 }
 
 function get(noteId) {
@@ -45,10 +64,11 @@ function get(noteId) {
 }
 
 function save(note) {
-    let prmAllNotes
-    if (note.id) prmAllNotes = storageService.put(NOTES_STORAGE_KEY, note)
-    else prmAllNotes = storageService.post(NOTES_STORAGE_KEY, note)
-    return prmAllNotes
+    let prmNotes
+    const saveNote = note.id ? storageService.put : storageService.post
+    prmNotes = saveNote(NOTES_STORAGE_KEY, note)
+        .then(notes => _filterNotes(notes))
+    return prmNotes
 }
 
 function create(content='', title='', type=NOTE_TYPE_TEXT) {
@@ -79,9 +99,28 @@ function createTodoItem(text) {
     return newTodo
 }
 
+function pin(note, isPinnded=true) {
+    note.pinned = isPinnded
+    const prmNotes = save(note)
+    return prmNotes
+}
+
+function archive(note, isArchived=true) {
+    note.archived = isArchived
+    const prmNotes = save(note)
+    return prmNotes
+}
+
+function trash(note, isTrashed=true) {
+    note.trashed = isTrashed
+    const prmNotes = save(note)
+    return prmNotes
+}
+
 function remove(noteId) {
-    const prmAllNotes = storageService.remove(NOTES_STORAGE_KEY, noteId)
-    return prmAllNotes
+    const prmNotes = storageService.remove(NOTES_STORAGE_KEY, noteId)
+        .then(notes => _filterNotes(notes))
+    return prmNotes
 }
 
 function noteToSearchParams(note) {

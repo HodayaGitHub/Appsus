@@ -27,9 +27,27 @@ export function NoteIndex() {
     function onSetNoteToEdit(note) {
         setNoteToEdit(prevNoteToEdit => ({ ...prevNoteToEdit, ...note}))
     }
-
     function onSaveNote() {
         noteService.save(noteToEdit)
+            .then(notes => renderNotes(notes))
+            .catch(err => console.error(err))
+    }
+
+    function onPinNote(note) {
+        noteService.pin(note, ! note.pinned)
+            .then(notes => renderNotes(notes))
+            .catch(err => console.error(err))
+    }
+
+
+    function onArchiveNote(note) {
+        noteService.archive(note)
+            .then(notes => renderNotes(notes))
+            .catch(err => console.error(err))
+    }
+
+    function onTrashNote(note) {
+        noteService.trash(note)
             .then(notes => renderNotes(notes))
             .catch(err => console.error(err))
     }
@@ -67,6 +85,9 @@ export function NoteIndex() {
                 />
                 <NoteList
                     notes={notes}
+                    onPinNote={onPinNote}
+                    onArchiveNote={onArchiveNote}
+                    onTrashNote={onTrashNote}
                     onDeleteNote={onDeleteNote}
                     onSetNoteToEdit={onSetNoteToEdit}
                     onDuplicateNote={onDuplicateNote}
