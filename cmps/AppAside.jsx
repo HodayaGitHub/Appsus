@@ -1,15 +1,16 @@
-
 export function AppAside({ buttons = [], dynamicClass }) {
     return (
-        <aside className={`app-aside ${dynamicClass}`}>
+        <aside className="app-aside">
+            {/* div as a placeholder */}
+            <div></div>
             {buttons.map((button, index) => (
-                <button key={index} onClick={button.onClick}>
+                <button className={dynamicClass} key={index} onClick={button.onClick}>
                     <img
-                        className="email-btn"
+
                         src={button.icon}
                         alt={button.alt}
                     />
-                    {button.label}
+                    <span className="label">{button.label}</span>
                 </button>
             ))}
         </aside>

@@ -22,7 +22,7 @@ export function EmailFolderList({ emails, filterBy, onSetFilter }) {
     const buttons = [
         {
             label: 'Inbox',
-            icon: '../assets/img/icons/email-icons/inbox.svg',
+            icon: '../../assets/img/icons/email-icons/inbox.svg',
             alt: 'Inbox',
             onClick: () => onSetFilterBy('inbox'),
         },
@@ -44,7 +44,7 @@ export function EmailFolderList({ emails, filterBy, onSetFilter }) {
 
     return (
 
-        <AppAside className="" buttons={buttons} />
+        <AppAside dynamicClass="email-btn" buttons={buttons} />
 
         // <React.Fragment>
         //     <section className="actions-btns-container">
