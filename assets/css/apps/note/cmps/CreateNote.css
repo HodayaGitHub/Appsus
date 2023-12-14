@@ -28,23 +28,71 @@
 }
 
 .create-note .color > .color-1 {
-    background-color: var(--note-color-1);
+    background-color: var(--note-color-a-1);
 }
 
 .create-note .color > .color-2 {
-    background-color: var(--note-color-2);
+    background-color: var(--note-color-a-2);
 }
 
 .create-note .color > .color-3 {
-    background-color: var(--note-color-3);
+    background-color: var(--note-color-a-3);
 }
 
 .create-note .color > .color-4 {
-    background-color: var(--note-color-4);
+    background-color: var(--note-color-a-4);
 }
 
 .create-note .color > .color-5 {
-    background-color: var(--note-color-5);
+    background-color: var(--note-color-a-5);
+}
+
+.create-note .color > .color-b-00 {
+    background-color: var(--note-color-b-00);
+}
+
+.create-note .color > .color-b-01 {
+    background-color: var(--note-color-b-01);
+}
+
+.create-note .color > .color-b-02 {
+    background-color: var(--note-color-b-02);
+}
+
+.create-note .color > .color-b-03 {
+    background-color: var(--note-color-b-03);
+}
+
+.create-note .color > .color-b-04 {
+    background-color: var(--note-color-b-04);
+}
+
+.create-note .color > .color-b-05 {
+    background-color: var(--note-color-b-05);
+}
+
+.create-note .color > .color-b-06 {
+    background-color: var(--note-color-b-06);
+}
+
+.create-note .color > .color-b-07 {
+    background-color: var(--note-color-b-07);
+}
+
+.create-note .color > .color-b-08 {
+    background-color: var(--note-color-b-08);
+}
+
+.create-note .color > .color-b-09 {
+    background-color: var(--note-color-b-09);
+}
+
+.create-note .color > .color-b-10 {
+    background-color: var(--note-color-b-10);
+}
+
+.create-note .color > .color-b-11 {
+    background-color: var(--note-color-b-11);
 }
 
 .create-note .color [name=color] {

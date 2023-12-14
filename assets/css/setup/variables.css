@@ -12,9 +12,22 @@
     --gray2: rgb(155, 155, 155);
     --gray3: rgb(44, 44, 44);
 
-    --note-color-1: rgb(255, 190, 11);
-    --note-color-2: rgb(251, 86, 7);
-    --note-color-3: rgb(255, 0, 110);
-    --note-color-4: rgb(131, 56, 236);
-    --note-color-5: rgb(58, 134, 255);
+    --note-color-a-1: rgb(255, 190, 11);
+    --note-color-a-2: rgb(251, 86, 7);
+    --note-color-a-3: rgb(255, 0, 110);
+    --note-color-a-4: rgb(131, 56, 236);
+    --note-color-a-5: rgb(58, 134, 255);
+
+    --note-color-b-00: #ffffff;
+    --note-color-b-01: #faafa8;
+    --note-color-b-02: #f39f76;
+    --note-color-b-03: #fff8b8;
+    --note-color-b-04: #e2f6d3;
+    --note-color-b-05: #b4ddd3;
+    --note-color-b-06: #d4e4ed;
+    --note-color-b-07: #aeccdc;
+    --note-color-b-08: #d3bfdb;
+    --note-color-b-09: #f6e2dd;
+    --note-color-b-10: #e9e3d4;
+    --note-color-b-11: #efeff1;
 }

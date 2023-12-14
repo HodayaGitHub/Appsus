@@ -71,12 +71,11 @@ export function NoteIndex() {
         const newNote = noteService.create()
         newNote.type = noteToEdit.type
         setNoteToEdit(newNote)
-        noteService.query(filterBy)
+        noteService.query(filterBy, false)
             .then(notes => setNotes(notes))
     }
 
     function onSetFilterBy(newFilterBy) {
-        console.log('filtering', newFilterBy)
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...newFilterBy }))
     }
 
@@ -101,7 +100,6 @@ export function NoteIndex() {
         },
     ]
 
-    console.log('render')
     return (
         <React.Fragment>
             <AppHeader />

@@ -10,7 +10,7 @@ const NOTE_TYPE_TODO = 'todo'
 
 const NONE_STRING_KEYS = ['todo', 'labels', 'archived', 'trashed', 'createdAt']
 
-const NOTE_COLORS = [
+const NOTE_COLORS_A = [
     'rgb(255, 190, 011)',
     'rgb(251, 086, 007)',
     'rgb(255, 000, 110)',
@@ -18,8 +18,24 @@ const NOTE_COLORS = [
     'rgb(058, 134, 255)',
 ]
 
+const NOTE_COLORS_B = [
+    '#ffffff',
+    '#faafa8',
+    '#f39f76',
+    '#fff8b8',
+    '#e2f6d3',
+    '#b4ddd3',
+    '#d4e4ed',
+    '#aeccdc',
+    '#d3bfdb',
+    '#f6e2dd',
+    '#e9e3d4',
+    '#efeff1',
+]
+
 export const noteService = {
-    NOTE_COLORS,
+    NOTE_COLORS_A,
+    NOTE_COLORS_B,
     query,
     get,
     getDefaultFilter,
@@ -34,10 +50,10 @@ export const noteService = {
     searchParamsToNote,
 }
 
-function query(filterBy) {
+function query(filterBy, createNotes=true) {
     const prmNotes = storageService.query(NOTES_STORAGE_KEY)
         .then(notes => {
-            if (notes.length === 0) notes = _createNotes()
+            if (notes.length === 0 && createNotes) notes = _createNotes()
             notes = _filterNotes(notes, filterBy)
             return notes
         })
@@ -87,7 +103,7 @@ function create(content='', title='', type=NOTE_TYPE_TEXT) {
         title,
         labels: [],
         type,
-        color: NOTE_COLORS[0],
+        color: NOTE_COLORS_B[0],
         pinned: false,
         archived: false,
         trashed: false,

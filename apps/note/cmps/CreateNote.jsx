@@ -20,10 +20,6 @@ export function CreateNote(props) {
             }
             fileReader.readAsDataURL(imageFile)
             return
-        } else if (name === 'video') {
-            const regexMatch = value.match(YOUTUBE_URL_REGEX)
-            const videoId = regexMatch && regexMatch[1] || 'dQw4w9WgXcQ'
-            value = `https://www.youtube.com/embed/${videoId}`
         }
         props.onSetNoteToEdit({ [name]: value })
     }
@@ -44,6 +40,14 @@ export function CreateNote(props) {
 
     function onCreateNote(ev) {
         ev.preventDefault()
+        debugger
+        if (props.noteToEdit.type === 'video') {
+            let value = props.noteToEdit.video
+            const regexMatch = value.match(YOUTUBE_URL_REGEX)
+            const videoId = regexMatch && regexMatch[1] || 'dQw4w9WgXcQ'
+            value = `https://www.youtube.com/embed/${videoId}`
+            props.noteToEdit.video = value
+        }
         props.onSaveNote()
     }
     
@@ -96,9 +100,9 @@ export function CreateNote(props) {
             }
             <div className="color">
             {
-                noteService.NOTE_COLORS.map((color, idx) => {
+                noteService.NOTE_COLORS_B.map((color, idx) => {
                     return (
-                        <label key={color} className={`color-${idx + 1}`}>
+                        <label key={color} className={`color-b-${String(idx).padStart(2, '0')}`}>
                             <input
                                 type="radio"
                                 name="color"
