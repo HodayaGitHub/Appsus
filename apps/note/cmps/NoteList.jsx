@@ -19,6 +19,16 @@ export function NoteList(props) {
                         note.type === 'video' &&
                         <iframe src={note.video}></iframe>
                     }
+                    {
+                        note.type === 'todo' &&
+                        <ul>
+                        {
+                            note.todo.map(item => {
+                                return <li key={item.id}>{item.text}</li>
+                            })
+                        }
+                        </ul>
+                    }
                     <button
                         className="delete"
                         onClick={() => props.onDeleteNote(note.id)}
