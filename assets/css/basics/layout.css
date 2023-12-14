@@ -1,6 +1,6 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 5em 1fr;
+    grid-template-columns: 10dvw 1fr;
     align-items: start;
 }
 

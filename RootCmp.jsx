@@ -12,8 +12,8 @@ import { UserMsg } from "./cmps/UserMsg.jsx"
 export function App() {
     return (
         <Router>
-            <section className="app main-layout full-width">
-                <AppHeader />
+            <section className="app main-layout">
+                {/* <AppHeader /> */}
 
                 {/* <AppAside /> */}
                 <Routes>

@@ -4,7 +4,7 @@ export function AppAside({ buttons = [], dynamicClass }) {
             {/* div as a placeholder */}
             <div></div>
             {buttons.map((button, index) => (
-                <button className={dynamicClass} key={index} onClick={button.onClick}>
+                <button className="aside-btns" key={index} onClick={button.onClick}>
                     <img
 
                         src={button.icon}

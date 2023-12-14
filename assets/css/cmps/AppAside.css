@@ -1,15 +1,12 @@
 .app-aside {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 8dvh;
+    width: 100%;
     background-color: #f0f0f0;
-    position: fixed;
-    top: 0;
-    left: 0;
     transition: width 0.3s ease-in-out;
-    /* temp margin until we will fix the header  */
-    margin-top: 65px; 
+    grid-area: 2 / 1;
 }
 
 .app-aside:hover {
@@ -25,13 +22,17 @@
     opacity: 1;
 }
 
-.app-aside .email-btn img {
-    width: 30px;
-    height: 30px;
- 
+.main-layout:has(.hamburger-menu-checkbox:checked) .app-aside .label {
+    opacity: 1;
 }
 
-.app-aside .email-btn {
+.app-aside .aside-btns img {
+    width: 30px;
+    height: 30px;
+}
+
+
+.app-aside .aside-btns {
     height: fit-content;
     display: flex;
     align-items: center;
