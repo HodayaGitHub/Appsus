@@ -62,7 +62,7 @@ function create(content='', title='', type=NOTE_TYPE_TEXT) {
         title,
         labels: [],
         type,
-        color: NOTE_COLORS[1],
+        color: NOTE_COLORS[0],
         archived: false,
         trashed: false,
         createdAt: NaN,

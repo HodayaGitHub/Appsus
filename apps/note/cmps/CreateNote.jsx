@@ -98,7 +98,7 @@ export function CreateNote(props) {
             {
                 noteService.NOTE_COLORS.map((color, idx) => {
                     return (
-                        <label className={`color-${idx + 1}`}>
+                        <label key={color} className={`color-${idx + 1}`}>
                             <input
                                 type="radio"
                                 name="color"
