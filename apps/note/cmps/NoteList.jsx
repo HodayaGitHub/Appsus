@@ -1,3 +1,4 @@
+
 export function NoteList(props) {
 
     if (! props.notes) return <section>Loading...</section>
@@ -29,6 +30,11 @@ export function NoteList(props) {
                         }
                         </ul>
                     }
+                    <button
+                        className="edit"
+                        onClick={() => props.onSetNoteToEdit(note)}
+                        >Edit
+                    </button>
                     <button
                         className="delete"
                         onClick={() => props.onDeleteNote(note.id)}
