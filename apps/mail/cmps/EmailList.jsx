@@ -2,10 +2,11 @@
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 import { LongTxt } from '../../../cmps/LongTxt.jsx'
+import { EmailActions } from './EmailActions.jsx'
 
 import { EmailPreview } from './EmailPreview.jsx'
 
-export function EmailList({ emails, onRemoveEmail }) {
+export function EmailList({ emails, onRemoveEmail, onStarredEmail }) {
     const [selectedEmailId, setSelectedEmailId] = useState(null)
 
 
@@ -21,35 +22,26 @@ export function EmailList({ emails, onRemoveEmail }) {
                     key={email.id}
                     onClick={() => toggleEmailPreview(email.id)}
                 >
-                    {(selectedEmailId === email.id) && (<EmailPreview email={email} />)}
+                    {(selectedEmailId === email.id) && (
+                        <EmailPreview
+                            onRemoveEmail={() => onRemoveEmail(email.id)}
+                            email={email}
+                            onStarredEmail={() => onStarredEmail(email.id)}
+                        />)}
 
                     {!(selectedEmailId === email.id) &&
                         (<React.Fragment>
+
                             <LongTxt txt={email.subject} length={20} />
                             <LongTxt txt={email.body} length={80} />
 
-                            <section className="actions-btns-container">
-                                <img
-                                    className="email-btn"
-                                    src="../../assets/img/icons/email-icons/delete.svg"
-                                    alt="Remove email"
-                                    onClick={() => onRemoveEmail(email.id)}
-                                />
+                            <EmailActions
+                                onRemoveEmail={() => onRemoveEmail(email.id)}
+                                onStarredEmail={() => onStarredEmail(email.id)}
 
-                                <img
-                                    className="email-btn"
-                                    src="../../assets/img/icons/email-icons/envelop.svg"
-                                    alt="Remove email"
-                                    onClick={() => onRemoveEmail(email.id)}
-                                />
 
-                                <img
-                                    className="email-btn"
-                                    src="../../assets/img/icons/email-icons/share.svg"
-                                    alt="Remove email"
-                                    onClick={() => onRemoveEmail(email.id)}
-                                />
-                            </section>
+                            />
+
                         </React.Fragment>
                         )}
                 </section>

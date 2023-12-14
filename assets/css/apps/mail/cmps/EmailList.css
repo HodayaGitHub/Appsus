@@ -5,24 +5,40 @@
 
 .email-btn {
     height: 2em;
+    font-family: 'Material Symbols Rounded';
 }
 
 .email-item {
     display: grid;
-    /* flex-direction: row; */
-    /* justify-content: space-between; */
     cursor: pointer;
     border-top: 1px solid;
-    /* height: 40px;; */
-    grid-template-columns: 200px auto 100px;
-}
+    grid-template-columns: 1fr 5fr 1fr;
 
-/* .email-item section {
-    height: 30px;
-} */
+}
 
 .actions-btns-container {
     display: flex;
     flex-direction: row;
-    /* height: fit-content; */
 }
+
+
+.material-symbols-rounded.star:hover {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+
+    color: rgb(218 173 42 / 93%);
+}
+
+/* .email-btn {
+    height: 2em;
+    font-family: 'Material Symbols Rounded';
+    color: #yourDesiredColor; /* Change this to the color you want */
+/* } */
+
+/* .email-btn:hover .material-symbols-rounded {
+    fill: blue;
+    background-color: blue;
+} */
