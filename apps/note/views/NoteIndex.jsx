@@ -7,6 +7,27 @@ import { noteService } from "../services/note.service.js"
 const { useState, useEffect } = React
 const { useSearchParams } = ReactRouterDOM
 
+const APP_ASIDE_BUTTONS = [
+    {
+        label: 'Inbox',
+        icon: '../../assets/img/icons/email-icons/inbox.svg',
+        alt: 'Inbox',
+        onClick: () => onSetFilterBy('inbox'),
+    },
+    {
+        label: 'Outbox',
+        icon: '../../assets/img/icons/email-icons/outbox.svg',
+        alt: 'Outbox',
+        onClick: () => onSetFilterBy('outbox'),
+    },
+    {
+        label: 'Trash',
+        icon: '../../assets/img/icons/email-icons/trash.svg',
+        alt: 'Trash',
+        onClick: () => onSetFilterBy('trash'),
+    },
+]
+
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
