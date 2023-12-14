@@ -13,6 +13,7 @@ export const noteService = {
     get,
     save,
     create,
+    createTodo,
     remove,
 }
 
@@ -39,6 +40,10 @@ function save(note) {
 
 function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
     const note = {
+        [NOTE_TYPE_TEXT]: '',
+        [NOTE_TYPE_IMAGE]: '',
+        [NOTE_TYPE_VIDEO]: '',
+        [NOTE_TYPE_TODO]: [],
         [type]: content,
         title,
         labels,
@@ -48,6 +53,14 @@ function create(content='', title='', labels=[], type=NOTE_TYPE_TEXT) {
         createdAt: Date.now(),
     }
     return note
+}
+
+function createTodo(text) {
+    const newTodo = {
+        id: utilService.makeId(),
+        text,
+    }
+    return newTodo
 }
 
 function remove(noteId) {

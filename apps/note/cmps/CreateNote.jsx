@@ -1,4 +1,7 @@
 import { noteService } from "../services/note.service.js"
+import { ToDo } from "./Todo.jsx"
+
+const YOUTUBE_URL_REGEX = /^(?:https?:)?(?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed)(?:\.php)?(?:\?.*v=|\/))([\w-]{7,15})(?:[\?&][\w-]+=[\w-]+)*(?:[&\/\#].*)?$/
 
 const { useState } = React
 
@@ -8,7 +11,6 @@ export function CreateNote(props) {
     function onChangeNote(ev) {
         const name = ev.target.name
         let value = ev.target.value
-        console.log(name, value)
         if (name === 'image') {
             const imageFile = ev.target.files && ev.target.files[0]
             if (imageFile) {
@@ -19,7 +21,21 @@ export function CreateNote(props) {
                 }
                 fileReader.readAsDataURL(imageFile)
             }
-        } else setNote(prevNote => ({ ...prevNote, [name]: value }))
+        } else if (name === 'video') {
+            const regexMatch = value.match(YOUTUBE_URL_REGEX)
+            const videoId = regexMatch && regexMatch[1] || 'dQw4w9WgXcQ'
+            value = `https://www.youtube.com/embed/${videoId}`
+        }
+        setNote(prevNote => ({ ...prevNote, [name]: value }))
+    }
+
+    function onAddTodo(todoText) {
+        setNote(prevNote => {
+            const newTodo = noteService.createTodo(todoText)
+            prevNote.todo.push(newTodo)
+            const newNote = { ...prevNote }
+            return newNote
+        })
     }
 
     function onCreateNote(ev) {
@@ -28,21 +44,20 @@ export function CreateNote(props) {
             .then(() => setNote(noteService.create()))
     }
     
-    console.log(note)
     return (
         <form onSubmit={onCreateNote}className="create-note">
-            <label className="title">
-                <span>Title:</span>
-                <input type="text" name="title" value={note.title} onChange={onChangeNote} />
-            </label>
             <label className="type">
                 <span>Type:</span>
                 <select name="type" value={note.type} onChange={onChangeNote}>
                     <option value="text">Text</option>
                     <option value="image">Image</option>
                     <option value="video">Video</option>
-                    <option value="todo">Todo</option>
+                    <option value="todo">ToDo</option>
                 </select>
+            </label>
+            <label className="title">
+                <span>Title:</span>
+                <input type="text" name="title" value={note.title} onChange={onChangeNote} />
             </label>
             {
                 note.type === 'text' &&
@@ -54,19 +69,22 @@ export function CreateNote(props) {
             {
                 note.type === 'image' &&
                 <label className="image">
+                    <span>Image:</span>
                     <input type="file" name="image" accept="image/*" onChange={onChangeNote} />
                 </label>
             }
             {
                 note.type === 'video' &&
                 <label className="video">
-                    <input type="url" name="video" onChange={onChangeNote} />
+                    <span>Video:</span>
+                    <input type="url" name="video" value={note.video} onChange={onChangeNote} />
                 </label>
             }
             {
                 note.type === 'todo' &&
                 <label className="todo">
-                    <span>Todo</span>
+                    <span>Todo:</span>
+                    <ToDo items={note.todo} onAddTodo={onAddTodo} />
                 </label>
             }
             <button className="create">Create</button>

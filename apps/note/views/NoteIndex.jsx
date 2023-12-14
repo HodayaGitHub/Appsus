@@ -10,7 +10,6 @@ export function NoteIndex() {
     useEffect(() => {
         noteService.query()
             .then(notes => {
-                console.log(notes)
                 setNotes(notes)
             })
     }, [])
