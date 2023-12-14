@@ -15,11 +15,11 @@ export const emailService = {
     put,
     get,
     // save,
-    query, 
+    query,
     getEmptyEmail,
     // saveNewEmail,
     addSentEmailToLocalStorage,
-
+    starredEmail,
 }
 
 console.log('check wires')
@@ -81,7 +81,6 @@ function queryFilterBy(filterBy) {
                 emails = emails.filter(email => {
                     return email.to === loggedinUser.email && email.removedAt === null
                 })
-
             } else if (filterBy.status === 'outbox') {
                 emails = emails.filter(email => {
                     return email.from === loggedinUser.email && email.removedAt === null
@@ -90,7 +89,13 @@ function queryFilterBy(filterBy) {
                 emails = emails.filter(email => {
                     return email.removedAt !== null
                 })
+            } else if (filterBy.status === 'starred') {
+                emails = emails.filter(email => {
+                    return email.isStarred
+                })
             }
+
+
             // console.log('query' , emails)
             return emails
         })
@@ -143,9 +148,20 @@ function save(email) {
     }
 }
 
-function moveToTrash(){
+function moveToTrash() {
 
 }
 
 
+function starredEmail(emailId) {
+    get(emailId)
+        .then((email) => {
+            email.isStarred = !email.isStarred
+            console.log('starred', email)
+            save(email)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+}
 

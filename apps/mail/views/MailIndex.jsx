@@ -21,17 +21,15 @@ export function MailIndex() {
     const [isFormVisible, setFormVisibility] = useState(false)
     const [emailsFromStorage, setEmailsToStorage] = useState(null)
 
-    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+    // const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
 
-    const { txt, status } = filterBy
+    // const { txt, status } = filterBy
 
     useEffect(() => {
         loadEmails()
         setSearchParams(filterBy)
         loadEmailsFromStorage()
-        // console.log('emails', emails)
-        // loadEmailsFromStorage()
 
         return () => {
             console.log('Bye Bye')
@@ -54,8 +52,6 @@ export function MailIndex() {
 
 
     function onRemoveEmail(emailId) {
-        // console.log('emails from storage', emailsFromStorage)
-        // console.log('emailId', emailId)
         emailService.get(emailId)
             .then((email) => {
                 console.log(email)
@@ -95,27 +91,49 @@ export function MailIndex() {
     }
 
 
+    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+
+    useEffect(() => {
+        onSetFilter(filterByToEdit)
+    }, [filterByToEdit])
+
+    function onSetFilterBy(folderType) {
+        setFilterByToEdit((prevFilter) => {
+            const updatedFilter = { ...prevFilter, status: folderType }
+
+            return updatedFilter
+        })
+    }
+
+
+    function onStarredEmail(emailId) {
+        emailService.starredEmail(emailId)
+        loadEmails()
+    }
+
+
     const buttons = [
         {
-            label: 'Inbox',
-            icon: '../../assets/img/icons/email-icons/inbox.svg',
-            alt: 'Inbox',
+            classes: 'email-btn material-symbols-rounded',
             onClick: () => onSetFilterBy('inbox'),
+            content: 'inbox',
         },
         {
-            label: 'Outbox',
-            icon: '../../assets/img/icons/email-icons/outbox.svg',
-            alt: 'Outbox',
+            classes: 'email-btn material-symbols-rounded',
             onClick: () => onSetFilterBy('outbox'),
+            content: 'outbox',
         },
         {
-            label: 'Trash',
-            icon: '../../assets/img/icons/email-icons/trash.svg',
-            alt: 'Trash',
+            classes: 'email-btn material-symbols-rounded',
             onClick: () => onSetFilterBy('trash'),
+            content: 'delete',
+        },
+        {
+            classes: 'email-btn material-symbols-rounded',
+            onClick: () => onSetFilterBy('starred'),
+            content: 'star',
         },
     ]
-
 
 
     if (!emails) return <div>Loading...</div>
@@ -125,15 +143,21 @@ export function MailIndex() {
             <AppAside dynamicClass="" buttons={buttons} />
 
             <main className="mail-index">
-
-                <EmailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-                <EmailList emails={emails} onRemoveEmail={onRemoveEmail} />
                 <img
                     className="email-btn compose-email-btn"
                     src="../../assets/img/icons/email-icons/plus.png"
                     alt="compose email"
                     onClick={handleEmailComposeClick}
                 />
+
+                <EmailFilter filterBy={filterBy}
+                    onSetFilter={onSetFilter} />
+
+
+                <EmailList emails={emails}
+                    onStarredEmail={onStarredEmail}
+                    onRemoveEmail={onRemoveEmail} />
+
 
                 <EmailFolderList
                     filterBy={filterBy}

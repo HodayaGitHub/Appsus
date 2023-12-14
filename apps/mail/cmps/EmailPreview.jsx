@@ -1,36 +1,19 @@
-export function EmailPreview({ email }) {
+import { EmailActions } from './EmailActions.jsx'
+
+
+export function EmailPreview({ email, onRemoveEmail }) {
     return (
         // <article className="email-preview">
-        // <React.Fragment>
-        <div>
-            <h1>{email.subject}</h1>
-            <span>{email.body}</span>
+        <React.Fragment>
+            <div>
+                <h1>{email.subject}</h1>
+                <span>{email.body}</span>
 
-            <section className="actions-btns-container">
-                <img
-                    className="email-btn"
-                    src="../../assets/img/icons/email-icons/delete.svg"
-                    alt="Remove email"
-                    onClick={() => onRemoveEmail(email.id)}
-                />
+                <EmailActions onRemoveEmail={onRemoveEmail} />
 
-                <img
-                    className="email-btn"
-                    src="../../assets/img/icons/email-icons/envelop.svg"
-                    alt="Remove email"
-                    onClick={() => onRemoveEmail(email.id)}
-                />
-
-                <img
-                    className="email-btn"
-                    src="../../assets/img/icons/email-icons/share.svg"
-                    alt="Remove email"
-                    onClick={() => onRemoveEmail(email.id)}
-                />
-            </section>
-        </div>
-        // </React.Fragment>
-
+            </div>
+        </React.Fragment>
         // </article>
+
     )
 }
