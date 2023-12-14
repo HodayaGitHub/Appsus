@@ -111,7 +111,7 @@ export function CreateNote(props) {
                 })
             }
             </div>
-            <button className="create">Create</button>
+            <button className="create">{props.noteToEdit.id ? 'Save' : 'Create'}</button>
         </form>
     )
 }

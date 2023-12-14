@@ -40,6 +40,11 @@ export function NoteList(props) {
                         onClick={() => props.onDeleteNote(note.id)}
                         >Delete
                     </button>
+                    <button
+                        className="duplicate"
+                        onClick={() => props.onDuplicateNote(note)}
+                        >Duplicate
+                    </button>
                 </article>
             )
         }
