@@ -94,6 +94,23 @@ export function CreateNote(props) {
                     <button type="button" onClick={onAddTodoItem}>Add</button>
                 </React.Fragment>
             }
+            <div className="color">
+            {
+                noteService.NOTE_COLORS.map((color, idx) => {
+                    return (
+                        <label className={`color-${idx + 1}`}>
+                            <input
+                                type="radio"
+                                name="color"
+                                value={color}
+                                checked={props.noteToEdit.color === color}
+                                onChange={onChangeNote}
+                            />
+                        </label>
+                    )
+                })
+            }
+            </div>
             <button className="create">Create</button>
         </form>
     )
