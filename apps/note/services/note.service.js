@@ -34,10 +34,10 @@ export const noteService = {
     searchParamsToNote,
 }
 
-function query(filterBy) {
+function query(filterBy, createNotes=true) {
     const prmNotes = storageService.query(NOTES_STORAGE_KEY)
         .then(notes => {
-            if (notes.length === 0) notes = _createNotes()
+            if (notes.length === 0 && createNotes) notes = _createNotes()
             notes = _filterNotes(notes, filterBy)
             return notes
         })
