@@ -8,6 +8,8 @@ const NOTE_TYPE_IMAGE = 'image'
 const NOTE_TYPE_VIDEO = 'video'
 const NOTE_TYPE_TODO = 'todo'
 
+const NONE_STRING_KEYS = ['todo', 'labels', 'archived', 'trashed', 'createdAt']
+
 export const noteService = {
     query,
     get,
@@ -15,6 +17,8 @@ export const noteService = {
     create,
     createTodo,
     remove,
+    noteToSearchParams,
+    searchParamsToNote,
 }
 
 function query(filterBy) {
@@ -66,6 +70,26 @@ function createTodo(text) {
 function remove(noteId) {
     const prmAllNotes = storageService.remove(NOTES_STORAGE_KEY, noteId)
     return prmAllNotes
+}
+
+function noteToSearchParams(note) {
+    const searchParams = { ...note }
+    for (const [key, value] of Object.entries(note)) {
+        if (NONE_STRING_KEYS.includes(key)) {
+            searchParams[key] = JSON.stringify(value)
+        }
+    }
+    return searchParams
+}
+
+function searchParamsToNote(searchParams) {
+    const newNote = create()
+    for (const [key, value] of searchParams.entries()) {
+        if (NONE_STRING_KEYS.includes(key)) {
+            newNote[key] = JSON.parse(value)
+        } else newNote[key] = value
+    }
+    return newNote
 }
 
 function _createNotes() {

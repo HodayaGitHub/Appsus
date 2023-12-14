@@ -10,10 +10,14 @@ export function ToDo(props) {
         setTodoText(value)
     }
 
-    function onAddTodo(ev) {
-        ev.preventDefault()
+    function onAddTodo() {
         props.onAddTodo(todoText)
         setTodoText('')
+    }
+
+    function onDeleteTodo(itemId) {
+        console.log(itemId)
+        props.onDeleteTodo(itemId)
     }
     
     return (
@@ -24,7 +28,7 @@ export function ToDo(props) {
                     return (
                         <li key={item.id}>
                             <span>{item.text}</span>
-                            <button type="button">x</button>
+                            <button type="button" onClick={() => onDeleteTodo(item.id)}>x</button>
                         </li>
                     )
                 })
