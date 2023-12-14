@@ -3,8 +3,8 @@
     border-top: none;
 }
 
-.email-btn {
-    height: 2em;
+.email-btn.icon {
+    /* height: 2em; */
     font-family: 'Material Symbols Rounded';
 }
 
