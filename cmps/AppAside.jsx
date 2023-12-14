@@ -1,5 +1,5 @@
 
-export function AppAside({ buttons = [], dynamicClass }) {
+export function AppAside({ buttons = [], dynamicClass='' }) {
     return (
         <aside className={`app-aside ${dynamicClass}`}>
             {buttons.map((button, index) => (
