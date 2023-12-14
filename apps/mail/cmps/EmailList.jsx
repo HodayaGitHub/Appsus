@@ -6,7 +6,7 @@ import { EmailActions } from './EmailActions.jsx'
 
 import { EmailPreview } from './EmailPreview.jsx'
 
-export function EmailList({ emails, onRemoveEmail, onStarredEmail }) {
+export function EmailList({ emails, onRemoveEmail, onStarredEmail, onReadChange }) {
     const [selectedEmailId, setSelectedEmailId] = useState(null)
 
 
@@ -15,6 +15,9 @@ export function EmailList({ emails, onRemoveEmail, onStarredEmail }) {
     }
     return (
         <div className="emails-container">
+
+            {emails.length === 0 && (<div>'No email found'</div>)}
+
             {emails.map((email) => (
                 <section
                     className={`clean-list email-item ${selectedEmailId === email.id ? 'selected' : ''}`}
@@ -26,6 +29,8 @@ export function EmailList({ emails, onRemoveEmail, onStarredEmail }) {
                             onRemoveEmail={() => onRemoveEmail(email.id)}
                             email={email}
                             onStarredEmail={() => onStarredEmail(email.id)}
+                            onReadChange={() => onReadChange(email.id)}
+
                         />
                     )}
 
@@ -35,8 +40,10 @@ export function EmailList({ emails, onRemoveEmail, onStarredEmail }) {
                             <LongTxt txt={email.body} length={80} />
 
                             <EmailActions
+                                email={email}
                                 onRemoveEmail={() => onRemoveEmail(email.id)}
                                 onStarredEmail={() => onStarredEmail(email.id)}
+                                onReadChange={() => onReadChange(email.id)}
                             />
                         </React.Fragment>
                     )}

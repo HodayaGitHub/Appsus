@@ -40,13 +40,13 @@ export function EmailFilter({ filterBy, onSetFilter }) {
 
     const { txt } = filterByToEdit
     return (
+        
         <section className="">
-            {/* <h2>Search an email</h2> */}
             <form onSubmit={onSetFilterBy} >
                 <label htmlFor="txt">search email </label>
                 <input value={txt} onChange={handleChange} type="text" id="txt" name="txt" />
 
-                {/* <button>Submit</button> */}
+    
             </form>
             {console.log(txt)}
         </section>

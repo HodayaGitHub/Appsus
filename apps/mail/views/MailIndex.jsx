@@ -111,8 +111,20 @@ export function MailIndex() {
         loadEmails()
     }
 
+    function onReadChange(emailId) {
+        emailService.toggleReadEmail(emailId)
+        loadEmails()
+
+    }
+
 
     const buttons = [
+        {
+            class: 'email-btn',
+            onClick: handleEmailComposeClick,
+            icon: 'edit',
+            text: 'Compose',
+        },
         {
             class: 'email-btn',
             onClick: () => onSetFilterBy('inbox'),
@@ -147,27 +159,24 @@ export function MailIndex() {
     return (
         <React.Fragment>
             <AppHeader />
-            <AppAside dynamicClass="material-symbols-rounded" buttons={buttons} />
+            <AppAside
+                dynamicClass="material-symbols-rounded"
+                buttons={buttons} />
 
             <main className="mail-index">
-                <img
-                    className="email-btn compose-email-btn"
-                    src="../../assets/img/icons/email-icons/plus.png"
-                    alt="compose email"
-                    onClick={handleEmailComposeClick}
-                />
 
-                <EmailFilter filterBy={filterBy}
+                <EmailFilter filterBy={{ txt: filterBy.txt }}
                     onSetFilter={onSetFilter} />
 
 
                 <EmailList emails={emails}
                     onStarredEmail={onStarredEmail}
-                    onRemoveEmail={onRemoveEmail} />
+                    onRemoveEmail={onRemoveEmail}
+                    onReadChange={onReadChange} />
 
 
                 <EmailFolderList
-                    filterBy={filterBy}
+                    filterBy={{ status: filterBy.status }}
                     onSetFilter={onSetFilter} emails={emails}
                 />
 
