@@ -37,6 +37,7 @@ export function NoteIndex(props) {
         const newUnpinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: false })
         setPinnedNotes(newPinnedNotes)
         setUnpinnedNotes(newUnpinnedNotes)
+        console.log(newPinnedNotes, newUnpinnedNotes)
     }
 
     function onSetNoteToEdit(note) {
@@ -54,8 +55,8 @@ export function NoteIndex(props) {
 
     function onPinNote(note) {
         clearNoteToEdit()
-        noteService.pin(note, ! note.pinned)
-            .then(note => {
+        noteService.pin(note, ! note.pinned, pinnedNotes.length)
+            .then(() => {
                 setNotes()
             })
             .catch(err => console.error(err))

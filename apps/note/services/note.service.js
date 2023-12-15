@@ -109,6 +109,7 @@ function get(noteId) {
 }
 
 function save(note) {
+    if (! note.id) note.createdAt = Date.now()
     const saveNoteToStorage = note.id ? storageService.put : storageService.post
     const prmNote = saveNoteToStorage(NOTES_STORAGE_KEY, note)
     return prmNote
@@ -129,7 +130,7 @@ function create(content='', title='', type=NOTE_TYPE_TEXT) {
         pinned: false,
         archived: false,
         trashed: false,
-        createdAt: NaN,
+        createdAt: Date.now(),
     }
     return note
 }
@@ -142,14 +143,11 @@ function createTodoItem(text) {
     return newTodo
 }
 
-function pin(note, isPinnded=true) {
+function pin(note, isPinnded=true, numPinnedNotes=0) {
+    if (note.pinned === isPinnded) return Promise(note)
     note.pinned = isPinnded
-    const prmNote = query()
-        .then(notes => {
-            const pinnedNotes = filterNotes(notes, { pinned: true })
-            note.pinnedOrder = pinnedNotes.length
-            return save(note)
-        })
+    note.pinnedOrder = numPinnedNotes
+    const prmNote = save(note)
     return prmNote
 }
 
