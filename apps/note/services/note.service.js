@@ -75,11 +75,27 @@ function filterNotes(notes, filterBy) {
             return isShown
         })
     }
+    if (filterBy.string) { 
+        notes = notes.filter(note => {
+            const strings = [
+                note.title,
+                note.text,
+                note.video,
+                ...note.todo,
+                ...note.labels,
+            ]
+            const isShown = strings.some(string => {
+                    return RegExp(filterBy.string, 'i').test(string)
+                })
+            return isShown
+        })
+    }
     return notes
 }
 
 function getDefaultFilter() {
     const defaultFilter = {
+        string: '',
         pinned: undefined,
         trashed: false,
         archived: false,

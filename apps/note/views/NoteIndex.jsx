@@ -111,7 +111,7 @@ export function NoteIndex() {
 
     return (
         <React.Fragment>
-            <AppHeader />
+            <AppHeader onSetFilterBy={onSetFilterBy} filterBy={filterBy}/>
             <AppAside buttons={APP_ASIDE_BUTTONS}/>
             <main className="note-index">
                 <CreateNote
