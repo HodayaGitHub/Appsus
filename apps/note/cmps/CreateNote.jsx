@@ -40,7 +40,6 @@ export function CreateNote(props) {
 
     function onCreateNote(ev) {
         ev.preventDefault()
-        debugger
         if (props.noteToEdit.type === 'video') {
             let value = props.noteToEdit.video
             const regexMatch = value.match(YOUTUBE_URL_REGEX)

@@ -8,7 +8,7 @@ const NOTE_TYPE_IMAGE = 'image'
 const NOTE_TYPE_VIDEO = 'video'
 const NOTE_TYPE_TODO = 'todo'
 
-const NONE_STRING_KEYS = ['todo', 'labels', 'archived', 'trashed', 'createdAt']
+const NONE_STRING_KEYS = ['todo', 'labels', 'pinned', 'archived', 'trashed', 'createdAt']
 
 const NOTE_COLORS_A = [
     'rgb(255, 190, 011)',
@@ -129,7 +129,8 @@ function createTodoItem(text) {
 function pin(note, isPinnded=true) {
     note.pinned = isPinnded
     const prmNote = query()
-        .then(pinnedNotes => {
+        .then(notes => {
+            const pinnedNotes = filterNotes(notes, { pinned: true })
             note.pinnedOrder = pinnedNotes.length
             return save(note)
         })

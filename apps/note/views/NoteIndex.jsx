@@ -26,7 +26,9 @@ export function NoteIndex() {
     function setNotes(createNotes) {
         noteService.query(createNotes)
             .then(notes => {
+                notes.reverse()
                 const pinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: true })
+                pinnedNotes.sort((note1, note2) =>  note2.pinnedOrder - note1.pinnedOrder)
                 const unpinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: false })
                 setPinnedNotes(pinnedNotes)
                 setUnpinnedNotes(unpinnedNotes)
