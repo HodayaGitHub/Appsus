@@ -12,12 +12,13 @@ export function NoteIndex(props) {
     const [unpinnedNotes, setUnpinnedNotes] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const [noteToEdit, setNoteToEdit] = useState(noteService.searchParamsToNote(searchParams))
-    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState(noteService.searchParamsToSearchFilter(searchParams))
 
     useEffect(() => {
         const newSearchParams = noteService.noteToSearchParams(noteToEdit)
+        newSearchParams.searchString = filterBy.string
         setSearchParams(newSearchParams)
-    }, [noteToEdit])
+    }, [noteToEdit, filterBy])
 
     useEffect(() => {
         noteService.query()
@@ -37,7 +38,6 @@ export function NoteIndex(props) {
         const newUnpinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: false })
         setPinnedNotes(newPinnedNotes)
         setUnpinnedNotes(newUnpinnedNotes)
-        console.log(newPinnedNotes, newUnpinnedNotes)
     }
 
     function onSetNoteToEdit(note) {

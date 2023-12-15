@@ -49,6 +49,7 @@ export const noteService = {
     remove,
     noteToSearchParams,
     searchParamsToNote,
+    searchParamsToSearchFilter,
 }
 
 function query(createNotes=true) {
@@ -190,6 +191,12 @@ function searchParamsToNote(searchParams) {
         } else newNote[key] = value
     }
     return newNote
+}
+
+function searchParamsToSearchFilter(searchParams) {
+    const searchFilter = getDefaultFilter()
+    searchFilter.string = searchParams.get('searchString')
+    return searchFilter
 }
 
 function _createNotes() {

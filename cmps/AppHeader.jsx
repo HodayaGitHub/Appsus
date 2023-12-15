@@ -18,7 +18,7 @@ export function AppHeader(props) {
             <AppSearch
                 SVG_ICONS={props.SVG_ICONS}
                 onSetFilterBy={props.onSetFilterBy}
-                filterBy={props.onSetFilterBy}
+                filterBy={props.filterBy}
             />
         }
             <button className="support-menu">
