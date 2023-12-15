@@ -1,14 +1,11 @@
-
 const { useState } = React
 
-export function EmailActions({ onRemoveEmail, onStarredEmail }) {
-    const [isStarred, setIsStarred] = useState(false)
+export function EmailActions({ onRemoveEmail, onStarredEmail, onReadChange, email }) {
 
     const handleStarClick = (e) => {
-        e.stopPropagation();
-        onStarredEmail();
-        setIsStarred((prevIsStarred) => !prevIsStarred)
-    };
+        e.stopPropagation()
+        onStarredEmail()
+    }
 
     return (
         <section className="actions-btns-container">
@@ -16,10 +13,16 @@ export function EmailActions({ onRemoveEmail, onStarredEmail }) {
             <button
                 onClick={(e) => {
                     e.stopPropagation()
-                    onRemoveEmail()
+                    onReadChange()
                 }}
-                className="email-btn material-symbols-rounded">
+                className={`email-btn material-symbols-rounded ${email.isRead ? 'read' : 'unread'}`}>
                 mail
+            </button>
+
+            <button
+                onClick={handleStarClick}
+                className={`email-btn star material-symbols-rounded ${email.isStarred ? 'starred' : ''}`}>
+                star
             </button>
 
             <button
@@ -31,11 +34,7 @@ export function EmailActions({ onRemoveEmail, onStarredEmail }) {
                 delete
             </button>
 
-            <button
-                onClick={handleStarClick}
-                className={`email-btn star material-symbols-rounded ${isStarred ? 'starred' : ''}`}>
-                star
-            </button>
+
         </section>
     )
 }

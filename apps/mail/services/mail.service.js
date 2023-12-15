@@ -20,6 +20,7 @@ export const emailService = {
     // saveNewEmail,
     addSentEmailToLocalStorage,
     starredEmail,
+    toggleReadEmail,
 }
 
 console.log('check wires')
@@ -158,6 +159,21 @@ function starredEmail(emailId) {
         .then((email) => {
             email.isStarred = !email.isStarred
             console.log('starred', email)
+            save(email)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+}
+
+
+
+
+function toggleReadEmail(emailId) {
+    get(emailId)
+        .then((email) => {
+            email.isRead = !email.isRead
+            console.log('read', email)
             save(email)
         })
         .catch((error) => {
