@@ -1,4 +1,11 @@
- .note-index {
-   padding: 1em;
-   grid-area: 2 / 2;
- }
+.note-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  grid-area: 2 / 2;
+}
+
+.note-index h3 {
+  align-self: start;
+}

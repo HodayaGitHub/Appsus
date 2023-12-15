@@ -195,7 +195,7 @@ function searchParamsToNote(searchParams) {
 
 function searchParamsToSearchFilter(searchParams) {
     const searchFilter = getDefaultFilter()
-    searchFilter.string = searchParams.get('searchString')
+    searchFilter.string = searchParams.get('searchString') || ''
     return searchFilter
 }
 

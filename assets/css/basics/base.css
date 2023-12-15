@@ -4,6 +4,8 @@
 
 body {
     margin: 0;
+    /* font-family: "Product Sans Regular"; */
+    font-family: GoogleSans-Regular, Arial;
 }
 
 h1,

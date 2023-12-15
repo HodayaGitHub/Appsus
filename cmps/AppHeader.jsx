@@ -21,15 +21,6 @@ export function AppHeader(props) {
                 filterBy={props.filterBy}
             />
         }
-            <button className="support-menu">
-                Support
-            </button>
-            <button className="settings-menu">
-                Settings
-            </button>
-            <button className="apps-memu">
-                Apps
-            </button>
             <NavLink to="/mail">Mail</NavLink>
             <NavLink to="/note">Note</NavLink>
             <NavLink className="user-img-container" to="/">

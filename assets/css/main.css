@@ -1,6 +1,6 @@
 /* Setup */
 @import './setup/variables.css';
-/* @import './setup/fonts.css'; */
+@import './setup/fonts.css';
 
 /* Basics */
 @import './basics/base.css';
@@ -27,4 +27,5 @@
 
 /* Note app css */
 @import './apps/note/cmps/CreateNote.css';
+@import './apps/note/cmps/CreateNoteExpand.css';
 @import './apps/note/cmps/NoteList.css';

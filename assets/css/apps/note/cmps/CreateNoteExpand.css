@@ -1,0 +1,18 @@
+.create-note-expand {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 0.5em;
+    color: rgb(32, 33, 36);
+}
+
+/* @media (width < 840px) {
+    .create-note-expand {
+        width: 100%;
+    }
+} */
+
+.create-note-expand .title-input {
+    font-size: 1.1em;
+    font-weight: 600;
+}
