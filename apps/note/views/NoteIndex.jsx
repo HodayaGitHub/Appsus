@@ -20,19 +20,23 @@ export function NoteIndex(props) {
     }, [noteToEdit])
 
     useEffect(() => {
-        setNotes()
+        noteService.query()
+            .then(notes => setNotes(notes))
     }, [filterBy])
 
-    function setNotes(createNotes) {
-        noteService.query(createNotes)
-            .then(notes => {
-                notes.reverse()
-                const pinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: true })
-                pinnedNotes.sort((note1, note2) =>  note2.pinnedOrder - note1.pinnedOrder)
-                const unpinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: false })
-                setPinnedNotes(pinnedNotes)
-                setUnpinnedNotes(unpinnedNotes)
-            })
+    function setNotes(notes) {
+        if (! notes) notes = [...pinnedNotes, ...unpinnedNotes]
+        else if (! Array.isArray(notes)) {
+            const note = notes
+            notes = [...pinnedNotes, ...unpinnedNotes]
+            if (notes.every(_note => _note.id !== note.id)) notes.push(note)
+        }
+        notes.reverse()
+        const newPinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: true })
+        newPinnedNotes.sort((note1, note2) =>  note2.pinnedOrder - note1.pinnedOrder)
+        const newUnpinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: false })
+        setPinnedNotes(newPinnedNotes)
+        setUnpinnedNotes(newUnpinnedNotes)
     }
 
     function onSetNoteToEdit(note) {
@@ -40,48 +44,66 @@ export function NoteIndex(props) {
     }
 
     function onSaveNote() {
+        clearNoteToEdit()
         noteService.save(noteToEdit)
-            .then(() => renderNotes())
+            .then(note => {
+                setNotes(note)
+            })
             .catch(err => console.error(err))
     }
 
     function onPinNote(note) {
+        clearNoteToEdit()
         noteService.pin(note, ! note.pinned)
-            .then(() => renderNotes())
+            .then(note => {
+                setNotes()
+            })
             .catch(err => console.error(err))
     }
 
     function onArchiveNote(note) {
+        clearNoteToEdit()
         noteService.archive(note, ! note.archived)
-            .then(() => renderNotes())
+            .then(() => {
+                setNotes()
+            })
             .catch(err => console.error(err))
     }
 
     function onTrashNote(note) {
+        clearNoteToEdit()
         noteService.trash(note, ! note.trashed)
-            .then(() => renderNotes())
+            .then(() => {
+                setNotes()
+            })
             .catch(err => console.error(err))
     }
     
     function onDeleteNote(noteId) {
+        clearNoteToEdit()
         noteService.remove(noteId)
-            .then(() => renderNotes())
+            .then(() => {
+                setPinnedNotes(prevPinnedNotes => prevPinnedNotes.filter(note => note.id !== noteId))
+                setUnpinnedNotes(prevUnpinnedNotes => prevUnpinnedNotes.filter(note => note.id !== noteId))
+            })
             .catch(err => console.error(err))
     }
 
     function onDuplicateNote(note) {
         const newNote = { ...note }
         newNote.id = undefined
+        clearNoteToEdit()
         noteService.save(newNote)
-            .then(() => renderNotes())
+            .then(note => {
+                setNotes(note)
+            })
             .catch(err => console.error(err))
     }
 
-    function renderNotes() {
+    function clearNoteToEdit() {
         const newNote = noteService.create()
         newNote.type = noteToEdit.type
         setNoteToEdit(newNote)
-        setNotes(false)
     }
 
     function onSetFilterBy(newFilterBy) {
