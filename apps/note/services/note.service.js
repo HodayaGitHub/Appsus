@@ -37,6 +37,7 @@ export const noteService = {
     NOTE_COLORS_A,
     NOTE_COLORS_B,
     query,
+    filterNotes,
     get,
     getDefaultFilter,
     save,
@@ -50,31 +51,36 @@ export const noteService = {
     searchParamsToNote,
 }
 
-function query(filterBy, createNotes=true) {
+function query(createNotes=true) {
     const prmNotes = storageService.query(NOTES_STORAGE_KEY)
         .then(notes => {
             if (notes.length === 0 && createNotes) notes = _createNotes()
-            notes = _filterNotes(notes, filterBy)
             return notes
         })
     return prmNotes
 }
 
-function _filterNotes(notes, filterBy) {
+function filterNotes(notes, filterBy) {
+    filterBy = { ...getDefaultFilter(), ...filterBy }
     notes = notes.filter(note => {
-        const showNote =
+        const isShown =
             (filterBy.trashed === note.trashed) &&
             (filterBy.archived === note.archived)
-        return showNote
+        return isShown
     })
-    const pinnedNotes = notes.filter(note => note.pinned)
-    const unpinnedNotes = notes.filter(note => ! note.pinned)
-    notes = [...pinnedNotes, ...unpinnedNotes]
+    if (filterBy.pinned !== undefined) {
+        notes = notes.filter(note => {
+            const isShown =
+                (filterBy.pinned === note.pinned)
+            return isShown
+        })
+    }
     return notes
 }
 
 function getDefaultFilter() {
     const defaultFilter = {
+        pinned: undefined,
         trashed: false,
         archived: false,
     }
@@ -122,17 +128,25 @@ function createTodoItem(text) {
 
 function pin(note, isPinnded=true) {
     note.pinned = isPinnded
-    const prmNotes = save(note)
-    return prmNotes
+    const prmNote = query()
+        .then(pinnedNotes => {
+            note.pinnedOrder = pinnedNotes.length
+            return save(note)
+        })
+    return prmNote
 }
 
 function archive(note, isArchived=true) {
+    if (note.archived === isArchived) return Promise(note)
+    note.trashed = false
     note.archived = isArchived
     const prmNote = save(note)
     return prmNote
 }
 
 function trash(note, isTrashed=true) {
+    if (note.trashed === isTrashed) return Promise(note)
+    note.archived = false
     note.trashed = isTrashed
     const prmNote = save(note)
     return prmNote

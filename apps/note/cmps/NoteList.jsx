@@ -1,9 +1,10 @@
+const { useRef } = React
 
 export function NoteList(props) {
 
     if (! props.notes) return <section>Loading...</section>
     return (
-        <section className="note-list">
+        <section className={`note-list ${props.pinned}`}>
         {
             props.notes.map(note =>
                 <article key={note.id} style={{backgroundColor: note.color}}>
