@@ -1,26 +1,18 @@
 
-const { useState } = React
-
 export function AppSearch(props) {
-    const [searchString, setSearchString] = useState('')
-
-    function onChangeSearchString(ev) {
-        const newSearchString = ev.target.value
-        console.log(newSearchString)
-        setSearchString(newSearchString)
-    }
-
-    function onSubmitSearch(ev) {
-        ev.preventDefault()
-        props.onSetFilterBy({ string: searchString })
-    }
+    console.log(props)
 
     return (
-        <form className="app-search" onSubmit={onSubmitSearch}>
+        <form className="app-search" onSubmit={ev => ev.preventDefault()}>
             <button className="search-button">
-                Search
+                {props.SVG_ICONS.search.notSelected}
             </button>
-            <input type="text" name="search-input" value={searchString} onChange={onChangeSearchString} />
+            <input
+                type="text"
+                name="search-input"
+                value={props.filterBy.string}
+                onChange={ev => props.onSetFilterBy({ string: ev.target.value })}
+            />
         </form>
     )
 }

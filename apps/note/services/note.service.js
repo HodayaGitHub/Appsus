@@ -186,6 +186,7 @@ function noteToSearchParams(note) {
 function searchParamsToNote(searchParams) {
     const newNote = create()
     for (const [key, value] of searchParams.entries()) {
+        if (key === 'searchString') continue
         if (NONE_STRING_KEYS.includes(key)) {
             newNote[key] = JSON.parse(value)
         } else newNote[key] = value

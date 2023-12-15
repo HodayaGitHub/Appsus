@@ -3,6 +3,7 @@ import { AppSearch } from "./AppSearch.jsx"
 const { NavLink } = ReactRouterDOM
 
 export function AppHeader(props) {
+    console.log(props)
 
     return (
         <header className="app-header full-width">
@@ -13,7 +14,14 @@ export function AppHeader(props) {
             <NavLink className="app-logo" to="/">
                 <span>App Logo</span>
             </NavLink>
-            <AppSearch onSetFilterBy={props.onSetFilterBy} filterBy={props.onSetFilterBy}/>
+        {
+            0 < Object.keys(props).length &&
+            <AppSearch
+                SVG_ICONS={props.SVG_ICONS}
+                onSetFilterBy={props.onSetFilterBy}
+                filterBy={props.onSetFilterBy}
+            />
+        }
             <button className="support-menu">
                 Support
             </button>

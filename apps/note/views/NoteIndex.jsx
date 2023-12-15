@@ -137,28 +137,42 @@ export function NoteIndex() {
 
     const APP_ASIDE_BUTTONS = [
         {
-            class: "",
-            icon: SVG_NOTES,
+            class: '',
+            icon: ! filterBy.archived && ! filterBy.trashed ? SVG_NOTES_SELECTED : SVG_NOTES,
             text: 'Notes',
             onClick: () => onSetFilterBy(),
         },
         {
-            class: "",
-            icon: SVG_ARCHIVE,
+            class: '',
+            icon: filterBy.archived ? SVG_ARCHIVE_SELECTED : SVG_ARCHIVE,
             text: 'Archive',
             onClick: () => onSetFilterBy({ archived: true}),
         },
         {
-            class: "",
-            icon: SVG_TRASH,
+            class: '',
+            icon: filterBy.trashed ? SVG_TRASH_SELECTED : SVG_TRASH,
             text: 'Trash',
             onClick: () => onSetFilterBy({ trashed: true }),
         },
     ]
 
+    const noteListProps = {
+        SVG_ICONS,
+        onPinNote,
+        onArchiveNote,
+        onTrashNote,
+        onDeleteNote,
+        onSetNoteToEdit,
+        onDuplicateNote,
+    }
+
     return (
         <React.Fragment>
-            <AppHeader onSetFilterBy={onSetFilterBy} filterBy={filterBy}/>
+            <AppHeader
+                SVG_ICONS={SVG_ICONS}
+                onSetFilterBy={onSetFilterBy}
+                filterBy={filterBy}
+            />
             <AppAside buttons={APP_ASIDE_BUTTONS}/>
             <main className="note-index">
                 <CreateNote
@@ -170,30 +184,18 @@ export function NoteIndex() {
             {
                 ! pinnedNotes && <section>Loading...</section> ||
                 <NoteList
-                    SVG_ICONS={SVG_ICONS}
                     notes={pinnedNotes}
                     pinned='pinned'
-                    onPinNote={onPinNote}
-                    onArchiveNote={onArchiveNote}
-                    onTrashNote={onTrashNote}
-                    onDeleteNote={onDeleteNote}
-                    onSetNoteToEdit={onSetNoteToEdit}
-                    onDuplicateNote={onDuplicateNote}
+                    { ...noteListProps }
                 />
             }
                 <h3>Unpinned</h3>
             {
                 ! unpinnedNotes && <section>Loading...</section> ||
                 <NoteList
-                    SVG_ICONS={SVG_ICONS}
                     notes={unpinnedNotes}
                     pinned='unpinned'
-                    onPinNote={onPinNote}
-                    onArchiveNote={onArchiveNote}
-                    onTrashNote={onTrashNote}
-                    onDeleteNote={onDeleteNote}
-                    onSetNoteToEdit={onSetNoteToEdit}
-                    onDuplicateNote={onDuplicateNote}
+                    { ...noteListProps }
                 />
             }
             </main>
