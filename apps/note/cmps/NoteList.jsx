@@ -39,28 +39,34 @@ export function NoteList(props) {
                     <button
                         className="Pin"
                         onClick={() => props.onPinNote(note)}
-                        >{note.pinned ? 'Unpin' : 'Pin'}
+                        >{note.pinned ? props.SVG_ICONS.pin.selected : props.SVG_ICONS.pin.notSelected }
                     </button>
                     <button
                         className="archive"
                         onClick={() => props.onArchiveNote(note)}
-                        >{note.archived ? 'Unarchive' : 'Archive'}
+                        >{note.archived ? props.SVG_ICONS.archive.selected : props.SVG_ICONS.archive.notSelected }
                     </button>
                     <button
                         className="trash"
                         onClick={() => props.onTrashNote(note)}
-                        >{note.trashed ? 'Untrash' : 'trash'}
+                        >{note.trashed ? props.SVG_ICONS.trash.selected : props.SVG_ICONS.trash.notSelected }
                     </button>
+                {
+                    note.trashed &&
                     <button
                         className="delete"
                         onClick={() => props.onDeleteNote(note.id)}
-                        >Delete
+                        >{props.SVG_ICONS.delete.notSelected}
                     </button>
+                }
+                {
+                    ! note.trashed &&
                     <button
                         className="duplicate"
                         onClick={() => props.onDuplicateNote(note)}
-                        >Duplicate
+                        >{props.SVG_ICONS.duplicate.notSelected}
                     </button>
+                }
                 </article>
             )
         }
