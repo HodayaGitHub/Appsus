@@ -1,6 +1,5 @@
 
 export function AppSearch(props) {
-    console.log(props)
 
     return (
         <form className="app-search" onSubmit={ev => ev.preventDefault()}>

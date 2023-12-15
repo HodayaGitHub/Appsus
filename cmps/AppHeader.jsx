@@ -3,7 +3,6 @@ import { AppSearch } from "./AppSearch.jsx"
 const { NavLink } = ReactRouterDOM
 
 export function AppHeader(props) {
-    console.log(props)
 
     return (
         <header className="app-header full-width">
