@@ -70,8 +70,8 @@
 
 .note-list :is(
     input:focus,
-    :has(input:focus) ~ * input,
-    *:has(~ * :focus) input,
+    :has(input:focus) + * input,
+    *:has(+ * :focus) input,
 ) {
     cursor: auto;
 }
