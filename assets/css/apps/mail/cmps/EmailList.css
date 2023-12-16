@@ -7,6 +7,14 @@
 
 }
 
+.material-symbols-rounded {
+    font-size: 1rem;
+}
+
+.app-aside button .material-symbols-rounded {
+    font-size: 1.5rem;
+}
+
 .email-btn.icon {
     /* height: 2em; */
     font-family: 'Material Symbols Rounded';

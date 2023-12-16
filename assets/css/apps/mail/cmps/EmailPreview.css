@@ -1,6 +1,39 @@
 .email-preview {
-    font-size: 2em;
+    /* font-size: 2em; */
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    grid-area: 1/4;
 }
-.email-subject {
-    /* font-weight: bold; */
+
+.email-preview-title {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.email-preview .email-subject {
+    font-weight: bold;
+}
+
+.email-preview .sender-details {
+    display: flex;
+    gap: 10px;
+}
+
+.email-preview .email-body {
+    text-align: justify;
+    width: 90%;
+}
+
+.email-preview .email-preview-title .material-symbols-rounded {
+    font-size: 1.60rem;
+    background-color: inherit;
+    padding: 0;
+    color: #7c7575;
 }

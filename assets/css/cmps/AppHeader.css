@@ -1,5 +1,5 @@
 header {
-    background: var( --main-layout-bg);
+    background: var(--main-layout-bg);
     /* border-bottom: 2px solid white; */
 }
 
@@ -11,7 +11,8 @@ header {
 }
 
 .hamburger-menu {
-    padding: 1rem;
+    /* padding: 1rem; */
+    padding: 0.5rem;
     cursor: pointer;
 }
 
@@ -34,31 +35,36 @@ a:not(.user-img-container) {
     padding: 1rem;
 }
 
-/* nav {
-    display: flex;
-    justify-content: center;
-}
-
-nav a {
-    margin: .5rem;
-}
-
-nav a:active {
-    color: purple;
-}
-
-nav a.active {
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: overline;
-}
- */
 
 .user-img-container {
     height: 3rem;
 }
 
-/* .user-img {
-    object-fit: none;
 
-} */
+
+.hamburger-menu-container {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 2.188rem;
+    height: 0.313rem;
+    background-color: var(--gray3);
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.menu-open .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+}
+
+.menu-open .bar2 {
+    opacity: 0;
+}
+
+.menu-open .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+}
