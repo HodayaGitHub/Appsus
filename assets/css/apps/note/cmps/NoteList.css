@@ -35,21 +35,45 @@
 }
 
 .note-list article {
-    margin-block-end: 1em;
+    margin-block-end: 1rem;
     break-inside: avoid;
-    padding: 0.5em;
+    padding: 0.5rem;
     width: 240px;
     color: rgb(32, 33, 36);
     text-align: center;
     overflow-wrap: break-word;
     outline: 1px solid rgb(224, 224, 224);
-    border-radius: 0.5em;
+    border-radius: 0.5rem;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0);
-    transition: 500ms;
+    /* transition: 500ms; */
 }
 
 .note-list article:is(:hover, :active) {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.note-list .input-container {
+    /* margin: 0 !important;
+    padding: 0 !important; */
+}
+
+.note-list input {
+    width: 100%;
+    height: 100%;
+    padding: 0.75rem 1rem;
+    cursor: default;
+}
+
+.note-list .input-container:first-of-type input {
+    padding-block-end: 0;
+}
+
+.note-list :is(
+    input:focus,
+    :has(input:focus) ~ * input,
+    *:has(~ * :focus) input,
+) {
+    cursor: auto;
 }
 
 .note-list button {
@@ -62,5 +86,5 @@
 }
 
 .note-list p {
-    margin: 0.25em 0 0 0;
+    margin: 0.25rem 0 0 0;
 }

@@ -7,11 +7,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5em;
+    padding: 0.5rem;
 }
 
 .hamburger-menu {
-    padding: 1em;
+    padding: 1rem;
     cursor: pointer;
 }
 
@@ -20,7 +20,7 @@ header {
 }
 
 .app-logo {
-    padding: 1em;
+    padding: 1rem;
 }
 
 .app-search {
@@ -31,7 +31,7 @@ header {
 }
 
 a:not(.user-img-container) {
-    padding: 1em;
+    padding: 1rem;
 }
 
 /* nav {
@@ -40,7 +40,7 @@ a:not(.user-img-container) {
 }
 
 nav a {
-    margin: .5em;
+    margin: .5rem;
 }
 
 nav a:active {
@@ -55,7 +55,7 @@ nav a.active {
  */
 
 .user-img-container {
-    height: 3em;
+    height: 3rem;
 }
 
 /* .user-img {

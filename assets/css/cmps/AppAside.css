@@ -10,7 +10,7 @@
 }
 
 .app-aside:hover {
-    width: 9em;
+    width: 9rem;
 }
 
 .app-aside .text {
@@ -31,7 +31,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
 }
 
 .app-aside button svg {

@@ -8,10 +8,14 @@ export function NoteList(props) {
         {
             props.notes.map(note =>
                 <article key={note.id} style={{backgroundColor: note.color}}>
-                    <h3>{note.title}</h3>
+                    <div className="input-container">
+                        <input type="text" name="title-input" value={note.title}/>
+                    </div>
                     {
                         note.type === 'text' &&
-                        <p>{note.text}</p>
+                        <div className="input-container">
+                            <input type="text" name="text-input" value={note.text}/>
+                        </div>
                     }
                     {
                         note.type === 'image' &&

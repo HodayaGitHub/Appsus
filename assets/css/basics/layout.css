@@ -1,11 +1,11 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 4em 1fr;
+    grid-template-columns: 4rem 1fr;
     align-items: start;
 }
 
 .main-layout:has(.hamburger-menu-checkbox:checked) {
-    grid-template-columns: 9em 1fr;
+    grid-template-columns: 9rem 1fr;
 }
 
 .app.main-layout {
@@ -23,6 +23,6 @@
 
 .container {
     max-width: 800px;
-    padding: 1em;
+    padding: 1rem;
     margin: auto;
 }

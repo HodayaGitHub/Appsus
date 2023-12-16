@@ -3,7 +3,7 @@
     max-width: 600px;
     color: rgb(32, 33, 36);
     outline: 1px solid rgb(224, 224, 224);
-    border-radius: 0.5em;
+    border-radius: 0.5rem;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
 }
 
@@ -14,11 +14,11 @@
 } */
 
 .create-note-expand .title-input {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
 .create-note-expand input {
     background-color: #ffffff00;
-    padding: 0.75em 1em;
+    padding: 0.75rem 1rem;
 }
