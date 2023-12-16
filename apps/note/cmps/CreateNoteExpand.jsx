@@ -8,6 +8,7 @@ const YOUTUBE_URL_REGEX = /^(?:https?:)?(?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?yo
 export function CraeteNoteExpand(props) {
     const [numElementsInFocus, setNumElementsInFocus] = useState(1)
     const [isInFocus, setIsInFocus] = useState(false)
+    const [colorsContainerClass, setColorsContainerClass] = useState('hidden')
 
     useEffect(() => {
         setIsInFocus(0 < numElementsInFocus)
@@ -50,6 +51,10 @@ export function CraeteNoteExpand(props) {
         props.onSetNoteToEdit({ todo: props.noteToEdit.todo })
     }
 
+    function toggleShowColors() {
+        setColorsContainerClass(prev => ! prev ? 'hidden' : '')
+    }
+
     function onCreateNote() {
         if (! props.noteToEdit.title) {
             switch (props.noteToEdit.type) {
@@ -71,7 +76,6 @@ export function CraeteNoteExpand(props) {
 
     const eventHandlers = {
         onFocus: () => setNumElementsInFocus(prev => prev + 1),
-        onChange: onChangeNote,
         onBlur: () => setNumElementsInFocus(prev => Math.max(prev - 1, 0)),
     }
 
@@ -80,25 +84,29 @@ export function CraeteNoteExpand(props) {
         {
             isInFocus &&
             <div className="input-container">
-                <input
-                    type="text"
+                <div
+                    contentEditable
                     name="title"
                     placeholder="Title"
-                    value={props.isEditInPlace && props.noteToEdit.title || ''}
+                    onInput={onChangeNote}
                     { ...eventHandlers }
-                />
+                >
+                    {props.isEditInPlace && props.noteToEdit.title || ''}
+                </div>
             </div>
         }
             <div className="input-container">
             {
                 props.noteToEdit.type === 'text' &&
-                <input
-                    type="text"
+                <div
+                    contentEditable
                     name="text"
                     placeholder="Take a note..."
-                    value={props.isEditInPlace && props.noteToEdit.text || ''}
+                    onInput={onChangeNote}
                     { ...eventHandlers }
-                />
+                >
+                    {props.isEditInPlace && props.noteToEdit.text || ''}
+                </div>
             }
             {
                 props.noteToEdit.type === 'todo' &&
@@ -106,12 +114,14 @@ export function CraeteNoteExpand(props) {
                     <ToDo
                         items={props.isEditInPlace && props.noteToEdit.todo || []}
                         onDeleteTodoItem={onDeleteTodoItem}
+                        onChange={onChangeNote}
                         { ...eventHandlers }
                     />
                     <input
                         type="text"
                         name="todoText"
                         value={props.isEditInPlace && props.noteToEdit.todoText || ''}
+                        onChange={onChangeNote}
                         { ...eventHandlers }
                     />
                     <button type="button" onClick={onAddTodoItem}>Add</button>
@@ -143,7 +153,7 @@ export function CraeteNoteExpand(props) {
         {
             isInFocus &&
             <section className="buttons-container">
-                <section className="types-button-container">
+                <section className="type-buttons-container">
                     <button
                         className="text"
                         onClick={onSetType}
@@ -172,6 +182,13 @@ export function CraeteNoteExpand(props) {
                     >
                         Video
                     </button>
+                    <button
+                        className="color"
+                        onClick={toggleShowColors}
+                        { ...eventHandlers }
+                    >
+                        Color
+                    </button>
                 </section>
                 <button
                     className="close"
@@ -181,11 +198,14 @@ export function CraeteNoteExpand(props) {
                 </button>
             </section>
         }
-            <div className="colors-container">
+            <div className={`colors-container ${colorsContainerClass}`}>
             {
                 noteService.NOTE_COLORS_B.map((color, idx) => {
                     return (
-                        <label key={color} className={`color-b-${String(idx).padStart(2, '0')}`}>
+                        <label
+                            key={color}
+                            className={`color color-b-${String(idx).padStart(2, '0')}`}
+                        >
                             <input
                                 type="radio"
                                 name="color"

@@ -1,4 +1,5 @@
 .create-note-expand {
+    position: relative;
     width: 100%;
     max-width: 600px;
     color: rgb(32, 33, 36);
@@ -7,18 +8,12 @@
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
 }
 
-/* @media (width < 840px) {
-    .create-note-expand {
-        width: 100%;
-    }
-} */
-
 .create-note-expand [name=title] {
     font-size: 1.1rem;
     font-weight: 600;
 }
 
-.create-note-expand input {
+.create-note-expand div[contenteditable] {
     background-color: #ffffff00;
     padding: 0.75rem 1rem;
 }
@@ -29,36 +24,46 @@
 }
 
 .create-note-expand .colors-container {
+    position: absolute;
+    width: 75%;
+    left: 50%;
+    translate: -50% -10%;
+    padding: 0.75rem;
+    background-color: white;
     display: flex;
+    gap: 0.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 8px 0px rgb(0, 0, 0, 0.2);
 }
 
-.create-note-expand .colors-container > label {
+.create-note-expand .colors-container > .color {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    aspect-ratio: 1;
+    flex-grow: 1;
+    border-radius: 10rem;
 }
 
-.create-note-expand .colors-container > label:has([name=color]:checked) {
-    border: 2px solid black;
+.create-note-expand .colors-container > .color:has([name=color]:checked) {
+    outline: 2px solid black;
 }
 
-.create-note-expand .colors-container > .color-1 {
+.create-note-expand .colors-container > .color-a-1 {
     background-color: var(--note-color-a-1);
 }
 
-.create-note-expand .colors-container > .color-2 {
+.create-note-expand .colors-container > .color-a-2 {
     background-color: var(--note-color-a-2);
 }
 
-.create-note-expand .colors-container > .color-3 {
+.create-note-expand .colors-container > .color-a-3 {
     background-color: var(--note-color-a-3);
 }
 
-.create-note-expand .colors-container > .color-4 {
+.create-note-expand .colors-container > .color-a-4 {
     background-color: var(--note-color-a-4);
 }
 
-.create-note-expand .colors-container > .color-5 {
+.create-note-expand .colors-container > .color-a-5 {
     background-color: var(--note-color-a-5);
 }
 

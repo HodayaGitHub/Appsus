@@ -1,6 +1,5 @@
 import { AppAside } from "../../../cmps/AppAside.jsx"
 import { AppHeader } from "../../../cmps/AppHeader.jsx"
-import { CreateNote } from "../cmps/CreateNote.jsx"
 import { CraeteNoteExpand } from "../cmps/CreateNoteExpand.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"

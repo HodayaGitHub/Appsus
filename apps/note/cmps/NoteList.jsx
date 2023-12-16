@@ -9,7 +9,7 @@ export function NoteList(props) {
 
     function onChangeNote(ev, note) {
         const field = ev.target.name
-        const value = ev.target.value
+        const value = ev.target.innerText
         note[field] = value
         props.onSetNoteToEdit(note)
     }
@@ -26,46 +26,49 @@ export function NoteList(props) {
             props.notes.map(note =>
                 <article key={note.id} style={{backgroundColor: note.color}}>
                     <div className="input-container">
-                        <input
-                            type="text"
+                        <div
+                            contentEditable
                             name="title"
-                            value={note.title}
                             onFocus={ev => onFocusNote(ev, note)}
-                            onChange={ev => onChangeNote(ev, note)}
+                            // onInput={ev => onChangeNote(ev, note)}
+                            onInput={console.log}
                             onBlur={ev => onBlurNote(ev, note)}
-                        />
-                    </div>
-                    {
-                        note.type === 'text' &&
-                        <div className="input-container">
-                            <input
-                                type="text"
-                                name="text"
-                                value={note.text}
-                                onFocus={ev => onFocusNote(ev, note)}
-                                onChange={ev => onChangeNote(ev, note)}
-                                onBlur={ev => onBlurNote(ev, note)}
-                            />
+                        >
+                            {note.title}
                         </div>
-                    }
+                    </div>
+                {
+                    note.type === 'text' &&
+                    <div className="input-container">
+                        <div
+                            contentEditable
+                            name="text"
+                            onFocus={ev => onFocusNote(ev, note)}
+                            onInput={ev => onChangeNote(ev, note)}
+                            onBlur={ev => onBlurNote(ev, note)}
+                        >
+                            {note.text}
+                        </div>
+                    </div>
+                }
+                {
+                    note.type === 'image' &&
+                    <img src={note.image} alt="image" />
+                }
+                {
+                    note.type === 'video' &&
+                    <iframe src={note.video}></iframe>
+                }
+                {
+                    note.type === 'todo' &&
+                    <ul>
                     {
-                        note.type === 'image' &&
-                        <img src={note.image} alt="image" />
+                        note.todo.map(item => {
+                            return <li key={item.id}>{item.text}</li>
+                        })
                     }
-                    {
-                        note.type === 'video' &&
-                        <iframe src={note.video}></iframe>
-                    }
-                    {
-                        note.type === 'todo' &&
-                        <ul>
-                        {
-                            note.todo.map(item => {
-                                return <li key={item.id}>{item.text}</li>
-                            })
-                        }
-                        </ul>
-                    }
+                    </ul>
+                }
                     <button
                         className="edit"
                         onClick={() => props.onSetNoteToEdit(note)}

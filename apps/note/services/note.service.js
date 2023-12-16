@@ -205,7 +205,10 @@ function _createNotes() {
         create('And this is my second note.', 'Title'),
         create('Another note just for the sake of it.', 'Title'),
     ]
-    notes.forEach(note => note.id = utilService.makeId())
+    notes.forEach((note, idx) => {
+        note.id = utilService.makeId()
+        note.createdAt += idx
+    })
     utilService.saveToStorage(NOTES_STORAGE_KEY, notes)
     return notes
 }
