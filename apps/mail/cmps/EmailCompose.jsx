@@ -38,9 +38,9 @@ export function EmailCompose() {
 
 
     return (
-        <section className="compose-email">
-
-            <form onSubmit={handleSubmit}>
+        <section className="compose-email-container main-layout">
+            <div className="new-email-title">New Email</div>
+            <form class="compose-email" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="recipient">To:</label>
                     <input

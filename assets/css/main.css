@@ -24,6 +24,10 @@
 @import './apps/mail/cmps/EmailList.css';
 @import './apps/mail/cmps/EmailPreview.css';
 @import './apps/mail/cmps/EmailIndex.css';
+@import './apps/mail/cmps/EmailFilter.css';
+@import './apps/mail/cmps/EmailCompose.css';
+
+
 
 /* Note app css */
 @import './apps/note/cmps/CreateNote.css';

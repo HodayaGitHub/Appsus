@@ -6,10 +6,10 @@ export function EmailPreview({ email, onRemoveEmail, onStarredEmail, onReadChang
         // <article className="email-preview">
         <React.Fragment>
             <div>
-                <h1>{email.subject}</h1>
+                <span className="email-subject">{email.subject}</span>
                 <span>{email.body}</span>
 
-                <EmailActions onRemoveEmail={onRemoveEmail} onStarredEmail={onStarredEmail} onReadChange={onReadChange} />
+                <EmailActions email={email} onRemoveEmail={onRemoveEmail} onStarredEmail={onStarredEmail} onReadChange={onReadChange} />
 
             </div>
         </React.Fragment>

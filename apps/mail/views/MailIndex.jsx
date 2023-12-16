@@ -158,7 +158,9 @@ export function MailIndex() {
     if (!emails) return <div>Loading...</div>
     return (
         <React.Fragment>
-            <AppHeader />
+            <AppHeader
+
+            />
             <AppAside
                 dynamicClass="material-symbols-rounded"
                 buttons={buttons} />

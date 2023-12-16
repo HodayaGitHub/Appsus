@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #f6f8fc;
     transition: width 0.3s ease-in-out;
     grid-area: 2 / 1;
 }
@@ -28,6 +28,7 @@
 }
 
 .app-aside button {
+    background-color: #f6f8fc;
     display: flex;
     justify-content: start;
     align-items: center;

@@ -3,8 +3,8 @@ const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 import { LongTxt } from '../../../cmps/LongTxt.jsx'
 import { EmailActions } from './EmailActions.jsx'
-
 import { EmailPreview } from './EmailPreview.jsx'
+import { SentAt } from './SentAt.jsx'
 
 export function EmailList({ emails, onRemoveEmail, onStarredEmail, onReadChange }) {
     const [selectedEmailId, setSelectedEmailId] = useState(null)
@@ -16,14 +16,21 @@ export function EmailList({ emails, onRemoveEmail, onStarredEmail, onReadChange 
     return (
         <div className="emails-container">
 
-            {emails.length === 0 && (<div>'No email found'</div>)}
+            {emails.length === 0 && (<div>'No emails found'</div>)}
 
             {emails.map((email) => (
                 <section
-                    className={`clean-list email-item ${selectedEmailId === email.id ? 'selected' : ''}`}
+                    className={`clean-list email-item ${selectedEmailId === email.id ? 'selected' : ''} ${email.isRead ? 'read' : 'unread'}`}
                     key={email.id}
                     onClick={(event) => toggleEmailPreview(email.id, event)}
+
                 >
+
+                    {/* <button
+                onClick={handleStarClick}
+                className={`email-btn star material-symbols-rounded ${email.isStarred ? 'starred' : ''}`}>
+                star
+            </button> */}
                     {(selectedEmailId === email.id) && (
                         <EmailPreview
                             onRemoveEmail={() => onRemoveEmail(email.id)}
@@ -36,15 +43,16 @@ export function EmailList({ emails, onRemoveEmail, onStarredEmail, onReadChange 
 
                     {!(selectedEmailId === email.id) && (
                         <React.Fragment>
-                            <LongTxt txt={email.subject} length={20} />
-                            <LongTxt txt={email.body} length={80} />
-
-                            <EmailActions
+                            <LongTxt dynamicClass="email-subject" txt={email.subject} length={20} />
+                            <LongTxt dynamicClass="email-content" txt={email.body} length={80} />
+                            <SentAt email={email}></SentAt>
+                            
+                            {/* <EmailActions
                                 email={email}
                                 onRemoveEmail={() => onRemoveEmail(email.id)}
                                 onStarredEmail={() => onStarredEmail(email.id)}
                                 onReadChange={() => onReadChange(email.id)}
-                            />
+                            /> */}
                         </React.Fragment>
                     )}
                 </section>

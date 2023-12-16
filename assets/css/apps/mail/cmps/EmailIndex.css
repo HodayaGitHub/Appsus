@@ -1,9 +1,9 @@
-.compose-email-btn {
-    width: 40px;
-    height: 40px;
-    margin-left: 100px;
-}
-
-.compose-email{
-    margin: 100px;
+.mail-index {
+    font-family: "Google Sans",
+        Roboto,
+        RobotoDraft,
+        Helvetica,
+        Arial,
+        sans-serif;
+    font-size: 0.875rem;
 }

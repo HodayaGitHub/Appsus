@@ -16,7 +16,8 @@ export function EmailActions({ onRemoveEmail, onStarredEmail, onReadChange, emai
                     onReadChange()
                 }}
                 className={`email-btn material-symbols-rounded ${email.isRead ? 'read' : 'unread'}`}>
-                mail
+                {console.log(email)}
+                {email.isRead ? 'drafts' : 'mail'}
             </button>
 
             <button

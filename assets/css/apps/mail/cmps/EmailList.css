@@ -1,20 +1,54 @@
 .emails-container {
-    border: 1px solid;
+    margin: 3px;
+    /* border: 1px solid; */
     border-top: none;
+    /* border-color: var(--border-gray); */
+
 }
 
 .email-btn.icon {
     /* height: 2em; */
     font-family: 'Material Symbols Rounded';
+    /* background-color: #fff; */
 }
 
 .email-item {
     display: grid;
     cursor: pointer;
+    padding: 5px;
     border-top: 1px solid;
-    grid-template-columns: 1fr 5fr 1fr;
+    border-color: var(--border-gray);
+    grid-template-columns: 1.2fr 5fr 1fr;
+    align-items: center;
+    box-shadow: rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset;
+}
+
+
+.email-item.unread {
+    /* background-color: #d6d4d473; */
+    background-color: var(--gray5);
+}
+
+.email-item.unread .email-subject,
+.email-item.unread .email-content,
+.email-item.unread .sent-at {
+    /* background-color: #9c2121; */
+    font-weight: bold;
 
 }
+
+button.email-btn {
+    /* background-color: #fff; */
+}
+
+.sent-at {
+    /* align-self: self-end; */
+    /* flex:right; */
+    justify-self: flex-end;
+    padding: 1rem;
+
+}
+
 
 
 .actions-btns-container {

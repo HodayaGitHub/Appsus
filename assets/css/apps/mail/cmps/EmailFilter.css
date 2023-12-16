@@ -1,0 +1,15 @@
+.search-email {
+    padding: 20px;
+    align-self: center;
+}
+
+.search-email input {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    /* border: 1px solid; */
+    /* background-color: #c2e7ff7d; */
+    background-color: #eaf1fb;
+    padding: 15px;
+    max-width: 500px;
+    border-radius: 30px;
+}
