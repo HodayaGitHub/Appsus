@@ -1,25 +1,43 @@
 
-
+const { useState, useEffect } = React
 
 export function CraeteNoteExpand(props) {
+    const [isInFocus, setIsInFocus] = useState()
+
+    function onFocus(ev) {
+        setIsInFocus(true)
+    }
+    
+    function onBlur(ev) {
+        // setIsInFocus(false)
+    }
 
     return (
-        <div className="create-note-expand">
-            <div
-                className="title-input"
-                contentEditable
-                onFocus={() => console.log('focus')}
-                onInput={() => console.log('input')}
-                onChange={() => console.log('change')}
-                onBlur={() => console.log('blur')}
-            >
-                Hello, world!
+        <div className="create-note-expand"
+            onBlur={onBlur}
+        >
+        {
+            isInFocus &&
+            <div className="input-container">
+                <input
+                    type="text"
+                    name="title-input"
+                    placeholder="Title"
+                    onFocus={onFocus}
+                    onInput={() => console.log('input')}
+                    onChange={() => console.log('change')}
+                />
             </div>
-            <div
-                className="text-input"
-                contentEditable
-            >
-                I am content editable!
+        }
+            <div className="input-container">
+                <input
+                    type="text"
+                    name="text-input"
+                    placeholder="Take a note..."
+                    onFocus={onFocus}
+                    onInput={() => console.log('input')}
+                    onChange={() => console.log('change')}
+                />
             </div>
         </div>
     )

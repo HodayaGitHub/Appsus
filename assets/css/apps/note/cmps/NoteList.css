@@ -37,13 +37,28 @@
 .note-list article {
     margin-block-end: 1em;
     break-inside: avoid;
-    width: 240px;
-    border: 1px solid rgb(224, 224, 224);
-    border-radius: 0.5em;
     padding: 0.5em;
+    width: 240px;
+    color: rgb(32, 33, 36);
     text-align: center;
     overflow-wrap: break-word;
-    color: rgb(32, 33, 36);
+    outline: 1px solid rgb(224, 224, 224);
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0);
+    transition: 500ms;
+}
+
+.note-list article:is(:hover, :active) {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.note-list button {
+    opacity: 0;
+    transition: 750ms;
+}
+
+.note-list article:is(:hover, :active) button {
+    opacity: 1;
 }
 
 .note-list p {

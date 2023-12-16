@@ -14,7 +14,16 @@ button:hover {
     transition: 300ms;
 }
 
-input:focus {
+/* input:focus {
     background-color: var(--clr1bg);
     transition: background-color 1s;
+} */
+
+input {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
 }
