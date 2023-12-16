@@ -11,21 +11,22 @@ export function AppHeader(props) {
     }
     return (
         <header className={`app-header full-width ${isMenuOpen ? 'menu-open' : ''}`}>
+            <div className="menu-logo-container">
 
-        {/* <header className="app-header full-width"> */}
-            <label className="hamburger-menu">
-                {/* <span>Menu</span> */}
-                <div className="hamburger-menu-container" onClick={toggleMenu}>
-                    <div className="bar1"></div>
-                    <div className="bar2"></div>
-                    <div className="bar3"></div>
-                </div>
+                <label className="hamburger-menu">
+                    <div className="hamburger-menu-container" onClick={toggleMenu}>
+                        <div className="bar1"></div>
+                        <div className="bar2"></div>
+                        <div className="bar3"></div>
+                    </div>
 
-                <input className="hamburger-menu-checkbox" type="checkbox" />
-            </label>
-            <NavLink className="app-logo" to="/">
-                <span>App Logo</span>
-            </NavLink>
+                    <input className="hamburger-menu-checkbox" type="checkbox" />
+                </label>
+
+                <NavLink className="app-logo" to="/">
+                <img className="logo-img" src="assets/img/icons/google_logo.png" alt="Google" />
+                </NavLink>
+            </div>
             {
                 0 < Object.keys(props).length &&
                 <AppSearch
@@ -34,11 +35,24 @@ export function AppHeader(props) {
                     filterBy={props.filterBy}
                 />
             }
-            <NavLink to="/mail">Mail</NavLink>
-            <NavLink to="/note">Note</NavLink>
-            <NavLink className="user-img-container" to="/">
-                <img className="user-img" src="assets/img/icons/user-img.png" alt="" />
-            </NavLink>
+
+            <div class="logos-container">
+
+                <NavLink to="/note">
+                    <img className="logo-img" src="assets/img/icons/google_keep.png" alt="Note" />
+                </NavLink>
+
+
+                <NavLink to="/mail">
+                    <img className="logo-img" src="assets/img/icons/gmail_icon.png" alt="Mail" />
+                </NavLink>
+
+                <NavLink className="user-img-container" to="/">
+                    <img className="user-img" src="assets/img/icons/user_img_i.png" alt="user" />
+                </NavLink>
+
+
+            </div>
         </header>
     )
 }

@@ -4,14 +4,21 @@ header {
 }
 
 .app-header {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     padding: 0.5rem;
+    display: flex;
+    /* grid-template-columns: 1fr 1fr 2fr 1fr; */
+    gap: 10px;
+    /* align-items: center; */
+
 }
 
+.app-header>* {}
+
+
 .hamburger-menu {
-    /* padding: 1rem; */
     padding: 0.5rem;
     cursor: pointer;
 }
@@ -21,26 +28,27 @@ header {
 }
 
 .app-logo {
-    padding: 1rem;
+    width: 3rem;
 }
 
 .app-search {
     flex-grow: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
-a:not(.user-img-container) {
+/* a:not(.user-img-container) {
     padding: 1rem;
+} */
+
+
+
+.menu-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
-
-
-.user-img-container {
-    height: 3rem;
-}
-
-
 
 .hamburger-menu-container {
     display: inline-block;
@@ -67,4 +75,13 @@ a:not(.user-img-container) {
 
 .menu-open .bar3 {
     transform: translate(0, -11px) rotate(45deg);
+}
+
+.logos-container {
+    /* align-self: center; */
+    height: 3rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
+    /* align-items: right; */
 }
