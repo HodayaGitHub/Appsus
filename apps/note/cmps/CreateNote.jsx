@@ -54,7 +54,11 @@ export function CreateNote(props) {
         <form onSubmit={onCreateNote}className="create-note">
             <label className="type">
                 <span>Type:</span>
-                <select name="type" value={props.noteToEdit.type} onChange={onChangeNote}>
+                <select
+                    name="type"
+                    value={props.isEditInPlace && props.noteToEdit.type || ''}
+                    onChange={onChangeNote}
+                >
                     <option value="text">Text</option>
                     <option value="image">Image</option>
                     <option value="video">Video</option>
@@ -63,27 +67,47 @@ export function CreateNote(props) {
             </label>
             <label className="title">
                 <span>Title:</span>
-                <input type="text" name="title" value={props.noteToEdit.title} onChange={onChangeNote} />
+                <input
+                    type="text"
+                    name="title"
+                    value={props.isEditInPlace && props.noteToEdit.title || ''}
+                    onChange={onChangeNote}
+                />
             </label>
             {
                 props.noteToEdit.type === 'text' &&
                 <label className="text">
                     <span>Text:</span>
-                    <textarea name="text" rows="3" value={props.noteToEdit.text} onChange={onChangeNote} />
+                    <textarea
+                        name="text"
+                        rows="3"
+                        value={props.isEditInPlace && props.noteToEdit.text || ''}
+                        onChange={onChangeNote}
+                    />
                 </label>
             }
             {
                 props.noteToEdit.type === 'image' &&
                 <label className="image">
                     <span>Image:</span>
-                    <input type="file" name="image" accept="image/*" onChange={onChangeNote} />
+                    <input
+                        type="file"
+                        name="image"
+                        accept="image/*"
+                        onChange={onChangeNote}
+                    />
                 </label>
             }
             {
                 props.noteToEdit.type === 'video' &&
                 <label className="video">
                     <span>Video:</span>
-                    <input type="url" name="video" value={props.noteToEdit.video} onChange={onChangeNote} />
+                    <input
+                        type="url"
+                        name="video"
+                        value={props.isEditInPlace && props.noteToEdit.video || ''}
+                        onChange={onChangeNote}
+                    />
                 </label>
             }
             {
@@ -92,7 +116,12 @@ export function CreateNote(props) {
                     <ToDo items={props.noteToEdit.todo} onDeleteTodoItem={onDeleteTodoItem} />
                     <label className="todo">
                         <span>Todo:</span>
-                        <input type="text" name="todoText" value={props.noteToEdit.todoText} onChange={onChangeNote} />
+                        <input
+                            type="text"
+                            name="todoText"
+                            value={props.isEditInPlace && props.noteToEdit.todoText || ''}
+                            onChange={onChangeNote}
+                        />
                     </label>
                     <button type="button" onClick={onAddTodoItem}>Add</button>
                 </React.Fragment>
@@ -105,7 +134,7 @@ export function CreateNote(props) {
                             <input
                                 type="radio"
                                 name="color"
-                                value={color}
+                                value={props.isEditInPlace && color || ''}
                                 checked={props.noteToEdit.color === color}
                                 onChange={onChangeNote}
                             />

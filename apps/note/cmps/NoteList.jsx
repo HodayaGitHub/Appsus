@@ -3,6 +3,7 @@ const { useRef } = React
 export function NoteList(props) {
 
     function onFocusNote(ev, note) {
+        props.onSetIsEditInPlace(false)
         props.onSetNoteToEdit(note)
     }
 
@@ -14,6 +15,7 @@ export function NoteList(props) {
     }
 
     function onBlurNote(ev, note) {
+        props.onSetIsEditInPlace(true)
         props.onSaveNote()
     }
 

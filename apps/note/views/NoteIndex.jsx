@@ -13,6 +13,7 @@ export function NoteIndex(props) {
     const [unpinnedNotes, setUnpinnedNotes] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const [noteToEdit, setNoteToEdit] = useState(noteService.searchParamsToNote(searchParams))
+    const [isEditInPlace, setIsEditInPlace] = useState(true)
     const [filterBy, setFilterBy] = useState(noteService.searchParamsToSearchFilter(searchParams))
 
     useEffect(() => {
@@ -39,6 +40,10 @@ export function NoteIndex(props) {
         const newUnpinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: false })
         setPinnedNotes(newPinnedNotes)
         setUnpinnedNotes(newUnpinnedNotes)
+    }
+
+    function onSetIsEditInPlace(newIsEditInPlace) {
+        setIsEditInPlace(newIsEditInPlace)
     }
 
     function onSetNoteToEdit(note) {
@@ -141,11 +146,13 @@ export function NoteIndex(props) {
 
     const noteListProps = {
         SVG_ICONS: props.SVG_ICONS,
+        isEditInPlace,
         noteToEdit,
         onPinNote,
         onArchiveNote,
         onTrashNote,
         onDeleteNote,
+        onSetIsEditInPlace,
         onSetNoteToEdit,
         onSaveNote,
         onDuplicateNote,
@@ -161,9 +168,11 @@ export function NoteIndex(props) {
             <AppAside buttons={APP_ASIDE_BUTTONS}/>
             <main className="note-index">
                 <CreateNote
-                    onSaveNote={onSaveNote}
+                    isEditInPlace={isEditInPlace}
                     noteToEdit={noteToEdit}
+                    onSetIsEditInPlace={onSetIsEditInPlace}
                     onSetNoteToEdit={onSetNoteToEdit}
+                    onSaveNote={onSaveNote}
                 />
                 <CraeteNoteExpand />
                 <h3>Pinned</h3>

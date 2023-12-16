@@ -2,20 +2,16 @@
 const { useState, useEffect } = React
 
 export function CraeteNoteExpand(props) {
-    const [isInFocus, setIsInFocus] = useState()
+    const [numElementsInFocus, setNumElementsInFocus] = useState(0)
+    const [isInFocus, setIsInFocus] = useState(false)
 
-    function onFocus(ev) {
-        setIsInFocus(true)
-    }
-    
-    function onBlur(ev) {
-        // setIsInFocus(false)
-    }
+    useEffect(() => {
+        console.log('effect')
+        setIsInFocus(0 < numElementsInFocus)
+    }, [numElementsInFocus])
 
     return (
-        <div className="create-note-expand"
-            onBlur={onBlur}
-        >
+        <div className="create-note-expand">
         {
             isInFocus &&
             <div className="input-container">
@@ -23,9 +19,10 @@ export function CraeteNoteExpand(props) {
                     type="text"
                     name="title"
                     placeholder="Title"
-                    onFocus={onFocus}
+                    onFocus={() => setNumElementsInFocus(prev => prev + 1)}
                     onInput={() => console.log('input')}
                     onChange={() => console.log('change')}
+                    onBlur={() => setNumElementsInFocus(prev => prev - 1)}
                 />
             </div>
         }
@@ -34,9 +31,10 @@ export function CraeteNoteExpand(props) {
                     type="text"
                     name="text"
                     placeholder="Take a note..."
-                    onFocus={onFocus}
+                    onFocus={() => setNumElementsInFocus(prev => prev + 1)}
                     onInput={() => console.log('input')}
                     onChange={() => console.log('change')}
+                    onBlur={() => setNumElementsInFocus(prev => prev - 1)}
                 />
             </div>
         </div>
