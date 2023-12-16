@@ -109,7 +109,6 @@ export function NoteIndex(props) {
 
     function clearNoteToEdit() {
         const newNote = noteService.create()
-        newNote.type = noteToEdit.type
         setNoteToEdit(newNote)
     }
 
@@ -167,14 +166,13 @@ export function NoteIndex(props) {
             />
             <AppAside buttons={APP_ASIDE_BUTTONS}/>
             <main className="note-index">
-                <CreateNote
+                <CraeteNoteExpand
                     isEditInPlace={isEditInPlace}
                     noteToEdit={noteToEdit}
                     onSetIsEditInPlace={onSetIsEditInPlace}
                     onSetNoteToEdit={onSetNoteToEdit}
                     onSaveNote={onSaveNote}
                 />
-                <CraeteNoteExpand />
                 <h3>Pinned</h3>
             {
                 ! pinnedNotes && <section>Loading...</section> ||

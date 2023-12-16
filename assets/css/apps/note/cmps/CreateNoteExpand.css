@@ -22,3 +22,94 @@
     background-color: #ffffff00;
     padding: 0.75rem 1rem;
 }
+
+.create-note-expand .buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-note-expand .colors-container {
+    display: flex;
+}
+
+.create-note-expand .colors-container > label {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.create-note-expand .colors-container > label:has([name=color]:checked) {
+    border: 2px solid black;
+}
+
+.create-note-expand .colors-container > .color-1 {
+    background-color: var(--note-color-a-1);
+}
+
+.create-note-expand .colors-container > .color-2 {
+    background-color: var(--note-color-a-2);
+}
+
+.create-note-expand .colors-container > .color-3 {
+    background-color: var(--note-color-a-3);
+}
+
+.create-note-expand .colors-container > .color-4 {
+    background-color: var(--note-color-a-4);
+}
+
+.create-note-expand .colors-container > .color-5 {
+    background-color: var(--note-color-a-5);
+}
+
+.create-note-expand .colors-container > .color-b-00 {
+    background-color: var(--note-color-b-00);
+}
+
+.create-note-expand .colors-container > .color-b-01 {
+    background-color: var(--note-color-b-01);
+}
+
+.create-note-expand .colors-container > .color-b-02 {
+    background-color: var(--note-color-b-02);
+}
+
+.create-note-expand .colors-container > .color-b-03 {
+    background-color: var(--note-color-b-03);
+}
+
+.create-note-expand .colors-container > .color-b-04 {
+    background-color: var(--note-color-b-04);
+}
+
+.create-note-expand .colors-container > .color-b-05 {
+    background-color: var(--note-color-b-05);
+}
+
+.create-note-expand .colors-container > .color-b-06 {
+    background-color: var(--note-color-b-06);
+}
+
+.create-note-expand .colors-container > .color-b-07 {
+    background-color: var(--note-color-b-07);
+}
+
+.create-note-expand .colors-container > .color-b-08 {
+    background-color: var(--note-color-b-08);
+}
+
+.create-note-expand .colors-container > .color-b-09 {
+    background-color: var(--note-color-b-09);
+}
+
+.create-note-expand .colors-container > .color-b-10 {
+    background-color: var(--note-color-b-10);
+}
+
+.create-note-expand .colors-container > .color-b-11 {
+    background-color: var(--note-color-b-11);
+}
+
+.create-note-expand .colors-container [name=color] {
+    display: none;
+}
