@@ -21,10 +21,6 @@ export function MailIndex() {
     const [isFormVisible, setFormVisibility] = useState(false)
     const [emailsFromStorage, setEmailsToStorage] = useState(null)
 
-    // const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
-
-
-    // const { txt, status } = filterBy
 
     useEffect(() => {
         loadEmails()
@@ -182,7 +178,7 @@ export function MailIndex() {
                     onSetFilter={onSetFilter} emails={emails}
                 />
 
-                {isFormVisible && <EmailCompose />}
+                {isFormVisible && <EmailCompose isFormVisible={isFormVisible} setFormVisibility={setFormVisibility} />}
 
 
             </main>

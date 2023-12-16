@@ -3,10 +3,11 @@ import { emailService } from "../services/mail.service.js"
 const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
 
+
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
 
-export function EmailCompose() {
+export function EmailCompose({ isFormVisible, setFormVisibility }) {
     const [newEmail, setNewEmail] = useState(emailService.getEmptyEmail())
     const { recipient, subject, message } = newEmail
     const navigate = useNavigate()
@@ -35,13 +36,20 @@ export function EmailCompose() {
             })
     }
 
-
+    const handleClose = () => {
+        setFormVisibility(false)
+    }
 
     return (
+        isFormVisible &&
         <section className="compose-email-container main-layout">
-            <div className="new-email-title">New Email</div>
-            <form class="compose-email" onSubmit={handleSubmit}>
-                <div>
+            <div className="new-email-title">
+                <span>New Email</span>
+                <button className="compose-email-close" onClick={handleClose}>X</button>
+            </div>
+
+            <form className="compose-email" onSubmit={handleSubmit}>
+                <div className="form-item">
                     <label htmlFor="recipient">To:</label>
                     <input
                         type="email"
@@ -53,7 +61,7 @@ export function EmailCompose() {
                     />
                 </div>
 
-                <div>
+                <div className="form-item">
                     <label htmlFor="subject">Subject:</label>
                     <input
                         type="text"
@@ -66,7 +74,7 @@ export function EmailCompose() {
                 </div>
 
                 <div>
-                    <label htmlFor="message">Message:</label>
+                    <label htmlFor="message"></label>
                     <textarea
                         id="message"
                         name="message"
@@ -75,7 +83,8 @@ export function EmailCompose() {
                         required
                     />
                 </div>
-                <button type="submit">Send Email</button>
+                <div className="send-btn-container"><button className="send-email-btn" type="submit">Send</button> </div>
+
 
             </form>
 

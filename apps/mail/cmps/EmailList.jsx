@@ -44,9 +44,9 @@ export function EmailList({ emails, onRemoveEmail, onStarredEmail, onReadChange 
                     {!(selectedEmailId === email.id) && (
                         <React.Fragment>
                             <LongTxt dynamicClass="email-subject" txt={email.subject} length={20} />
-                            <LongTxt dynamicClass="email-content" txt={email.body} length={80} />
+                            <LongTxt dynamicClass="email-content" txt={email.body} length={120} />
                             <SentAt email={email}></SentAt>
-                            
+
                             {/* <EmailActions
                                 email={email}
                                 onRemoveEmail={() => onRemoveEmail(email.id)}

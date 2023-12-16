@@ -1,8 +1,9 @@
 .emails-container {
-    margin: 3px;
+    /* margin: 3px; */
     /* border: 1px solid; */
     border-top: none;
     /* border-color: var(--border-gray); */
+    z-index: 1;
 
 }
 
@@ -15,8 +16,9 @@
 .email-item {
     display: grid;
     cursor: pointer;
-    padding: 5px;
-    border-top: 1px solid;
+    /* padding: 5px; */
+    padding-left: 25px;
+    /* border-top: 1px solid; */
     border-color: var(--border-gray);
     grid-template-columns: 1.2fr 5fr 1fr;
     align-items: center;

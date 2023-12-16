@@ -1,5 +1,6 @@
 :root {
     --main-bg-color: lightblue;
+    --main-layout-bg: #f6f8fc;
     --clr1: rgb(96, 107, 91);
     --clr2: rgb(120, 99, 110);
 
@@ -11,7 +12,7 @@
     --gray1: rgb(240, 240, 240);
     --gray2: rgb(155, 155, 155);
     --gray3: rgb(44, 44, 44);
-    --gray4: #cdbfbf75;
+    --gray4: #c6b3b375;
     --gray5: #f2f6fc;
     --border-gray: #cdbfbf52;
 
@@ -34,4 +35,9 @@
     --note-color-b-09: #f6e2dd;
     --note-color-b-10: #e9e3d4;
     --note-color-b-11: #efeff1;
+
+
+
+    /* email vars */
+    --text-clr: #747775;
 }

@@ -10,7 +10,7 @@ export function SentAt({email, emailTimeStemp}) {
 
     return (
 
-        <span class="sent-at">{formattedDate}</span>
+        <span className="sent-at">{formattedDate}</span>
 
 
     )

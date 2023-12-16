@@ -1,5 +1,5 @@
 header {
-    background: lightcyan;
+    background: var( --main-layout-bg);
     /* border-bottom: 2px solid white; */
 }
 
