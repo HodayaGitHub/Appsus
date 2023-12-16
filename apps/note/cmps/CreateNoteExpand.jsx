@@ -21,7 +21,7 @@ export function CraeteNoteExpand(props) {
             <div className="input-container">
                 <input
                     type="text"
-                    name="title-input"
+                    name="title"
                     placeholder="Title"
                     onFocus={onFocus}
                     onInput={() => console.log('input')}
@@ -32,7 +32,7 @@ export function CraeteNoteExpand(props) {
             <div className="input-container">
                 <input
                     type="text"
-                    name="text-input"
+                    name="text"
                     placeholder="Take a note..."
                     onFocus={onFocus}
                     onInput={() => console.log('input')}

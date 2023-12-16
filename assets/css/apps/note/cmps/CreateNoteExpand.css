@@ -13,7 +13,7 @@
     }
 } */
 
-.create-note-expand .title-input {
+.create-note-expand [name=title] {
     font-size: 1.1rem;
     font-weight: 600;
 }

@@ -2,6 +2,21 @@ const { useRef } = React
 
 export function NoteList(props) {
 
+    function onFocusNote(ev, note) {
+        props.onSetNoteToEdit(note)
+    }
+
+    function onChangeNote(ev, note) {
+        const field = ev.target.name
+        const value = ev.target.value
+        note[field] = value
+        props.onSetNoteToEdit(note)
+    }
+
+    function onBlurNote(ev, note) {
+        props.onSaveNote()
+    }
+
     if (! props.notes) return <section>Loading...</section>
     return (
         <section className={`note-list ${props.pinned}`}>
@@ -9,12 +24,26 @@ export function NoteList(props) {
             props.notes.map(note =>
                 <article key={note.id} style={{backgroundColor: note.color}}>
                     <div className="input-container">
-                        <input type="text" name="title-input" value={note.title}/>
+                        <input
+                            type="text"
+                            name="title"
+                            value={note.title}
+                            onFocus={ev => onFocusNote(ev, note)}
+                            onChange={ev => onChangeNote(ev, note)}
+                            onBlur={ev => onBlurNote(ev, note)}
+                        />
                     </div>
                     {
                         note.type === 'text' &&
                         <div className="input-container">
-                            <input type="text" name="text-input" value={note.text}/>
+                            <input
+                                type="text"
+                                name="text"
+                                value={note.text}
+                                onFocus={ev => onFocusNote(ev, note)}
+                                onChange={ev => onChangeNote(ev, note)}
+                                onBlur={ev => onBlurNote(ev, note)}
+                            />
                         </div>
                     }
                     {

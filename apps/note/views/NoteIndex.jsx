@@ -33,7 +33,7 @@ export function NoteIndex(props) {
             notes = [...pinnedNotes, ...unpinnedNotes]
             if (notes.every(_note => _note.id !== note.id)) notes.push(note)
         }
-        notes.reverse()
+        notes.sort((note1, note2) => note2.createdAt - note1.createdAt)
         const newPinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: true })
         newPinnedNotes.sort((note1, note2) =>  note2.pinnedOrder - note1.pinnedOrder)
         const newUnpinnedNotes = noteService.filterNotes(notes, { ...filterBy, pinned: false })
@@ -141,11 +141,13 @@ export function NoteIndex(props) {
 
     const noteListProps = {
         SVG_ICONS: props.SVG_ICONS,
+        noteToEdit,
         onPinNote,
         onArchiveNote,
         onTrashNote,
         onDeleteNote,
         onSetNoteToEdit,
+        onSaveNote,
         onDuplicateNote,
     }
 
