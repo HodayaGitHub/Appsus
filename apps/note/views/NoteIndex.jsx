@@ -8,8 +8,8 @@ const { useState, useEffect } = React
 const { useSearchParams } = ReactRouterDOM
 
 export function NoteIndex(props) {
-    const [pinnedNotes, setPinnedNotes] = useState(null)
-    const [unpinnedNotes, setUnpinnedNotes] = useState(null)
+    const [pinnedNotes, setPinnedNotes] = useState([])
+    const [unpinnedNotes, setUnpinnedNotes] = useState([])
     const [searchParams, setSearchParams] = useSearchParams()
     const [noteToEdit, setNoteToEdit] = useState(noteService.searchParamsToNote(searchParams))
     const [isEditInPlace, setIsEditInPlace] = useState(true)
@@ -25,6 +25,11 @@ export function NoteIndex(props) {
         noteService.query()
             .then(notes => setNotes(notes))
     }, [filterBy])
+
+    function setTextareaHeight(textarea) {
+        textarea.style.height = 'auto'
+        textarea.style.height = textarea.scrollHeight + 'px'
+    }
 
     function setNotes(notes) {
         if (! notes) notes = [...pinnedNotes, ...unpinnedNotes]
@@ -146,6 +151,7 @@ export function NoteIndex(props) {
         SVG_ICONS: props.SVG_ICONS,
         isEditInPlace,
         noteToEdit,
+        setTextareaHeight,
         onPinNote,
         onArchiveNote,
         onTrashNote,
@@ -168,6 +174,7 @@ export function NoteIndex(props) {
                 <CraeteNoteExpand
                     isEditInPlace={isEditInPlace}
                     noteToEdit={noteToEdit}
+                    setTextareaHeight={setTextareaHeight}
                     onSetIsEditInPlace={onSetIsEditInPlace}
                     onSetNoteToEdit={onSetNoteToEdit}
                     onSaveNote={onSaveNote}

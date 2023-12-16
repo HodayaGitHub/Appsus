@@ -32,12 +32,12 @@ input {
 textarea {
     display: block;
     width: 100%;
-    height: fit-content;
     font-family: inherit;
     font-size: inherit;
     outline: none;
     border: none;
     resize: none;
+    overflow: hidden;
 }
 
 div[contenteditable] {

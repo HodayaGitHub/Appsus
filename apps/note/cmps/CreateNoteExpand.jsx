@@ -21,8 +21,9 @@ export function CraeteNoteExpand(props) {
     }
 
     function onChangeNote(ev) {
-        const name = ev.target.name
+        let name = ev.target.name
         let value = ev.target.value
+        if (name === 'text') props.setTextareaHeight(ev.target)
         if (name === 'image') {
             const imageFile = ev.target.files && ev.target.files[0]
             if (! imageFile) return
@@ -57,12 +58,11 @@ export function CraeteNoteExpand(props) {
 
     function onCreateNote() {
         if (! props.noteToEdit.title) {
-            switch (props.noteToEdit.type) {
-                case 'text': if (! props.noteToEdit.text) return
-                case 'todo': if (! props.noteToEdit.todo.length) return
-                case 'image': if (! props.noteToEdit.image) return
-                case 'video': if (! props.noteToEdit.video) return
-            }
+            const type = props.noteToEdit.type
+            if (type === 'text' && ! props.noteToEdit.text) return
+            if (type === 'todo' && ! props.noteToEdit.todo.length) return
+            if (type === 'image' && ! props.noteToEdit.image) return
+            if (type === 'video' && ! props.noteToEdit.video) return
         }
         if (props.noteToEdit.type === 'video') {
             let value = props.noteToEdit.video
@@ -84,29 +84,27 @@ export function CraeteNoteExpand(props) {
         {
             isInFocus &&
             <div className="input-container">
-                <div
-                    contentEditable
+                <input
+                    type="text"
                     name="title"
                     placeholder="Title"
+                    value={props.isEditInPlace && props.noteToEdit.title || ''}
                     onInput={onChangeNote}
                     { ...eventHandlers }
-                >
-                    {props.isEditInPlace && props.noteToEdit.title || ''}
-                </div>
+                />
             </div>
         }
             <div className="input-container">
             {
                 props.noteToEdit.type === 'text' &&
-                <div
-                    contentEditable
+                <textarea
+                    rows="1"
                     name="text"
                     placeholder="Take a note..."
+                    value={props.isEditInPlace && props.noteToEdit.text || ''}
                     onInput={onChangeNote}
                     { ...eventHandlers }
-                >
-                    {props.isEditInPlace && props.noteToEdit.text || ''}
-                </div>
+                />
             }
             {
                 props.noteToEdit.type === 'todo' &&

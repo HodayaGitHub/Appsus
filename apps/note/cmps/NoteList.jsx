@@ -1,4 +1,3 @@
-const { useRef } = React
 
 export function NoteList(props) {
 
@@ -8,9 +7,9 @@ export function NoteList(props) {
     }
 
     function onChangeNote(ev, note) {
-        const field = ev.target.name
-        const value = ev.target.innerText
-        note[field] = value
+        const name = ev.target.name
+        const value = ev.target.value
+        note[name] = value
         props.onSetNoteToEdit(note)
     }
 
@@ -18,7 +17,7 @@ export function NoteList(props) {
         props.onSetIsEditInPlace(true)
         props.onSaveNote()
     }
-
+    
     if (! props.notes) return <section>Loading...</section>
     return (
         <section className={`note-list ${props.pinned}`}>
@@ -26,29 +25,30 @@ export function NoteList(props) {
             props.notes.map(note =>
                 <article key={note.id} style={{backgroundColor: note.color}}>
                     <div className="input-container">
-                        <div
-                            contentEditable
+                        <input
+                            type="text"
                             name="title"
+                            value={note.title}
                             onFocus={ev => onFocusNote(ev, note)}
-                            // onInput={ev => onChangeNote(ev, note)}
-                            onInput={console.log}
+                            onChange={ev => onChangeNote(ev, note)}
                             onBlur={ev => onBlurNote(ev, note)}
-                        >
-                            {note.title}
-                        </div>
+                        />
                     </div>
                 {
                     note.type === 'text' &&
                     <div className="input-container">
-                        <div
-                            contentEditable
+                        <textarea
+                            ref={el => {
+                                if (el && el.style.height !== el.scrollHeight) {
+                                    props.setTextareaHeight(el)
+                                }
+                            }}
                             name="text"
+                            value={note.text}
                             onFocus={ev => onFocusNote(ev, note)}
-                            onInput={ev => onChangeNote(ev, note)}
+                            onChange={ev => onChangeNote(ev, note)}
                             onBlur={ev => onBlurNote(ev, note)}
-                        >
-                            {note.text}
-                        </div>
+                        />
                     </div>
                 }
                 {
