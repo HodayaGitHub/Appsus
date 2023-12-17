@@ -6,13 +6,21 @@ const { useState, useEffect } = React
 const YOUTUBE_URL_REGEX = /^(?:https?:)?(?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed)(?:\.php)?(?:\?.*v=|\/))([\w-]{7,15})(?:[\?&][\w-]+=[\w-]+)*(?:[&\/\#].*)?$/
 
 export function CraeteNoteExpand(props) {
-    const [numElementsInFocus, setNumElementsInFocus] = useState(1)
+    const [numElementsInFocus, setNumElementsInFocus] = useState(0)
     const [isInFocus, setIsInFocus] = useState(false)
-    const [colorsContainerClass, setColorsContainerClass] = useState('hidden')
+    const [isShowColors, setIsShowColors] = useState(false)
+    
+    console.log(props.SVG_ICONS)
 
     useEffect(() => {
-        setIsInFocus(0 < numElementsInFocus)
-        if (numElementsInFocus <= 0) onCreateNote()
+        console.log(numElementsInFocus)
+        if (0 < numElementsInFocus) {
+            setIsInFocus(true)
+        } else {
+            onCreateNote()
+            setIsInFocus(false)
+            setIsShowColors(false)
+        }
     }, [numElementsInFocus])
 
     function onSetType(ev) {
@@ -23,7 +31,6 @@ export function CraeteNoteExpand(props) {
     function onChangeNote(ev) {
         let name = ev.target.name
         let value = ev.target.value
-        if (name === 'text') props.setTextareaHeight(ev.target)
         if (name === 'image') {
             const imageFile = ev.target.files && ev.target.files[0]
             if (! imageFile) return
@@ -50,10 +57,6 @@ export function CraeteNoteExpand(props) {
         const itemIdx = props.noteToEdit.todo.findIndex(item => item.id === itemId)
         props.noteToEdit.todo.splice(itemIdx, 1)
         props.onSetNoteToEdit({ todo: props.noteToEdit.todo })
-    }
-
-    function toggleShowColors() {
-        setColorsContainerClass(prev => ! prev ? 'hidden' : '')
     }
 
     function onCreateNote() {
@@ -98,6 +101,11 @@ export function CraeteNoteExpand(props) {
             {
                 props.noteToEdit.type === 'text' &&
                 <textarea
+                    ref={el => {
+                        if (el && el.style.height !== el.scrollHeight) {
+                            props.setTextareaHeight(el)
+                        }
+                    }}
                     rows="1"
                     name="text"
                     placeholder="Take a note..."
@@ -157,35 +165,35 @@ export function CraeteNoteExpand(props) {
                         onClick={onSetType}
                         { ...eventHandlers }
                     >
-                        Text
+                        {props.SVG_ICONS.note.notSelected}
                     </button>
                     <button
                         className="todo"
                         onClick={onSetType}
                         { ...eventHandlers }
                     >
-                        Todo
+                        {props.SVG_ICONS.todo.notSelected}
                     </button>
                     <button
                         className="image"
                         onClick={onSetType}
                         { ...eventHandlers }
                     >
-                        Image
+                        {props.SVG_ICONS.image.notSelected}
                     </button>
                     <button
                         className="video"
                         onClick={onSetType}
                         { ...eventHandlers }
                     >
-                        Video
+                        {props.SVG_ICONS.video.notSelected}
                     </button>
                     <button
                         className="color"
-                        onClick={toggleShowColors}
+                        onClick={() => setIsShowColors(prev => ! prev)}
                         { ...eventHandlers }
                     >
-                        Color
+                        {props.SVG_ICONS.colors.notSelected}
                     </button>
                 </section>
                 <button
@@ -196,7 +204,9 @@ export function CraeteNoteExpand(props) {
                 </button>
             </section>
         }
-            <div className={`colors-container ${colorsContainerClass}`}>
+        {
+            isShowColors &&
+            <div className={`colors-container`}>
             {
                 noteService.NOTE_COLORS_B.map((color, idx) => {
                     return (
@@ -216,6 +226,7 @@ export function CraeteNoteExpand(props) {
                 })
             }
             </div>
+        }
         </div>
     )
 }

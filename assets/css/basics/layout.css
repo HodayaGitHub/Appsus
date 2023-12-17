@@ -1,11 +1,12 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 4rem 1fr;
+    grid-template-columns: 4.75rem 1fr;
     align-items: start;
+    transition: 200ms;
 }
 
 .main-layout:has(.hamburger-menu-checkbox:checked) {
-    grid-template-columns: 9rem 1fr;
+    grid-template-columns: 10rem 1fr;
 }
 
 .app.main-layout {

@@ -1,17 +1,21 @@
 button {
     cursor: pointer;
-    /* background-color: var(--clr2bg); */
-    margin: 0.5em;
+    color: #202124;
+    font-family: OpenSans;
+    font-weight: 600;
     border: 0;
-    padding: 0.5em 0.8em;
-    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+    border-radius: 10rem;
 }
 
 button:hover {
-    /* background-color: var(--clr2); */
-    color: lightseagreen;
     filter: brightness(1.05);
     transition: 300ms;
+}
+
+svg {
+    fill: #202124;
 }
 
 /* input:focus {

@@ -12,7 +12,7 @@ header {
 .app-header>* {}
 
 
-.hamburger-menu {
+.hamburger-menu-container {
     padding: 0.5rem;
     cursor: pointer;
 }
@@ -39,6 +39,10 @@ header {
 }
 
 .hamburger-menu-container {
+    margin-inline-start: 0.6rem;
+}
+
+.hamburger-menu-container {
     display: inline-block;
     cursor: pointer;
 }
@@ -46,9 +50,9 @@ header {
 .bar1,
 .bar2,
 .bar3 {
-    width: 2.188rem;
-    height: 0.313rem;
-    background-color: var(--gray3);
+    width: 1.5rem;
+    height: 0.2rem;
+    background-color: #202124;
     margin: 6px 0;
     transition: 0.4s;
 }

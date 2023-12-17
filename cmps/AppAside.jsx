@@ -8,8 +8,7 @@ export function AppAside({ buttons = [], dynamicClass='' }) {
                     key={index}
                     onClick={button.onClick}
                 >
-
-                    <span className={dynamicClass}> {button.icon}</span>
+                    <span className={dynamicClass}>{button.icon}</span>
                     <span className="text">{button.text}</span>
                 </button>
             ))}

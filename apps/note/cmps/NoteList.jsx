@@ -70,11 +70,6 @@ export function NoteList(props) {
                     </ul>
                 }
                     <button
-                        className="edit"
-                        onClick={() => props.onSetNoteToEdit(note)}
-                        >Edit
-                    </button>
-                    <button
                         className="Pin"
                         onClick={() => props.onPinNote(note)}
                         >{note.pinned ? props.SVG_ICONS.pin.selected : props.SVG_ICONS.pin.notSelected }

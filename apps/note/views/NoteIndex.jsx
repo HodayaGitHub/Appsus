@@ -172,6 +172,7 @@ export function NoteIndex(props) {
             <AppAside buttons={APP_ASIDE_BUTTONS}/>
             <main className="note-index">
                 <CraeteNoteExpand
+                    SVG_ICONS={props.SVG_ICONS}
                     isEditInPlace={isEditInPlace}
                     noteToEdit={noteToEdit}
                     setTextareaHeight={setTextareaHeight}
