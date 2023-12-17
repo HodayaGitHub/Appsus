@@ -33,8 +33,9 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    /* height: 3rem; */
-    /* padding: 0 1.5rem; */
+    height: 3rem;
+    padding: 0 1.5rem;
+    padding-left: 10px;
     transition: 200ms;
 }
 
