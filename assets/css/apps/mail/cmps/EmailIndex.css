@@ -39,6 +39,8 @@
 
 .email-category-item {
     align-items: center;
+    width: 100%;
+
 }
 
 .email-category-item:hover {
