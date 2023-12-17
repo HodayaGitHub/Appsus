@@ -45,7 +45,7 @@ export function EmailCompose({ isFormVisible, setFormVisibility }) {
         <section className="compose-email-container main-layout">
             <div className="new-email-title">
                 <span>New Email</span>
-                <button className="compose-email-close" onClick={handleClose}>X</button>
+                <span className="compose-email-close" onClick={handleClose}>X</span>
             </div>
 
             <form className="compose-email" onSubmit={handleSubmit}>
