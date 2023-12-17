@@ -33,9 +33,9 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    height: 3rem;
-    padding: 0 1.5rem;
-    transition: 200ms;
+    /* height: 3rem; */
+    /* padding: 0 1.5rem; */
+    /* transition: 200ms; */
 }
 
 .main-layout:has(.hamburger-menu-checkbox:checked) .app-aside button,
@@ -73,10 +73,10 @@
 
 .main-page-aside-icon,
 .logo-img {
-    transition: box-shadow 0.3s ease-in-out; /* Add a smooth transition effect on box-shadow */
+    transition: box-shadow 0.3s ease-in-out; 
 }
 
 .main-page-aside-icon:hover,
  .logo-img:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
 }
