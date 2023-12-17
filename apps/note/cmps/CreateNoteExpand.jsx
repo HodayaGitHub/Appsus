@@ -52,13 +52,13 @@ export function CraeteNoteExpand(props) {
     }
 
     function onCreateNote() {
-        // if (! props.noteToEdit.title) {
-        //     const type = props.noteToEdit.type
-        //     if (type === 'text' && ! props.noteToEdit.text) return
-        //     if (type === 'todo' && ! props.noteToEdit.todo.length) return
-        //     if (type === 'image' && ! props.noteToEdit.image) return
-        //     if (type === 'video' && ! props.noteToEdit.video) return
-        // }
+        if (! props.noteToEdit.title) {
+            const type = props.noteToEdit.type
+            if (type === 'text' && ! props.noteToEdit.text) return
+            if (type === 'todo' && ! props.noteToEdit.todo.length) return
+            if (type === 'image' && ! props.noteToEdit.image) return
+            if (type === 'video' && ! props.noteToEdit.video) return
+        }
         if (props.noteToEdit.type === 'video') {
             let value = props.noteToEdit.video
             const regexMatch = value.match(YOUTUBE_URL_REGEX)
@@ -69,7 +69,6 @@ export function CraeteNoteExpand(props) {
         props.onSaveNote()
     }
 
-    console.log(props.noteToEdit.type)
     return (
         <div className="create-note-expand"
             onClick={ev => props.onSetIsInFocus(ev, true)}

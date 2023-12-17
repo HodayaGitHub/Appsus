@@ -11,5 +11,10 @@
 }
 
 .note-index h3 {
+  color: gray;
+  font-family: OpenSans;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   align-self: start;
 }

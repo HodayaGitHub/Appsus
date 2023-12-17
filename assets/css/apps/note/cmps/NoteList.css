@@ -51,6 +51,11 @@
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
+.note-list input[type=text] {
+    font-size: 1em;
+    font-weight: 600;
+}
+
 .note-list :is(input[type=text], textarea) {
     background-color: #ffffff00;
     padding: 0.75rem 1rem;
@@ -69,9 +74,21 @@
     cursor: auto;
 }
 
+.note-list .buttons-container {
+    display: flex;
+}
+
 .note-list button {
     opacity: 0;
-    transition: 750ms;
+    transition: opacity 750ms;
+    background-color: #ffffff00;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-list button:hover {
 }
 
 .note-list article:is(:hover, :active) button {

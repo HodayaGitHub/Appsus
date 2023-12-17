@@ -69,37 +69,39 @@ export function NoteList(props) {
                     }
                     </ul>
                 }
-                    <button
-                        className="Pin"
-                        onClick={() => props.onPinNote(note)}
-                        >{note.pinned ? props.SVG_ICONS.pin.selected : props.SVG_ICONS.pin.notSelected }
-                    </button>
-                    <button
-                        className="archive"
-                        onClick={() => props.onArchiveNote(note)}
-                        >{note.archived ? props.SVG_ICONS.archive.selected : props.SVG_ICONS.archive.notSelected }
-                    </button>
-                    <button
-                        className="trash"
-                        onClick={() => props.onTrashNote(note)}
-                        >{note.trashed ? props.SVG_ICONS.trash.selected : props.SVG_ICONS.trash.notSelected }
-                    </button>
-                {
-                    note.trashed &&
-                    <button
-                        className="delete"
-                        onClick={() => props.onDeleteNote(note.id)}
-                        >{props.SVG_ICONS.delete.notSelected}
-                    </button>
-                }
-                {
-                    ! note.trashed &&
-                    <button
-                        className="duplicate"
-                        onClick={() => props.onDuplicateNote(note)}
-                        >{props.SVG_ICONS.duplicate.notSelected}
-                    </button>
-                }
+                    <div className="buttons-container">
+                        <button
+                            className="Pin"
+                            onClick={() => props.onPinNote(note)}
+                            >{note.pinned ? props.SVG_ICONS.pin.selected : props.SVG_ICONS.pin.notSelected }
+                        </button>
+                        <button
+                            className="archive"
+                            onClick={() => props.onArchiveNote(note)}
+                            >{note.archived ? props.SVG_ICONS.archive.selected : props.SVG_ICONS.archive.notSelected }
+                        </button>
+                        <button
+                            className="trash"
+                            onClick={() => props.onTrashNote(note)}
+                            >{note.trashed ? props.SVG_ICONS.trash.selected : props.SVG_ICONS.trash.notSelected }
+                        </button>
+                    {
+                        note.trashed &&
+                        <button
+                            className="delete"
+                            onClick={() => props.onDeleteNote(note.id)}
+                            >{props.SVG_ICONS.delete.notSelected}
+                        </button>
+                    }
+                    {
+                        ! note.trashed &&
+                        <button
+                            className="duplicate"
+                            onClick={() => props.onDuplicateNote(note)}
+                            >{props.SVG_ICONS.duplicate.notSelected}
+                        </button>
+                    }
+                    </div>
                 </article>
             )
         }

@@ -52,6 +52,7 @@ export function NoteIndex(props) {
     }
 
     function onSetNoteToEdit(note) {
+        console.log(note)
         setNoteToEdit(prevNoteToEdit => ({ ...prevNoteToEdit, ...note}))
     }
 
@@ -190,7 +191,7 @@ export function NoteIndex(props) {
                     onSetNoteToEdit={onSetNoteToEdit}
                     onSaveNote={onSaveNote}
                 />
-                <h3>Pinned</h3>
+                <h3 className="pinned">Pinned</h3>
             {
                 ! pinnedNotes && <section>Loading...</section> ||
                 <NoteList
@@ -199,7 +200,7 @@ export function NoteIndex(props) {
                     { ...noteListProps }
                 />
             }
-                <h3>Unpinned</h3>
+                <h3 className="unpinned">Unpinned</h3>
             {
                 ! unpinnedNotes && <section>Loading...</section> ||
                 <NoteList
