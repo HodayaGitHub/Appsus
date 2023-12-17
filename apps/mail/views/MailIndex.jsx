@@ -10,7 +10,7 @@ import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.servic
 import { EmailFolderList } from '../cmps/EmailFolderList.jsx'
 import { AppAside } from '../../../cmps/AppAside.jsx'
 import { AppHeader } from '../../../cmps/AppHeader.jsx'
-
+import { Pagination } from '../cmps/Pagination.jsx'
 
 
 export function MailIndex() {
@@ -21,16 +21,30 @@ export function MailIndex() {
     const [isFormVisible, setFormVisibility] = useState(false)
     const [emailsFromStorage, setEmailsToStorage] = useState(null)
 
+    const [currentPage, setCurrentPage] = useState(1)
+    const emailsPerPage = 5
+
+    const indexOfLastEmail = currentPage * emailsPerPage
+    const indexOfFirstEmail = indexOfLastEmail - emailsPerPage
+    const currentEmails = emails ? emails.slice(indexOfFirstEmail, indexOfLastEmail) : []
+
+    
+
+    function handlePageChange(pageNumber) {
+        setCurrentPage(pageNumber)
+    }
 
     useEffect(() => {
         loadEmails()
         setSearchParams(filterBy)
         loadEmailsFromStorage()
 
+     
+
         return () => {
             console.log('Bye Bye')
         }
-    }, [filterBy])
+    }, [filterBy, currentPage])
 
     function loadEmails() {
         emailService
@@ -101,7 +115,6 @@ export function MailIndex() {
         })
     }
 
-
     function onStarredEmail(emailId) {
         emailService.starredEmail(emailId)
         loadEmails()
@@ -110,9 +123,12 @@ export function MailIndex() {
     function onReadChange(emailId) {
         emailService.toggleReadEmail(emailId)
         loadEmails()
-
     }
 
+    function onReadEmail(emailId) {
+        emailService.readEmail(emailId)
+        loadEmails()
+    }
 
     const buttons = [
         {
@@ -151,11 +167,13 @@ export function MailIndex() {
     ]
 
 
+
+
     if (!emails) return <div>Loading...</div>
     return (
         <React.Fragment>
             <AppHeader />
-          
+
             <AppAside
                 dynamicClass="material-symbols-rounded"
                 buttons={buttons} />
@@ -169,8 +187,15 @@ export function MailIndex() {
                 <EmailList emails={emails}
                     onStarredEmail={onStarredEmail}
                     onRemoveEmail={onRemoveEmail}
-                    onReadChange={onReadChange} />
+                    onReadChange={onReadChange}
+                    onReadEmail={onReadEmail} />
 
+                <Pagination
+                    emailsPerPage={emailsPerPage}
+                    totalEmails={emails.length}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                />
 
                 <EmailFolderList
                     filterBy={{ status: filterBy.status }}

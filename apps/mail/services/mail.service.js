@@ -21,6 +21,7 @@ export const emailService = {
     addSentEmailToLocalStorage,
     starredEmail,
     toggleReadEmail,
+    readEmail,
 }
 
 console.log('check wires')
@@ -97,9 +98,9 @@ function queryFilterBy(filterBy) {
                     return email.removedAt !== null
                 })
             }
-                // console.log('query' , emails)
-                return emails
-            })
+            // console.log('query' , emails)
+            return emails
+        })
 }
 
 function addSentEmailToLocalStorage(to, subject, body) {
@@ -130,16 +131,9 @@ function remove(emailId) {
     return storageService.remove(EMAIL_KEY, emailId)
 }
 function query() {
-    return storageService.query(EMAIL_KEY)
+    return storageService.query(EMAIL_KEY, 0)
 }
 
-// function save(email) {
-//     if (email.id) {
-//         return storageService.put(EMAIL_KEY, email)
-//     } else {
-//         return storageService.post(EMAIL_KEY, email)
-//     }
-// }
 
 function save(email) {
     if (email.id) {
@@ -147,10 +141,6 @@ function save(email) {
     } else {
         return storageService.post(EMAIL_KEY, email)
     }
-}
-
-function moveToTrash() {
-
 }
 
 
@@ -173,6 +163,19 @@ function toggleReadEmail(emailId) {
     get(emailId)
         .then((email) => {
             email.isRead = !email.isRead
+            console.log('read', email)
+            save(email)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+}
+
+
+function readEmail(emailId) {
+    get(emailId)
+        .then((email) => {
+            email.isRead = true
             console.log('read', email)
             save(email)
         })

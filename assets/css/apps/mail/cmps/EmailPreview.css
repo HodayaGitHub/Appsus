@@ -3,10 +3,14 @@
     display: flex;
     flex-direction: column;
     padding-top: 15px;
+    padding-bottom: 50px;
+
     display: flex;
     gap: 20px;
     width: 100%;
-    grid-area: 1/4;
+    /* grid-area: 1/4; */
+    padding-left: 25px;
+    grid-column: 1 / span 3;
 }
 
 .email-preview-title {
@@ -36,4 +40,9 @@
     background-color: inherit;
     padding: 0;
     color: #7c7575;
+}
+
+.email-item .email-preview {
+    background-color: #ffffff;
+    /* Set your desired background color */
 }

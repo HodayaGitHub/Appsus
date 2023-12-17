@@ -1,15 +1,17 @@
 import { EmailActions } from './EmailActions.jsx'
+const { useEffect } = React
 
-
-export function EmailPreview({ email, onRemoveEmail, onStarredEmail, onReadChange }) {
+export function EmailPreview({ email, onRemoveEmail, onStarredEmail, onReadChange, onReadEmail }) {
 
     const [name] = email.from.split('@')
 
+    useEffect(() => {
+        onReadEmail(email.id)
+    }, []);
+
     return (
-        // <article className="email-preview">
         <React.Fragment>
             <div class="email-preview">
-                
                 <div className="email-preview-title">
                     <span className="email-subject">{email.subject}</span>
                     <EmailActions email={email}
@@ -28,7 +30,5 @@ export function EmailPreview({ email, onRemoveEmail, onStarredEmail, onReadChang
 
             </div>
         </React.Fragment>
-        // </article>
-
     )
 }

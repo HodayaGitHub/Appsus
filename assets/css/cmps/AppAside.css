@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background-color: var( --main-layout-bg);
+    background-color: var(--main-layout-bg);
     transition: width 0.3s ease-in-out;
     grid-area: 2 / 1;
 }
@@ -28,7 +28,7 @@
 }
 
 .app-aside button {
-    background-color: var( --main-layout-bg);
+    background-color: var(--main-layout-bg);
     display: flex;
     justify-content: start;
     align-items: center;
@@ -55,3 +55,15 @@
     align-items: center;
     gap: 10px;
 } */
+
+
+
+.main-page-aside-icon,
+.logo-img {
+    transition: box-shadow 0.3s ease-in-out; /* Add a smooth transition effect on box-shadow */
+}
+
+.main-page-aside-icon:hover,
+ .logo-img:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow on hover */
+}

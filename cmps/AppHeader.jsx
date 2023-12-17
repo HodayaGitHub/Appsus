@@ -24,7 +24,7 @@ export function AppHeader(props) {
                 </label>
 
                 <NavLink className="app-logo" to="/">
-                <img className="logo-img" src="assets/img/icons/google_logo.png" alt="Google" />
+                    <img className="logo-img" src="assets/img/icons/google_logo.png" alt="Google" />
                 </NavLink>
             </div>
             {
@@ -36,7 +36,7 @@ export function AppHeader(props) {
                 />
             }
 
-            <div class="logos-container">
+            <div className="logos-container">
 
                 <NavLink to="/note">
                     <img className="logo-img" src="assets/img/icons/google_keep.png" alt="Note" />
@@ -47,8 +47,8 @@ export function AppHeader(props) {
                     <img className="logo-img" src="assets/img/icons/gmail_icon.png" alt="Mail" />
                 </NavLink>
 
-                <NavLink className="user-img-container" to="/">
-                    <img className="user-img" src="assets/img/icons/user_img_i.png" alt="user" />
+                <NavLink to="/">
+                    <img className="logo-img user-img" src="assets/img/icons/user_img_i.png" alt="user" />
                 </NavLink>
 
 
