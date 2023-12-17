@@ -6,22 +6,14 @@ const { useState, useEffect } = React
 const YOUTUBE_URL_REGEX = /^(?:https?:)?(?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed)(?:\.php)?(?:\?.*v=|\/))([\w-]{7,15})(?:[\?&][\w-]+=[\w-]+)*(?:[&\/\#].*)?$/
 
 export function CraeteNoteExpand(props) {
-    const [numElementsInFocus, setNumElementsInFocus] = useState(0)
-    const [isInFocus, setIsInFocus] = useState(false)
     const [isShowColors, setIsShowColors] = useState(false)
-    
-    console.log(props.SVG_ICONS)
 
     useEffect(() => {
-        console.log(numElementsInFocus)
-        if (0 < numElementsInFocus) {
-            setIsInFocus(true)
-        } else {
+        if (! props.isInFocus) {
             onCreateNote()
-            setIsInFocus(false)
             setIsShowColors(false)
         }
-    }, [numElementsInFocus])
+    }, [props.isInFocus])
 
     function onSetType(ev) {
         const type = ev.target.className
@@ -60,13 +52,13 @@ export function CraeteNoteExpand(props) {
     }
 
     function onCreateNote() {
-        if (! props.noteToEdit.title) {
-            const type = props.noteToEdit.type
-            if (type === 'text' && ! props.noteToEdit.text) return
-            if (type === 'todo' && ! props.noteToEdit.todo.length) return
-            if (type === 'image' && ! props.noteToEdit.image) return
-            if (type === 'video' && ! props.noteToEdit.video) return
-        }
+        // if (! props.noteToEdit.title) {
+        //     const type = props.noteToEdit.type
+        //     if (type === 'text' && ! props.noteToEdit.text) return
+        //     if (type === 'todo' && ! props.noteToEdit.todo.length) return
+        //     if (type === 'image' && ! props.noteToEdit.image) return
+        //     if (type === 'video' && ! props.noteToEdit.video) return
+        // }
         if (props.noteToEdit.type === 'video') {
             let value = props.noteToEdit.video
             const regexMatch = value.match(YOUTUBE_URL_REGEX)
@@ -77,15 +69,13 @@ export function CraeteNoteExpand(props) {
         props.onSaveNote()
     }
 
-    const eventHandlers = {
-        onFocus: () => setNumElementsInFocus(prev => prev + 1),
-        onBlur: () => setNumElementsInFocus(prev => Math.max(prev - 1, 0)),
-    }
-
+    console.log(props.noteToEdit.type)
     return (
-        <div className="create-note-expand">
+        <div className="create-note-expand"
+            onClick={ev => props.onSetIsInFocus(ev, true)}
+        >
         {
-            isInFocus &&
+            props.isInFocus &&
             <div className="input-container">
                 <input
                     type="text"
@@ -93,7 +83,6 @@ export function CraeteNoteExpand(props) {
                     placeholder="Title"
                     value={props.isEditInPlace && props.noteToEdit.title || ''}
                     onInput={onChangeNote}
-                    { ...eventHandlers }
                 />
             </div>
         }
@@ -111,7 +100,6 @@ export function CraeteNoteExpand(props) {
                     placeholder="Take a note..."
                     value={props.isEditInPlace && props.noteToEdit.text || ''}
                     onInput={onChangeNote}
-                    { ...eventHandlers }
                 />
             }
             {
@@ -121,14 +109,12 @@ export function CraeteNoteExpand(props) {
                         items={props.isEditInPlace && props.noteToEdit.todo || []}
                         onDeleteTodoItem={onDeleteTodoItem}
                         onChange={onChangeNote}
-                        { ...eventHandlers }
                     />
                     <input
                         type="text"
                         name="todoText"
                         value={props.isEditInPlace && props.noteToEdit.todoText || ''}
                         onChange={onChangeNote}
-                        { ...eventHandlers }
                     />
                     <button type="button" onClick={onAddTodoItem}>Add</button>
                 </div>
@@ -140,7 +126,6 @@ export function CraeteNoteExpand(props) {
                         type="file"
                         name="image"
                         accept="image/*"
-                        { ...eventHandlers }
                     />
                 </div>
             }
@@ -151,54 +136,48 @@ export function CraeteNoteExpand(props) {
                         type="url"
                         name="video"
                         value={props.isEditInPlace && props.noteToEdit.video || ''}
-                        { ...eventHandlers }
                     />
                 </div>
             }
             </div>
         {
-            isInFocus &&
+            props.isInFocus &&
             <section className="buttons-container">
                 <section className="type-buttons-container">
                     <button
                         className="text"
                         onClick={onSetType}
-                        { ...eventHandlers }
                     >
                         {props.SVG_ICONS.note.notSelected}
                     </button>
                     <button
                         className="todo"
                         onClick={onSetType}
-                        { ...eventHandlers }
                     >
                         {props.SVG_ICONS.todo.notSelected}
                     </button>
                     <button
                         className="image"
                         onClick={onSetType}
-                        { ...eventHandlers }
                     >
                         {props.SVG_ICONS.image.notSelected}
                     </button>
                     <button
                         className="video"
                         onClick={onSetType}
-                        { ...eventHandlers }
                     >
                         {props.SVG_ICONS.video.notSelected}
                     </button>
                     <button
                         className="color"
                         onClick={() => setIsShowColors(prev => ! prev)}
-                        { ...eventHandlers }
                     >
                         {props.SVG_ICONS.colors.notSelected}
                     </button>
                 </section>
                 <button
                     className="close"
-                    onClick={() => setNumElementsInFocus(0)}
+                    onClick={ev => props.onSetIsInFocus(ev, false)}
                 >
                     Close
                 </button>

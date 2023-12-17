@@ -14,6 +14,7 @@ export function NoteIndex(props) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.searchParamsToNote(searchParams))
     const [isEditInPlace, setIsEditInPlace] = useState(true)
     const [filterBy, setFilterBy] = useState(noteService.searchParamsToSearchFilter(searchParams))
+    const [isInFocus, setIsInFocus] = useState(false)
 
     useEffect(() => {
         const newSearchParams = noteService.noteToSearchParams(noteToEdit)
@@ -120,6 +121,11 @@ export function NoteIndex(props) {
         setFilterBy(() => ({ ...noteService.getDefaultFilter(), ...newFilterBy }))
     }
 
+    function onSetIsInFocus(ev, newIsInFocus) {
+        ev.stopPropagation()
+        setIsInFocus(newIsInFocus)
+    }
+
     const APP_ASIDE_BUTTONS = [
         {
             class: '',
@@ -170,11 +176,15 @@ export function NoteIndex(props) {
                 filterBy={filterBy}
             />
             <AppAside buttons={APP_ASIDE_BUTTONS}/>
-            <main className="note-index">
+            <main className="note-index"
+                onClick={() => setIsInFocus(false)}
+            >
                 <CraeteNoteExpand
                     SVG_ICONS={props.SVG_ICONS}
                     isEditInPlace={isEditInPlace}
                     noteToEdit={noteToEdit}
+                    isInFocus={isInFocus}
+                    onSetIsInFocus={onSetIsInFocus}
                     setTextareaHeight={setTextareaHeight}
                     onSetIsEditInPlace={onSetIsEditInPlace}
                     onSetNoteToEdit={onSetNoteToEdit}

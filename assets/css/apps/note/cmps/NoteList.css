@@ -81,3 +81,34 @@
 .note-list p {
     margin: 0.25rem 0 0 0;
 }
+
+/* .create-note-expand .buttons-container {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-note-expand .buttons-container button {
+    background-color: white;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.create-note-expand .buttons-container button:hover {
+    background-color: gainsboro;
+}
+
+.create-note-expand .buttons-container button.close {
+    padding: 0 0.5em;
+}
+
+.create-note-expand .type-buttons-container {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.create-note-expand .type-buttons-container button {
+    aspect-ratio: 1;
+} */
