@@ -28,7 +28,7 @@ export function MailIndex() {
     const indexOfFirstEmail = indexOfLastEmail - emailsPerPage
     const currentEmails = emails ? emails.slice(indexOfFirstEmail, indexOfLastEmail) : []
 
-    
+
 
     function handlePageChange(pageNumber) {
         setCurrentPage(pageNumber)
@@ -39,10 +39,10 @@ export function MailIndex() {
         setSearchParams(filterBy)
         loadEmailsFromStorage()
 
-     
+
 
         return () => {
-            console.log('Bye Bye')
+            // console.log('Bye Bye')
         }
     }, [filterBy, currentPage])
 
@@ -52,6 +52,7 @@ export function MailIndex() {
             .then(emails => setEmails(emails))
             .catch(err => console.log('err:', err))
     }
+
 
     function loadEmailsFromStorage() {
         emailService.query()
@@ -113,6 +114,20 @@ export function MailIndex() {
 
             return updatedFilter
         })
+    }
+
+    const [filterByLabel, setFilterByLabel] = useState(filterBy);
+
+    useEffect(() => {
+        onSetFilter(filterByLabel);
+    }, [filterByLabel]);
+
+    function onSetFilterByLabel(label) {
+        setFilterByLabel((prevFilter) => {
+            const updatedFilter = { ...prevFilter, label: label }; // Corrected property name
+
+            return updatedFilter;
+        });
     }
 
     function onStarredEmail(emailId) {
@@ -183,6 +198,24 @@ export function MailIndex() {
                 <EmailFilter filterBy={{ txt: filterBy.txt }}
                     onSetFilter={onSetFilter} />
 
+                <div className="email-category-container">
+
+                    <span class="email-category-item" onClick={() => onSetFilterByLabel('primary')}>
+                        <span className="email-category material-symbols-rounded">inbox </span>
+                        Primary
+                    </span>
+
+                    <span class="email-category-item" onClick={() => onSetFilterByLabel('promotions')}>
+                        <span className="email-category material-symbols-rounded">sell</span>
+                        Promotions
+                    </span>
+
+                    <span class="email-category-item" onClick={() => onSetFilterByLabel('social')}>
+                        <span className="email-category material-symbols-rounded">group</span>
+                        Social
+                    </span>
+
+                </div>
 
                 <EmailList emails={emails}
                     onStarredEmail={onStarredEmail}
@@ -201,6 +234,10 @@ export function MailIndex() {
                     filterBy={{ status: filterBy.status }}
                     onSetFilter={onSetFilter} emails={emails}
                 />
+
+
+
+
 
                 {isFormVisible && <EmailCompose isFormVisible={isFormVisible} setFormVisibility={setFormVisibility} />}
 

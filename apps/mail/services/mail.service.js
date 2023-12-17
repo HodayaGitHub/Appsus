@@ -29,22 +29,14 @@ console.log('check wires')
 function getFilterFromQueryString(searchParams) {
     const txt = searchParams.get('txt') || ''
     const status = searchParams.get('status') || ''
+    const label = searchParams.get('label') || ''
+
     return {
         txt,
         status,
+        label,
     }
 }
-
-
-// const criteria = {
-//     status: 'inbox/sent/trash/draft',
-//     txt: 'puki', // no need to support complex text search
-//     isRead: true, // (optional property, if missing: show all)
-//     isStarred: true, // (optional property, if missing: show all)
-//     lables: ['important', 'romantic'] // has any of the labels
-// }
-
-
 
 function _emailComposeFromJson() {
     return storageService.query(EMAIL_KEY)
@@ -79,6 +71,13 @@ function queryFilterBy(filterBy) {
                 emails = emails.filter(email => regExp.test(email.subject))
             }
 
+            if (filterBy.label) {
+                console.log(filterBy)
+                // console.log(emails)
+                return emails = emails.filter(email => email.label === filterBy.label)
+            }
+
+
             if (filterBy.status === 'inbox') {
                 emails = emails.filter(email => {
                     return email.to === loggedinUser.email && email.removedAt === null
@@ -98,7 +97,8 @@ function queryFilterBy(filterBy) {
                     return email.removedAt !== null
                 })
             }
-            // console.log('query' , emails)
+                console.log(emails)
+
             return emails
         })
 }
@@ -114,7 +114,7 @@ function addSentEmailToLocalStorage(to, subject, body) {
         sentAt: Math.floor(Date.now() / 1000),
         removedAt: null,
         isStarred: false,
-        labels: [],
+        label: [],
     }
     return storageService.post(EMAIL_KEY, email)
 }

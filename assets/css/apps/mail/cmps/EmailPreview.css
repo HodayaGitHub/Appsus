@@ -2,15 +2,14 @@
     /* font-size: 2em; */
     display: flex;
     flex-direction: column;
-    padding-top: 15px;
-    padding-bottom: 50px;
-
+    padding-top: 40px;
+    padding-bottom: 130px;
     display: flex;
     gap: 20px;
     width: 100%;
     /* grid-area: 1/4; */
     padding-left: 25px;
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
 }
 
 .email-preview-title {

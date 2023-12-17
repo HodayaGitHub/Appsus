@@ -10,7 +10,7 @@ export const emailsDataMockData = {
             sentAt: 1678133930594,
             removedAt: null,
             isStarred: false,
-            labels: [],
+            label: 'promotions',
         },
         {
             id: 'e102',
@@ -22,7 +22,7 @@ export const emailsDataMockData = {
             sentAt: 1678233930594,
             removedAt: null,
             isStarred: false,
-            labels: [],
+            label: 'promotions',
         },
         {
             id: 'e103',
@@ -34,7 +34,7 @@ export const emailsDataMockData = {
             sentAt: 1678333930594,
             removedAt: 1678233930594,
             isStarred: false,
-            labels: [],
+            label: 'primary',
         },
         {
             id: 'e104',
@@ -46,7 +46,7 @@ export const emailsDataMockData = {
             sentAt: 1678433930594,
             removedAt: null,
             isStarred: false,
-            labels: [],
+            label: 'primary',
         },
         {
             id: 'e105',
@@ -58,7 +58,7 @@ export const emailsDataMockData = {
             sentAt: 1678533930594,
             removedAt: null,
             isStarred: true,
-            labels: [],
+            label: 'promotions',
         },
         {
             id: 'e106',
@@ -70,7 +70,7 @@ export const emailsDataMockData = {
             sentAt: 1678633930594,
             removedAt: null,
             isStarred: true,
-            labels: [],
+            label: 'primary',
         },
         {
             id: 'e107',
@@ -82,7 +82,7 @@ export const emailsDataMockData = {
             sentAt: 1678133930594,
             removedAt: null,
             isStarred: false,
-            labels: [],
+            label: ['primary', 'promotions'],
         },
         {
             id: 'e108',
@@ -94,7 +94,7 @@ export const emailsDataMockData = {
             sentAt: 1678233930594,
             removedAt: null,
             isStarred: false,
-            labels: [],
+            label: ['primary', 'promotions'],
         },
         {
             id: 'e109',
@@ -106,7 +106,7 @@ export const emailsDataMockData = {
             sentAt: 1678333930594,
             removedAt: 1678233930594,
             isStarred: false,
-            labels: [],
+            label: ['primary', 'social'],
         },
         {
             id: 'e110',
@@ -118,7 +118,7 @@ export const emailsDataMockData = {
             sentAt: 1678433930594,
             removedAt: null,
             isStarred: false,
-            labels: [],
+            label: ['primary', 'social'],
         },
         {
             id: 'e111',
@@ -130,7 +130,7 @@ export const emailsDataMockData = {
             sentAt: 1678533930594,
             removedAt: null,
             isStarred: true,
-            labels: [],
+            label: ['primary', 'social'],
         },
         {
             id: 'e112',
@@ -142,7 +142,7 @@ export const emailsDataMockData = {
             sentAt: 1678633930594,
             removedAt: null,
             isStarred: true,
-            labels: [],
+            label: ['primary', 'social'],
         },
         {
             id: 'e113',
@@ -154,7 +154,7 @@ export const emailsDataMockData = {
             sentAt: 1678633945678,
             removedAt: null,
             isStarred: false,
-            labels: ['work'],
+            label: ['primary', 'social'],
         },
         {
             id: 'e114',
@@ -166,7 +166,7 @@ export const emailsDataMockData = {
             sentAt: 1678633961234,
             removedAt: null,
             isStarred: true,
-            labels: ['personal'],
+            label: ['primary'],
         },
         {
             id: 'e115',
@@ -178,7 +178,7 @@ export const emailsDataMockData = {
             sentAt: 1678633987654,
             removedAt: null,
             isStarred: false,
-            labels: ['work', 'important'],
+            label: 'social',
         },
         {
             id: 'e116',
@@ -190,7 +190,7 @@ export const emailsDataMockData = {
             sentAt: 1678634009876,
             removedAt: null,
             isStarred: true,
-            labels: ['personal'],
+            label: 'social',
         },
         {
             id: 'e117',
@@ -202,7 +202,7 @@ export const emailsDataMockData = {
             sentAt: 1678634023456,
             removedAt: null,
             isStarred: false,
-            labels: ['work', 'urgent'],
+            label: 'social',
         },
         {
             id: 'e118',
@@ -214,19 +214,19 @@ export const emailsDataMockData = {
             sentAt: 1678634056789,
             removedAt: null,
             isStarred: true,
-            labels: ['work', 'important'],
+            label: 'promotions',
         },
         {
             id: 'e119',
             to: 'user@appsus.com',
             from: 'you@email.com',
             subject: 'Family Reunion',
-            body: `Let's plan a family reunion. When are you available?`,
+            body: `Let's plan a family reunion. When are you availabel?`,
             isRead: false,
             sentAt: 1678634087654,
             removedAt: null,
             isStarred: false,
-            labels: ['personal'],
+            label: 'promotions',
         },
         {
             id: 'e120',
@@ -238,7 +238,7 @@ export const emailsDataMockData = {
             sentAt: 1678634101234,
             removedAt: null,
             isStarred: true,
-            labels: ['work', 'important'],
+            label: 'promotions',
         },
         {
             id: 'e121',
@@ -250,7 +250,7 @@ export const emailsDataMockData = {
             sentAt: 1678634123456,
             removedAt: null,
             isStarred: false,
-            labels: ['personal'],
+            label: 'promotions',
         },
         {
             id: 'e122',
@@ -262,7 +262,7 @@ export const emailsDataMockData = {
             sentAt: 1678634156789,
             removedAt: null,
             isStarred: true,
-            labels: ['work', 'important'],
+            label: 'promotions',
         },
         {
             id: 'e123',
@@ -274,7 +274,7 @@ export const emailsDataMockData = {
             sentAt: 1678634178901,
             removedAt: null,
             isStarred: true,
-            labels: ['personal'],
+            label: 'promotions',
         },
         {
             id: 'e124',
@@ -286,7 +286,7 @@ export const emailsDataMockData = {
             sentAt: 1678634201234,
             removedAt: null,
             isStarred: false,
-            labels: ['work', 'important'],
+            label: 'primary',
         },
         {
             id: 'e125',
@@ -298,7 +298,7 @@ export const emailsDataMockData = {
             sentAt: 1678634223456,
             removedAt: null,
             isStarred: true,
-            labels: ['work'],
+            label: 'primary',
         },
         {
             id: 'e126',
@@ -310,7 +310,7 @@ export const emailsDataMockData = {
             sentAt: 1678634256789,
             removedAt: null,
             isStarred: false,
-            labels: ['work', 'urgent'],
+            label: 'primary',
         },
         {
             id: 'e127',
@@ -322,7 +322,7 @@ export const emailsDataMockData = {
             sentAt: 1678634289012,
             removedAt: null,
             isStarred: false,
-            labels: ['personal'],
+            label: 'primary',
         },
         {
             id: 'e128',
@@ -334,7 +334,7 @@ export const emailsDataMockData = {
             sentAt: 1678634312345,
             removedAt: null,
             isStarred: true,
-            labels: ['work', 'urgent'],
+            label: 'primary',
         },
         {
             id: 'e129',
@@ -346,7 +346,7 @@ export const emailsDataMockData = {
             sentAt: 1678634345678,
             removedAt: null,
             isStarred: false,
-            labels: ['personal'],
+            label: 'primary',
         },
         {
             id: 'e130',
@@ -358,7 +358,7 @@ export const emailsDataMockData = {
             sentAt: 1678634378901,
             removedAt: null,
             isStarred: true,
-            labels: ['work', 'important'],
+            label: 'social',
         },
         {
             id: 'e131',
@@ -370,8 +370,8 @@ export const emailsDataMockData = {
             sentAt: 1678634412345,
             removedAt: null,
             isStarred: false,
-            labels: ['personal'],
-        }, 
+            label: 'social',
+        },
         {
             id: 'e132',
             to: 'team2@project.com',
@@ -382,7 +382,7 @@ export const emailsDataMockData = {
             sentAt: 1678634445678,
             removedAt: null,
             isStarred: true,
-            labels: ['work', 'important'],
+            label: 'social',
         },
 
     ]

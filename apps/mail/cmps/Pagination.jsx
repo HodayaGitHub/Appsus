@@ -7,9 +7,9 @@ export function Pagination({ emailsPerPage, totalEmails, currentPage, onPageChan
         pageNumbers.push(i)
     }
 
-    console.log('Total Emails:', totalEmails)
-    console.log('Current Page:', currentPage)
-    console.log('emailsPerPage:', emailsPerPage)
+    // console.log('Total Emails:', totalEmails)
+    // console.log('Current Page:', currentPage)
+    // console.log('emailsPerPage:', emailsPerPage)
 
     return (
         <nav>
