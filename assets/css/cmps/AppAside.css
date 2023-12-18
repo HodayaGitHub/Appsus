@@ -81,3 +81,9 @@
  .logo-img:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow on hover */
 }
+
+
+.main-page-aside-icon {
+    display: flex;
+    
+}

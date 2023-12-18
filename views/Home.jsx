@@ -63,15 +63,6 @@ export function Home() {
                         </div>
                     </div>
 
-                    <div className="about-item">
-                        <img className="profile-photo" src="assets/img/icons/michael.png" alt="Your Image" />
-                        <div className="about-desc">
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto perferendis ullam similique maxime repudiandae sapiente laudantium deserunt, porro saepe, amet ipsum, aliquam quisquam accusantium blanditiis.</span>
-                            <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum vero eaque error, accusamus dolor incidunt.</span>
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quibusdam alias animi minima quod nobis dignissimos ducimus iusto? Unde, vel.</span>
-                        </div>
-
-                    </div>
                 </div>
 
                 <img className="main-page-logo" src="assets/img/icons/google_main_logo.png" alt="Your Image" />
