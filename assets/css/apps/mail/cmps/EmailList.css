@@ -54,7 +54,7 @@ button.email-btn {
 
 .sent-at {
     /* align-self: self-end; */
-    /* flex:right; */
+    /* flex:rightdd; */
     justify-self: flex-end;
     padding: 1rem;
 
