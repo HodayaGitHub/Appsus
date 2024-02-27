@@ -77,18 +77,17 @@ header {
 
 /* homepage */
 .main-page-logo {
-    width: 35%;
+    width: 90%;
     justify-self: right;
-    position: absolute;
     transition: margin-top 1s ease-in-out;
 }
 
 .main-content-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    height: 885px;
     align-items: center;
-    position: relative;
-    margin-top: 100px;
+    border-bottom: var(--border-seperation);
 }
 
 .profile-pics {
@@ -96,7 +95,7 @@ header {
     flex-direction: column;
     gap: 30px;
     padding: 20px;
-    width: 50%;
+    width: 100%;
 }
 
 .profile-photo {
@@ -123,11 +122,11 @@ header {
     text-align: center;
 }
 
-.about-desc button {
+.about-desc .get-started-btn {
     width: 60%;
     flex: 1 1 auto;
     margin: 10px;
-    padding: 30px;
+    padding: 15px;
     text-align: center;
     text-transform: uppercase;
     font-family: GoogleSans-Regular, Arial;
@@ -138,16 +137,21 @@ header {
     border-radius: 10px;
 }
 
-.about-desc button:hover {
+.about-desc .get-started-btn:hover {
     --x: 100%;
 }
 
 
 .get-started-btn {
-    --c1: #dd241d;
-    --c2: #7d0400b6;
+    --c1: #eb0900;
+    --c2: #d93d38b6;
     font-size: 1.2rem;
     font-weight: 700;
+}
+
+.our-features {
+    margin-top: 15px;
+    text-align: center;
 }
 
 

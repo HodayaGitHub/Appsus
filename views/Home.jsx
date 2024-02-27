@@ -1,13 +1,19 @@
 import { AppHeader } from "../cmps/AppHeader.jsx"
 import { AppAside } from "../cmps/AppAside.jsx"
-const { NavLink } = ReactRouterDOM
-const { useState, useEffect } = React
+const { NavLink, Link } = ReactRouterDOM
+const { useState, useEffect, useRef } = React
 
 export function Home() {
+
 
     const [animateLogo, setAnimateLogo] = useState(true);
     const [animateProfile, setAnimateProfile] = useState(true);
     const [logoPosition, setLogoPosition] = useState(0);
+
+    const myRef = useRef(null)
+    const executeScroll = () => myRef.current.scrollIntoView({ behavior: "smooth", block: "start"})
+
+
 
     const buttons = [
         {
@@ -36,6 +42,7 @@ export function Home() {
         return () => clearInterval(intervalId);
     }, []);
 
+
     return (
         <React.Fragment>
             <AppHeader />
@@ -48,13 +55,11 @@ export function Home() {
                 <div className="main-content-container">
 
                     <div className={`profile-pics ${animateProfile ? 'animate__animated animate__backInLeft' : ''}`}>
-                        <div className="about-item">
                             <div className="about-desc">
                                 <span>
                                     Explore more with Appsus, simplifying and enhancing your daily routine
                                 </span>
-                                <button className="get-started-btn">Get Started</button>
-                            </div>
+                                <button className="get-started-btn" onClick={executeScroll}>Get Started</button>
                         </div>
 
                     </div>
@@ -64,19 +69,80 @@ export function Home() {
                         style={{ marginTop: `${logoPosition}px` }}>
                         <svg viewBox="0 23 512 465.455" xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" fillRule="evenodd">
-                                <circle class="blue-circle" cx="139.636" cy="162.636" fill="#4285f4" r="139.636"></circle>
-                                <circle class="red-circle" cx="372.364" cy="232.455" fill="#ea4335" r="69.818"></circle>
-                                <circle class="yellow-circle" cx="372.364" cy="407" fill="#fbbc05" r="81.455"></circle>
-                                <circle class="green-circle" cx="477.091" cy="151" fill="#34a853" r="34.909"></circle>
+                                <circle className="blue-circle" cx="139.636" cy="162.636" fill="#4285f4" r="139.636"></circle>
+                                <circle className="red-circle" cx="372.364" cy="232.455" fill="#ea4335" r="69.818"></circle>
+                                <circle className="yellow-circle" cx="372.364" cy="407" fill="#fbbc05" r="81.455"></circle>
+                                <circle className="green-circle" cx="477.091" cy="151" fill="#34a853" r="34.909"></circle>
                             </g>
                         </svg>
                     </div>
 
                 </div>
-
-                <div className="">
-                    blalglaglkafglkl
-                </div>
+                <section ref={myRef} className="our-features">
+                    <h1>Our Features</h1>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                </section>
+                <section  className="our-features">
+                    <h1>Our Features</h1>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                </section>
+                <section  className="our-features">
+                    <h1>Our Features</h1>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                </section>
+                <section className="our-features">
+                    <h1>Our Features</h1>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                </section>
+                <section  className="our-features">
+                    <h1>Our Features</h1>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                    <p>Your get started section content goes here.</p>
+                </section>
             </main>
         </React.Fragment>
     )

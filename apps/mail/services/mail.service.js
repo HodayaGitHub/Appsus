@@ -24,8 +24,6 @@ export const emailService = {
     readEmail,
 }
 
-console.log('check wires')
-
 function getFilterFromQueryString(searchParams) {
     const txt = searchParams.get('txt') || ''
     const status = searchParams.get('status') || ''
