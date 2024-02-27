@@ -29,12 +29,10 @@ export function Home() {
     ]
 
     useEffect(() => {
-
         const intervalId = setInterval(() => {
             setLogoPosition((prevPosition) => (prevPosition === 0 ? 20 : 0));
-        }, 1000); // Adjust the interval duration as needed
+        }, 1000);
 
-        // Clear interval on component unmount
         return () => clearInterval(intervalId);
     }, []);
 
@@ -48,25 +46,23 @@ export function Home() {
 
             <main className="home main-layout">
                 <div className="main-content-container">
+
                     <div className={`profile-pics ${animateProfile ? 'animate__animated animate__backInLeft' : ''}`}>
                         <div className="about-item">
-                            {/* <img className="profile-photo" src="assets/img/icons/hodaya.jpg" alt="Your Image" /> */}
                             <div className="about-desc">
-                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto perferendis ullam similique maxime repudiandae sapiente laudantium deserunt, porro saepe, amet ipsum, aliquam quisquam accusantium blanditiis.</span>
-                                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum vero eaque error, accusamus dolor incidunt.</span>
-                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quibusdam alias animi minima quod nobis dignissimos ducimus iusto? Unde, vel.</span>
-
+                                <span>
+                                    Explore more with Appsus, simplifying and enhancing your daily routine
+                                </span>
+                                <button className="get-started-btn">Get Started</button>
                             </div>
                         </div>
+
                     </div>
 
                     <div
                         className={`main-page-logo ${animateLogo ? 'animate__animated animate__backInRight' : ''}`}
-                        style={{
-                            transition: 'margin-top 1s ease-in-out',
-                            marginTop: `${logoPosition}px`
-                        }}
-                    >                    <svg viewBox="0 23 512 465.455" xmlns="http://www.w3.org/2000/svg">
+                        style={{ marginTop: `${logoPosition}px` }}>
+                        <svg viewBox="0 23 512 465.455" xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" fillRule="evenodd">
                                 <circle class="blue-circle" cx="139.636" cy="162.636" fill="#4285f4" r="139.636"></circle>
                                 <circle class="red-circle" cx="372.364" cy="232.455" fill="#ea4335" r="69.818"></circle>
@@ -75,8 +71,12 @@ export function Home() {
                             </g>
                         </svg>
                     </div>
+
                 </div>
 
+                <div className="">
+                    blalglaglkafglkl
+                </div>
             </main>
         </React.Fragment>
     )

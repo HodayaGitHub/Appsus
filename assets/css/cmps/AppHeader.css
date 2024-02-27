@@ -30,8 +30,6 @@ header {
     display: flex;
 }
 
-
-
 .menu-logo-container {
     display: flex;
     align-items: center;
@@ -79,15 +77,18 @@ header {
 
 /* homepage */
 .main-page-logo {
-    width:50%;
+    width: 35%;
     justify-self: right;
-    
+    position: absolute;
+    transition: margin-top 1s ease-in-out;
 }
 
 .main-content-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
+    align-items: center;
+    position: relative;
+    margin-top: 100px;
 }
 
 .profile-pics {
@@ -95,24 +96,20 @@ header {
     flex-direction: column;
     gap: 30px;
     padding: 20px;
-    width: 100%;
+    width: 50%;
 }
 
 .profile-photo {
     border-radius: 20px;
-    max-width: 200px;
-    max-height: 300px;
-
+    width: 50%;
 }
 
 .about-item {
     display: flex;
     gap: 20px;
-    border: 1px solid;
-    border-radius: 20px;
-    border-color: rgb(180, 166, 166);
     padding: 15px;
-
+    width: 100%;
+    align-self: center;
 }
 
 .about-desc {
@@ -120,4 +117,47 @@ header {
     gap: 30px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.about-desc button {
+    width: 60%;
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: GoogleSans-Regular, Arial;
+    transition: 0.5s;
+    background: linear-gradient(90deg, var(--c1, #e8f665b2), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+.about-desc button:hover {
+    --x: 100%;
+}
+
+
+.get-started-btn {
+    --c1: #dd241d;
+    --c2: #7d0400b6;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .main-page-logo {
+        display: none;
+    }
+
+    .profile-pics {
+        width: 100%;
+    }
 }
