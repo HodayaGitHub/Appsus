@@ -1,8 +1,6 @@
 .main-layout {
     display: grid;
-    grid-template-columns: 4.75rem 1fr;
-    align-items: start;
-    transition: 200ms;
+    grid-template-columns: minmax(80px, 1fr) minmax(auto, 1920px) minmax(80px, 1fr);
 }
 
 .main-layout:has(.hamburger-menu-checkbox:checked) {

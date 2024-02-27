@@ -78,27 +78,24 @@ header {
 
 
 /* homepage */
-.home {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    /* position: relative; */
+.main-page-logo {
+    width:50%;
+    justify-self: right;
+    
 }
 
-.main-page-logo {
-    margin: 100px;
-    max-width: 500px;
+.main-content-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
 }
 
 .profile-pics {
     display: flex;
     flex-direction: column;
-    /* max-width: 250px;
-    max-height: 250px; */
     gap: 30px;
     padding: 20px;
+    width: 100%;
 }
 
 .profile-photo {
@@ -119,10 +116,8 @@ header {
 }
 
 .about-desc {
-    width: 400px;
+    width: 100%;
     gap: 30px;
     display: flex;
     flex-direction: column;
 }
-
-
