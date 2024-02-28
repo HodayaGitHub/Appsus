@@ -1,3 +1,4 @@
+import React from 'react';
 import { EmailActions } from './EmailActions.jsx'
 import { useEffect } from 'react';
 
