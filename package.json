@@ -1,1 +1,29 @@
-{}
+{
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "react-scripts start"
+  },
+  "dependencies": {
+    "babel-loader": "^9.1.3",
+    "babel-preset-react-app": "^10.0.1",
+    "react": "^18.2.0",
+    "react-router-dom": "^6.22.1",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-react": "^7.23.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
