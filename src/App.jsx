@@ -107,7 +107,7 @@ const SVG_ICONS = {
 export function App() {
 
     return (
-        <Router>
+      <Router basename={process.env.PUBLIC_URL}>
 
             <section className="app main-layout">
                 <Routes>
