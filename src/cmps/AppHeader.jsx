@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import google_keep from '../assets/img/icons/google_keep.png'
 import google_logo from '../assets/img/icons/google_logo.png'
+import gmail_icon from '../assets/img/icons/gmail_icon.png'
+import user_img from '../assets/img/icons/user_img_i.png'
 
 export function AppHeader(props) {
 
@@ -45,11 +47,11 @@ export function AppHeader(props) {
 
 
                 <NavLink to="/mail">
-                    <img className="logo-img" src="assets/img/icons/gmail_icon.png" alt="Mail" />
+                    <img className="logo-img" src={gmail_icon} alt="Mail" />
                 </NavLink>
 
                 <NavLink to="/">
-                    <img className="logo-img user-img" src="assets/img/icons/user_img_i.png" alt="user" />
+                    <img className="logo-img user-img" src={user_img} alt="user" />
                 </NavLink>
 
 

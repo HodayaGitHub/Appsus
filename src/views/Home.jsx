@@ -3,6 +3,8 @@ import { AppAside } from "../cmps/AppAside.jsx"
 import { NavLink, Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import React from 'react';
+import google_keep from '../assets/img/icons/google_keep.png'
+import gmail_icon from '../assets/img/icons/gmail_icon.png'
 
 export function Home() {
 
@@ -21,7 +23,7 @@ export function Home() {
             class: 'main-page-aside-icon',
             icon: (
                 <NavLink to="/note">
-                    <img className="logo-img" src="assets/img/icons/google_keep.png" alt="Note" />
+                    <img className="logo-img" src={google_keep} alt="Note" />
                 </NavLink>
             ),
         },
@@ -29,7 +31,7 @@ export function Home() {
             class: 'main-page-aside-icon',
             icon: (
                 <NavLink to="/mail">
-                    <img className="logo-img" src="assets/img/icons/gmail_icon.png" alt="Mail" />
+                    <img className="logo-img" src={gmail_icon} alt="Mail" />
                 </NavLink>
             ),
         }
