@@ -1,3 +1,4 @@
+import React from "react"
 import { AppAside } from "../../../cmps/AppAside.jsx"
 import { AppHeader } from "../../../cmps/AppHeader.jsx"
 import { CraeteNoteExpand } from "../cmps/CreateNoteExpand.jsx"
