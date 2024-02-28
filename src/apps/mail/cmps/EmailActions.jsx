@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export function EmailActions({ onRemoveEmail, onStarredEmail, onReadChange, email }) {
 
     const handleStarClick = (e) => {

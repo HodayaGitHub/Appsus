@@ -1,10 +1,8 @@
-// import {EmailFilter} from './EmailFilter.jsx'
-import { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
-import { LongTxt } from '../../../cmps/LongTxt.jsx'
-import { EmailActions } from './EmailActions.jsx'
-import { EmailPreview } from './EmailPreview.jsx'
-import { SentAt } from './SentAt.jsx'
+import React from 'react';
+import { useState } from 'react';
+import { LongTxt } from '../../../cmps/LongTxt.jsx';
+import { EmailPreview } from './EmailPreview.jsx';
+import { SentAt } from './SentAt.jsx';
 
 export function EmailList({ emails, onRemoveEmail, onStarredEmail, onReadChange, onReadEmail }) {
     const [selectedEmailId, setSelectedEmailId] = useState(null)
