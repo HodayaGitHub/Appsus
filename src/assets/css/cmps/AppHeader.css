@@ -11,6 +11,9 @@ header {
 
 .app-header>* {}
 
+.hamburger-menu.hidden-hamburger {
+    visibility: hidden;
+}
 
 .hamburger-menu-container {
     padding: 0.5rem;

@@ -51,10 +51,6 @@ export function Home() {
         <React.Fragment>
             <AppHeader />
 
-            <AppAside
-                dynamicClass="material-symbols-rounded"
-                buttons={buttons} />
-
             <main className="home main-layout">
                 <div className="main-content-container">
 
@@ -85,7 +81,7 @@ export function Home() {
 
                 <Features myRef={myRef} />
                 <CreatedBy />
-                
+
             </main>
         </React.Fragment>
     )

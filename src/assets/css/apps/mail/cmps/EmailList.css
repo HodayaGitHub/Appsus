@@ -99,18 +99,6 @@ button.email-btn {
     color: rgba(26, 24, 20, 0.93);
 }
 
-
-/* .email-btn {
-    height: 2em;
-    font-family: 'Material Symbols Rounded';
-    color: #yourDesiredColor; /* Change this to the color you want */
-/* } */
-
-/* .email-btn:hover .material-symbols-rounded {
-    fill: blue;
-    background-color: blue;
-} */
-
 .no-results {
 
     color: var(--gray3);
