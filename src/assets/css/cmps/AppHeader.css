@@ -152,8 +152,83 @@ header {
 .our-features {
     margin-top: 15px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-bottom: 80px;
+    border-bottom: var(--border-seperation);
 }
 
+.features-title {
+    font-size: 2rem;
+}
+
+.features-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.features-container>* {
+    border: var(--border-seperation);
+    width: 50%;
+    height: 250px;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 40px;
+    border-radius: 4px;
+}
+
+
+.features-container div img {
+    width: 60px;
+    height: 55px;
+}
+
+.created-by-container h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.created-by {
+    margin: 80px 0;
+    border: var(--border-seperation);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    text-align: center;
+    padding: 20px;
+    width: fit-content;
+    margin: auto;
+}
+
+
+
+.created-by img {
+    max-width: 180px;
+    height: 200px;
+    padding: 6px;
+}
+
+.created-by .created-by-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+}
+
+.social-links img {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 0;
+}
 
 
 @media screen and (max-width: 768px) {
@@ -163,5 +238,17 @@ header {
 
     .profile-pics {
         width: 100%;
+    }
+
+    .features-container {
+        flex-direction: column;
+    }
+
+    .created-by {
+        flex-direction: column;
+    }
+
+    .features-container>* {
+        height: fit-content;
     }
 }

@@ -1,10 +1,12 @@
-import { AppHeader } from "../cmps/AppHeader.jsx"
-import { AppAside } from "../cmps/AppAside.jsx"
-import { NavLink, Link } from 'react-router-dom';
+import { AppHeader } from '../cmps/AppHeader.jsx';
+import { AppAside } from '../cmps/AppAside.jsx';
+import { CreatedBy } from '../cmps/CreatedBy.jsx'
+import { Features } from '../cmps/Features.jsx';
+import { NavLink } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import React from 'react';
-import google_keep from '../assets/img/icons/google_keep.png'
-import gmail_icon from '../assets/img/icons/gmail_icon.png'
+import google_keep from '../assets/img/icons/google_keep.png';
+import gmail_icon from '../assets/img/icons/gmail_icon.png';
 
 export function Home() {
 
@@ -13,10 +15,9 @@ export function Home() {
     const [animateProfile, setAnimateProfile] = useState(true);
     const [logoPosition, setLogoPosition] = useState(0);
 
+    const executeScroll = () => myRef.current.scrollIntoView({ behavior: "smooth", block: "start" })
+
     const myRef = useRef(null)
-    const executeScroll = () => myRef.current.scrollIntoView({ behavior: "smooth", block: "start"})
-
-
 
     const buttons = [
         {
@@ -58,11 +59,11 @@ export function Home() {
                 <div className="main-content-container">
 
                     <div className={`profile-pics ${animateProfile ? 'animate__animated animate__backInLeft' : ''}`}>
-                            <div className="about-desc">
-                                <span>
-                                    Explore more with Appsus, simplifying and enhancing your daily routine
-                                </span>
-                                <button className="get-started-btn" onClick={executeScroll}>Get Started</button>
+                        <div className="about-desc">
+                            <span>
+                                Explore more with Appsus, simplifying and enhancing your daily routine
+                            </span>
+                            <button className="get-started-btn" onClick={executeScroll}>Get Started</button>
                         </div>
 
                     </div>
@@ -81,71 +82,10 @@ export function Home() {
                     </div>
 
                 </div>
-                <section ref={myRef} className="our-features">
-                    <h1>Our Features</h1>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                </section>
-                <section  className="our-features">
-                    <h1>Our Features</h1>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                </section>
-                <section  className="our-features">
-                    <h1>Our Features</h1>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                </section>
-                <section className="our-features">
-                    <h1>Our Features</h1>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                </section>
-                <section  className="our-features">
-                    <h1>Our Features</h1>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                    <p>Your get started section content goes here.</p>
-                </section>
+
+                <Features myRef={myRef} />
+                <CreatedBy />
+                
             </main>
         </React.Fragment>
     )
