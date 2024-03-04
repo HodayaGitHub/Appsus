@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/Appsus/static/css/main.bbd0d7f8.css",
-    "main.js": "/Appsus/static/js/main.9995b51e.js",
+    "main.css": "/Appsus/static/css/main.e2fd054e.css",
+    "main.js": "/Appsus/static/js/main.5ad8d150.js",
     "static/media/OpenSans-VariableFont.ttf": "/Appsus/static/media/OpenSans-VariableFont.19ba637387f1d6142f55.ttf",
+    "static/media/hodaya1.png": "/Appsus/static/media/hodaya1.eb046ed6191ceda7293e.png",
     "static/media/Roboto-Medium.ttf": "/Appsus/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
     "static/media/Roboto-Regular.ttf": "/Appsus/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Roboto-Black.ttf": "/Appsus/static/media/Roboto-Black.cf56c1b149d0a5e8d7c6.ttf",
@@ -20,12 +21,15 @@
     "static/media/Product Sans Regular.ttf": "/Appsus/static/media/Product Sans Regular.d165384076551a756b3c.ttf",
     "static/media/google_keep.png": "/Appsus/static/media/google_keep.5c782585962842046691.png",
     "static/media/user_img_i.png": "/Appsus/static/media/user_img_i.70205c6428d9c373d47f.png",
+    "static/media/square-github.svg": "/Appsus/static/media/square-github.222586fa9d0aa23bd12b8bf74c113236.svg",
     "index.html": "/Appsus/index.html",
-    "main.bbd0d7f8.css.map": "/Appsus/static/css/main.bbd0d7f8.css.map",
-    "main.9995b51e.js.map": "/Appsus/static/js/main.9995b51e.js.map"
+    "static/media/linkedin.svg": "/Appsus/static/media/linkedin.09681f8a33d21abb916cdbb6f6a44873.svg",
+    "static/media/envelope-solid.svg": "/Appsus/static/media/envelope-solid.555fc28d9cd079e05c5e1eb878f7ccef.svg",
+    "main.e2fd054e.css.map": "/Appsus/static/css/main.e2fd054e.css.map",
+    "main.5ad8d150.js.map": "/Appsus/static/js/main.5ad8d150.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbd0d7f8.css",
-    "static/js/main.9995b51e.js"
+    "static/css/main.e2fd054e.css",
+    "static/js/main.5ad8d150.js"
   ]
 }
