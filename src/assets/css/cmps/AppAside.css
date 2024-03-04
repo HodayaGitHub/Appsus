@@ -11,9 +11,9 @@
     gap: 20px;
 }
 
-/* .app-aside:hover {
-    width: 24px;
-} */
+.app-aside:hover {
+    width: 9rem;
+}
 
 .app-aside .text {
     overflow: hidden;
@@ -45,14 +45,14 @@
 .app-aside button.selected {
     border-radius: 0 10rem 10rem 0;
 }
-/* 
+
 .app-aside button .text {
     padding-inline-start: 1em;
-} */
+}
 
-/* .app-aside button svg {
+.app-aside button svg {
     flex-shrink: 0;
-} */
+}
 
 .app-aside button .text {
     flex-shrink: 1;
@@ -63,28 +63,28 @@
     height: 30px;
 } */
 
-/* .app-aside .aside-btns {
+.app-aside .aside-btns {
     height: fit-content;
     display: flex;
     justify-content: start;
     align-items: center;
     gap: 10px;
-} */
+}
 
 
 
 .main-page-aside-icon,
 .logo-img {
-    transition: box-shadow 0.3s ease-in-out; 
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .main-page-aside-icon:hover,
- .logo-img:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+.logo-img:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 
 .main-page-aside-icon {
     display: flex;
-    
+
 }

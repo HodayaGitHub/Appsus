@@ -17,7 +17,7 @@ export function AppHeader(props) {
         <header className={`app-header full-width ${isMenuOpen ? 'menu-open' : ''}`}>
             <div className="menu-logo-container">
 
-                <div className={`hamburger-menu ${location.pathname === '/' ? 'hidden-hamburger' : ''}`}>
+                <label className={`hamburger-menu ${location.pathname === '/' ? 'hidden-hamburger' : ''}`}>
 
                     <div className="hamburger-menu-container" onClick={toggleMenu}>
                         <div className="bar1"></div>
@@ -26,7 +26,7 @@ export function AppHeader(props) {
                     </div>
 
                     <input className="hamburger-menu-checkbox" type="checkbox" />
-                </div>
+                </label>
 
                 <NavLink className="app-logo" to="/">
                     <img className="logo-img" src={google_logo} alt="Google" />
