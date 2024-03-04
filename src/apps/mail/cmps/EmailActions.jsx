@@ -1,5 +1,6 @@
 export function EmailActions({ onRemoveEmail, onStarredEmail, onReadChange, email }) {
 
+
     const handleStarClick = (e) => {
         e.stopPropagation()
         onStarredEmail()
@@ -14,7 +15,6 @@ export function EmailActions({ onRemoveEmail, onStarredEmail, onReadChange, emai
                     onReadChange()
                 }}
                 className={`email-btn material-symbols-rounded ${email.isRead ? 'read' : 'unread'}`}>
-                {console.log(email)}
                 {email.isRead ? 'drafts' : 'mail'}
             </button>
 

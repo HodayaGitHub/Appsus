@@ -95,8 +95,6 @@ function queryFilterBy(filterBy) {
                     return email.removedAt !== null
                 })
             }
-                console.log(emails)
-
             return emails
         })
 }
@@ -146,8 +144,7 @@ function starredEmail(emailId) {
     get(emailId)
         .then((email) => {
             email.isStarred = !email.isStarred
-            console.log('starred', email)
-            save(email)
+            return save(email);
         })
         .catch((error) => {
             console.error(error)

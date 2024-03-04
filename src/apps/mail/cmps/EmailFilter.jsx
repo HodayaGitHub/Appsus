@@ -54,7 +54,6 @@ export function EmailFilter({ filterBy, onSetFilter }) {
 
 
             </form>
-            {console.log(txt)}
         </section>
     )
 }

@@ -124,7 +124,7 @@ export function MailIndex() {
 
     function onSetFilterByLabel(label) {
         setFilterByLabel((prevFilter) => {
-            const updatedFilter = { ...prevFilter, label: label }; // Corrected property name
+            const updatedFilter = { ...prevFilter, label: label }; 
 
             return updatedFilter;
         });
